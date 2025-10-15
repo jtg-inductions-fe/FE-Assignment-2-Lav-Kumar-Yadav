@@ -19,7 +19,7 @@ export const COLORS = {
         800: '#03543F',
     },
     WHITE: '#FFFFFF',
-    BLACK: '#000000', //
+    BLACK: '#000000',
     RED: {
         200: '#FBD5D5',
         800: '#9B1C1C',

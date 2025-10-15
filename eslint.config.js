@@ -8,8 +8,10 @@ import eslintConfigPrettier from 'eslint-config-prettier';
 import react from 'eslint-plugin-react';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
+import importPlugin from 'eslint-plugin-import';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 
-export default tseslint.config(
+export default tseslint.config([
     { ignores: ['dist'] },
     {
         /*
@@ -20,6 +22,7 @@ export default tseslint.config(
         extends: [
             ...tseslint.configs.recommendedTypeChecked,
             eslintConfigPrettier,
+            eslintPluginPrettierRecommended,
         ],
         files: ['**/*.{ts,tsx}'],
         languageOptions: {
@@ -40,6 +43,7 @@ export default tseslint.config(
             'react-refresh': reactRefresh,
             'jsx-a11y': jsxA11y,
             'simple-import-sort': simpleImportSort,
+            import: importPlugin,
         },
         rules: {
             ...reactHooks.configs.recommended.rules,
@@ -84,6 +88,14 @@ export default tseslint.config(
                 },
             ],
             'arrow-body-style': ['error', 'as-needed'],
+            'import/no-cycle': 'error',
+            '@typescript-eslint/consistent-type-imports': [
+                'error',
+                {
+                    prefer: 'type-imports',
+                    fixStyle: 'separate-type-imports',
+                },
+            ],
         },
         /* Specify React version for eslint-plugin-react */
         settings: {
@@ -92,4 +104,10 @@ export default tseslint.config(
             },
         },
     },
-);
+    {
+        files: ['src/**/*.{ts,tsx}'],
+        rules: {
+            'import/no-default-export': 'error',
+        },
+    },
+]);

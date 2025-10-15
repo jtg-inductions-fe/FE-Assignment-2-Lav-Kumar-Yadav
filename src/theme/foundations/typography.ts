@@ -22,92 +22,108 @@ const typographyUtil: TypographyUtils = {
  * @returns The function returns a TypographyOptions object, which includes various typography settings,
  */
 const typographyStyle = (theme: Theme): TypographyOptions => ({
-    fontFamily: 'Inter',
+    fontFamily: [
+        '"Inter"',
+        '"-apple-system"',
+        '"BlinkMacSystemFont"',
+        '"Segoe UI"',
+        '"Roboto"',
+        '"Helvetica Neue"',
+        '"Arial"',
+        '"sans-serif"',
+    ].join(','),
     htmlFontSize: HTML_FONT_SIZE,
     fontWeightLight: 400,
     fontWeightRegular: 500,
     fontWeightMedium: 600,
 
     h1: {
+        fontFamily: 'Inter',
         fontWeight: 700,
         fontSize: typographyUtil.pxToRem(30),
-        lineHeight: typographyUtil.pxToRem(45),
+        lineHeight: 1.5,
         [theme.breakpoints.up('md')]: {
             fontSize: typographyUtil.pxToRem(48),
-            lineHeight: typographyUtil.pxToRem(62.4),
+            lineHeight: 1.3,
         },
     },
     h2: {
+        fontFamily: 'Inter',
         fontWeight: 600,
         fontSize: typographyUtil.pxToRem(20),
-        lineHeight: typographyUtil.pxToRem(30),
+        lineHeight: 1.5,
     },
     h3: {
+        fontFamily: 'Inter',
         fontWeight: 600,
         fontSize: typographyUtil.pxToRem(16),
-        lineHeight: typographyUtil.pxToRem(24),
+        lineHeight: 1.5,
     },
-    text1: {
+    h4: {
+        fontFamily: 'Inter',
         fontWeight: 500,
         fontSize: typographyUtil.pxToRem(16),
-        lineHeight: typographyUtil.pxToRem(24),
+        lineHeight: 1.5,
     },
-    text2: {
+    h5: {
+        fontFamily: 'Inter',
+        fontWeight: 600,
+        fontSize: typographyUtil.pxToRem(12),
+        lineHeight: 1.5,
+        [theme.breakpoints.up('md')]: {
+            fontSize: typographyUtil.pxToRem(14),
+        },
+    },
+    h6: {
+        fontFamily: 'Inter',
+        fontWeight: 600,
+        fontSize: typographyUtil.pxToRem(12),
+        lineHeight: 1.5,
+    },
+    body1: {
+        fontFamily: 'Inter',
+        fontWeight: 400,
+        fontSize: typographyUtil.pxToRem(16),
+        lineHeight: 1.5,
+    },
+    body2: {
+        fontFamily: 'Inter',
+        fontWeight: 400,
+        fontSize: typographyUtil.pxToRem(14),
+        lineHeight: 1.4,
+    },
+    subtitle1: {
+        fontFamily: 'Inter',
         fontWeight: 400,
         fontSize: typographyUtil.pxToRem(12),
-        lineHeight: typographyUtil.pxToRem(18),
+        lineHeight: 1.5,
         [theme.breakpoints.up('md')]: {
             fontWeight: 600,
             fontSize: typographyUtil.pxToRem(14),
-            lineHeight: typographyUtil.pxToRem(20),
+            lineHeight: 1.4,
         },
     },
-    text3: {
-        fontWeight: 600,
-        fontSize: typographyUtil.pxToRem(16),
-        lineHeight: typographyUtil.pxToRem(24),
-    },
-    text4: {
+    subtitle2: {
+        fontFamily: 'Inter',
         fontWeight: 400,
-        fontSize: typographyUtil.pxToRem(16),
-        lineHeight: typographyUtil.pxToRem(24),
+        fontSize: typographyUtil.pxToRem(12),
+        lineHeight: 1.5,
     },
-    text5: {
+    caption: {
+        fontFamily: 'Inter',
+        fontWeight: 400,
+        fontSize: typographyUtil.pxToRem(12),
+        lineHeight: 1.5,
+        [theme.breakpoints.up('md')]: {
+            fontSize: typographyUtil.pxToRem(14),
+            lineHeight: 1.4,
+        },
+    },
+    overline: {
+        fontFamily: 'Inter',
         fontWeight: 500,
         fontSize: typographyUtil.pxToRem(12),
-        lineHeight: typographyUtil.pxToRem(18),
-    },
-    text6: {
-        fontWeight: 400,
-        fontSize: typographyUtil.pxToRem(12),
-        lineHeight: typographyUtil.pxToRem(18),
-    },
-    text7: {
-        fontWeight: 400,
-        fontSize: typographyUtil.pxToRem(14),
-        lineHeight: typographyUtil.pxToRem(20),
-    },
-    text8: {
-        fontWeight: 600,
-        fontSize: typographyUtil.pxToRem(12),
-        lineHeight: typographyUtil.pxToRem(18),
-    },
-    text9: {
-        fontWeight: 600,
-        fontSize: typographyUtil.pxToRem(12),
-        lineHeight: typographyUtil.pxToRem(18),
-        [theme.breakpoints.up('md')]: {
-            fontSize: typographyUtil.pxToRem(14),
-        },
-    },
-    text10: {
-        fontWeight: 400,
-        fontSize: typographyUtil.pxToRem(12),
-        lineHeight: typographyUtil.pxToRem(18),
-        [theme.breakpoints.up('md')]: {
-            fontSize: typographyUtil.pxToRem(14),
-            lineHeight: typographyUtil.pxToRem(20),
-        },
+        lineHeight: 1.5,
     },
 });
 

@@ -2,7 +2,24 @@ import type { PaletteOptions } from '@mui/material/styles';
 
 import { COLORS } from '@constant';
 
-/* Custom Palette */
+/**
+ * Custom color palette configuration overriding MUI's default palette options.
+ *
+ * Defines the primary, secondary, background, text, and feedback colors
+ * used throughout the app for consistent theming and UI styling.
+ *
+ * Colors are sourced from a centralized `COLORS` object for maintainability.
+ *
+ * Palette sections include:
+ * - `primary`: Main brand color with contrast text.
+ * - `secondary`: Supporting accent colors with light, dark, and contrast variations.
+ * - `background`: Default and paper background colors.
+ * - `text`: Primary, secondary, and disabled text colors.
+ * - `success`, `error`, `info`: Feedback colors with main and contrast text.
+ * - `action`: Colors for UI states like selected.
+ *
+ * @type {import('@mui/material/styles').PaletteOptions}
+ */
 export const palette: PaletteOptions = {
     primary: {
         main: COLORS.GREEN[500],

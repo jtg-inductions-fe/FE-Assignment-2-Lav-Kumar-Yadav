@@ -1,0 +1,28 @@
+name: Project Set-up, Formatting, Linting, Building
+
+on:
+    pull_request:
+        branches: ['**']
+
+jobs:
+    build-checks:
+        name: Set-up, Lint, Format and Build
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Set up Node.js
+              uses: actions/checkout@v4
+              with:
+                  node-version-file: '.nvmrc'
+
+            - name: Install Dependencies
+              run: npm install
+
+            - name: Formatting the code
+              run: npm run prettier
+
+            - name: Linting the code
+              run: npm run lint
+
+            - name: Build project
+              run: npm run build
