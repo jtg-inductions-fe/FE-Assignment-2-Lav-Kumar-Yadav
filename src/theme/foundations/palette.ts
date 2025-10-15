@@ -2,7 +2,12 @@ import type { PaletteOptions } from '@mui/material/styles';
 
 import { COLORS } from '@constant';
 
-/* Custom Palette */
+/**
+ * Custom MUI color palette overriding default options.
+ * Uses centralized COLORS for consistent theming:
+ * - primary, secondary, background, text, success, error, info, action colors.
+ */
+
 export const palette: PaletteOptions = {
     primary: {
         main: COLORS.GREEN[500],
