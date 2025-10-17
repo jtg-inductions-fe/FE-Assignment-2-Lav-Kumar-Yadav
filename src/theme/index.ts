@@ -15,12 +15,6 @@ let theme = createTheme({
     breakpoints,
     mixins,
     components,
-    typography: {
-        fontFamily: 'Inter',
-        ...typography.typographyUtil,
-    },
-    spacing: (factor: number) =>
-        theme.typography.pxToRem(factor * SCALING_FACTOR),
 });
 
 /* Extend the base theme with additional configurations */
@@ -28,6 +22,8 @@ theme = createTheme(theme, {
     typography: {
         ...typography.typographyStyle(theme),
     },
+    spacing: (factor: number) =>
+        theme.typography.pxToRem(factor * SCALING_FACTOR),
 });
 
 export { theme };

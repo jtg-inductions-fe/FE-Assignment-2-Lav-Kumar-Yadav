@@ -1,0 +1,33 @@
+name: Project Set-up, Formatting, Linting, Building
+
+on:
+    pull_request:
+        branches: ['**']
+
+jobs:
+    build-checks:
+        name: Set-up, Lint, Format and Build
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v5
+
+            - name: Setup node version
+              uses: actions/setup-node@v6
+              with:
+                  node-version-file: '.nvmrc'
+
+            - name: Install Dependencies
+              run: yarn
+
+            - name: Formatting the code
+              run: yarn prettier
+
+            - name: Linting the code
+              run: yarn lint
+
+            - name: Type checkout
+              run: yarn type-check
+
+            - name: Build project
+              run: yarn build
