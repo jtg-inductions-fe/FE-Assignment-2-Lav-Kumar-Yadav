@@ -108,6 +108,14 @@ export default tseslint.config([
         files: ['src/**/*.{ts,tsx}'],
         rules: {
             'import/no-default-export': 'error',
+            'padding-line-between-statements': [
+                'error',
+                {
+                    blankLine: 'always',
+                    prev: '*',
+                    next: 'return',
+                },
+            ],
         },
     },
 ]);

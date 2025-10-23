@@ -20,6 +20,7 @@ let theme = createTheme({
 /* Extend the base theme with additional configurations */
 theme = createTheme(theme, {
     typography: {
+        ...typography.typographyUtil,
         ...typography.typographyStyle(theme),
     },
     spacing: (factor: number) =>

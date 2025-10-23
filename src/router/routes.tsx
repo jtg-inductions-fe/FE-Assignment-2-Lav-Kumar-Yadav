@@ -1,7 +1,8 @@
-import { NotFound } from 'components';
-import { RootLayout } from 'layouts';
-import { Dashboard } from 'pages';
 import { createBrowserRouter } from 'react-router';
+
+import { NotFound } from '@components';
+import { RootLayout } from '@layouts';
+import { Dashboard } from '@pages';
 
 /**
  * Application router configuration using react-router's createBrowserRouter.

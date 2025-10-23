@@ -5,8 +5,11 @@
             "@assets/*": ["assets/*"],
             "@components": ["components/index"],
             "@constant": ["constant/index"],
+            "@hooks": ["hooks/index"],
             "@layouts": ["layouts/index"],
+            "@lib": ["lib/index"],
             "@pages": ["pages/index"],
+            "@router": ["router/index"],
             "@theme": ["theme/index"]
         }
     }

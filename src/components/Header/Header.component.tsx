@@ -1,9 +1,114 @@
-import { AppBar } from '@mui/material';
+import { useEffect, useState } from 'react';
 
-export const Header = () => (
-    <>
-        <AppBar sx={{ bgcolor: 'primary.contrastText', color: 'black' }}>
-            Header
-        </AppBar>
-    </>
-);
+import type { Product } from 'hooks/useProducts';
+import { Link, useLocation, useNavigate } from 'react-router';
+
+import { Menu, NotificationsSharp } from '@mui/icons-material';
+import { Badge, Box, Container, Stack, useTheme } from '@mui/material';
+
+import Logo from '@assets/illustrations/logo.svg';
+import { SearchBar, UserProfile } from '@components';
+import { useProducts, useUser } from '@hooks';
+
+import { NotificationContainer, StyledAppBar } from './Header.style';
+import { useProfileConfig } from './UserProfile.config';
+
+export const Header = () => {
+    const { data: products } = useProducts();
+    const [searchBarSelectedValue, setSearchBarSelectedValue] = useState<
+        Product | undefined
+    >();
+    const theme = useTheme();
+    const { data: user } = useUser();
+    const navigate = useNavigate();
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        if (pathname.startsWith('/products')) {
+            const selectedProduct = products.filter((product) =>
+                pathname.endsWith(product.route),
+            );
+            setSearchBarSelectedValue(selectedProduct[0]);
+        } else {
+            setSearchBarSelectedValue(undefined);
+        }
+    }, [products, pathname]);
+
+    return (
+        <>
+            <StyledAppBar aria-label="Header">
+                <Container maxWidth="xxl">
+                    <Stack
+                        direction="row"
+                        justifyContent="space-between"
+                        alignItems="center"
+                    >
+                        <Menu
+                            sx={{
+                                fontSize: theme.spacing(7),
+                                display: {
+                                    md: 'none',
+                                },
+                            }}
+                            aria-label="sidebar-toggle"
+                            role="button"
+                        />
+                        <Stack
+                            direction="row"
+                            alignItems="center"
+                            gap={8}
+                            sx={{
+                                display: {
+                                    xs: 'none',
+                                    md: 'flex',
+                                },
+                            }}
+                        >
+                            <Link to="/" aria-label="logo">
+                                <Box
+                                    component="img"
+                                    alt="Logo"
+                                    src={Logo}
+                                    sx={{
+                                        height: theme.spacing(9),
+                                        width: theme.spacing(9),
+                                    }}
+                                />
+                            </Link>
+
+                            <SearchBar
+                                value={searchBarSelectedValue}
+                                options={products}
+                                getOptionLabel={(product) => product.name}
+                                onChange={(_, product) => {
+                                    if (!product) {
+                                        void navigate('/');
+                                    } else {
+                                        void navigate(
+                                            `/products/${product?.route}`,
+                                        );
+                                    }
+                                }}
+                            />
+                        </Stack>
+                        <Stack direction="row" alignItems="center" gap={3}>
+                            <Link to="/notifications" aria-label="notification">
+                                <Badge badgeContent={5} color="primary" max={4}>
+                                    <NotificationContainer>
+                                        <NotificationsSharp
+                                            sx={{
+                                                fontSize: theme.spacing(6),
+                                                color: 'secondary.dark',
+                                            }}
+                                        />
+                                    </NotificationContainer>
+                                </Badge>
+                            </Link>
+                            <UserProfile user={user} menus={useProfileConfig} />
+                        </Stack>
+                    </Stack>
+                </Container>
+            </StyledAppBar>
+        </>
+    );
+};

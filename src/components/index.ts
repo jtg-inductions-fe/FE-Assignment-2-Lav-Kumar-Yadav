@@ -1,3 +1,5 @@
+export { Footer } from './Footer';
 export { Header } from './Header';
 export { NotFound } from './NotFound';
-export { Footer } from './Footer';
+export { SearchBar } from './SearchBar';
+export { UserProfile } from './UserProfile';
