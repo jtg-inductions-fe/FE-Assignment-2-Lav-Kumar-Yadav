@@ -35,9 +35,8 @@ export const palette: PaletteOptions = {
         contrastText: COLORS.WHITE,
     },
     error: {
-        main: COLORS.RED[800],
-        light: COLORS.RED[200],
-        contrastText: COLORS.WHITE,
+        contrastText: COLORS.RED[800],
+        main: COLORS.RED[200],
     },
     info: {
         main: COLORS.BLUE[800],
