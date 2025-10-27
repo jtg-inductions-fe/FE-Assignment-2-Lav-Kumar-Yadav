@@ -6,38 +6,52 @@ import type { User } from '@types';
 
 type UserApiResponse = {
     results: User[];
-    info: {
-        seed: string;
-        results: number;
-        page: number;
-        version: string;
-    };
+};
+
+type UseUserResult = {
+    data: User | undefined;
+    isLoading: boolean;
+    error?: string;
 };
 
 /**
  * custom react hook for fetching and managing User data
  * @function useUser
- * @returns {{data,isLoading}} Hook result
+ * @returns {UseUserResult} Hook result
  *
  */
-export const useUser = () => {
+export const useUser = (): UseUserResult => {
     const [user, setUser] = useState<User>();
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | undefined>();
 
     useEffect(() => {
-        async function fetchMyAPI() {
+        let isMounted = true;
+        async function fetchUser() {
             try {
                 const data = await apiClient<UserApiResponse>(USER_URI);
-                setUser(data.results[0]);
+                if (!data.results || data.results.length === 0) {
+                    throw new Error('No user data returned from API');
+                }
+                if (isMounted) {
+                    setUser(data.results[0]);
+                }
             } catch (e) {
-                setError(e instanceof Error ? e.message : String(e));
+                if (isMounted) {
+                    setError(e instanceof Error ? e.message : String(e));
+                }
             } finally {
-                setIsLoading(false);
+                if (isMounted) {
+                    setIsLoading(false);
+                }
             }
         }
 
-        void fetchMyAPI();
+        void fetchUser();
+
+        return () => {
+            isMounted = false;
+        };
     }, []);
 
     return {

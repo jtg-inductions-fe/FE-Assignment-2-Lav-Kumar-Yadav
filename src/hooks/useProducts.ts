@@ -4,30 +4,47 @@ import { PRODUCTS_URI } from '@constant';
 import { apiClient } from '@lib';
 import type { Product } from '@types';
 
+type UseProductsResult = {
+    data: Product[];
+    isLoading: boolean;
+    error?: string;
+};
+
 /**
  * custom react hook for fetching and managing a list of products
  * @function useProducts
- * @returns {{data,isLoading}} Hook result
+ * @returns {UseProductsResult} Hook result
  *
  */
-export const useProducts = () => {
+export const useProducts = (): UseProductsResult => {
     const [products, setProducts] = useState<Product[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | undefined>();
 
     useEffect(() => {
-        async function fetchMyAPI() {
+        let isMounted = true;
+        async function fetchProducts() {
             try {
                 const data = await apiClient<Product[]>(PRODUCTS_URI);
-                setProducts(data);
+                if (isMounted) {
+                    setProducts(data);
+                }
             } catch (e) {
-                setError(e instanceof Error ? e.message : String(e));
+                if (isMounted) {
+                    setError(e instanceof Error ? e.message : String(e));
+                }
             } finally {
-                setIsLoading(false);
+                if (isMounted) {
+                    setIsLoading(false);
+                }
             }
         }
 
-        void fetchMyAPI();
+        void fetchProducts();
+
+        return () => {
+            isMounted = false;
+        };
     }, []);
 
     return {
