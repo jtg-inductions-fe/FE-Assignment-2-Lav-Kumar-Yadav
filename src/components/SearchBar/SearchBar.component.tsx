@@ -23,7 +23,7 @@ export const SearchBar = <T,>({
 
     return (
         <StyledAutoComplete
-            value={value ? value : null}
+            value={value ?? null}
             aria-label="searchbar"
             popupIcon={null}
             disablePortal

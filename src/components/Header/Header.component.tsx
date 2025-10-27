@@ -3,7 +3,14 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 
 import { Menu, NotificationsSharp } from '@mui/icons-material';
-import { Badge, Box, Container, Stack, useTheme } from '@mui/material';
+import {
+    Badge,
+    Box,
+    Container,
+    IconButton,
+    Stack,
+    useTheme,
+} from '@mui/material';
 
 import Logo from '@assets/illustrations/logo.svg';
 import { SearchBar, UserProfile } from '@components';
@@ -11,7 +18,7 @@ import { useProducts, useUser } from '@hooks';
 import type { Product } from '@types';
 
 import { NotificationContainer, StyledAppBar } from './Header.style';
-import { profileMenuConfig } from './ProfileMenu.config';
+import { buildProfileMenuConfig } from './ProfileMenu.config';
 
 export const Header = () => {
     const { data: products } = useProducts();
@@ -22,13 +29,14 @@ export const Header = () => {
     const { data: user } = useUser();
     const navigate = useNavigate();
     const { pathname } = useLocation();
+    const profileMenuConfig = buildProfileMenuConfig(theme);
 
     useEffect(() => {
         if (pathname.startsWith('/products')) {
-            const selectedProduct = products.filter((product) =>
+            const selectedProduct = products.find((product) =>
                 pathname.endsWith(product.route),
             );
-            setSearchBarSelectedValue(selectedProduct[0]);
+            setSearchBarSelectedValue(selectedProduct);
         } else {
             setSearchBarSelectedValue(undefined);
         }
@@ -43,16 +51,12 @@ export const Header = () => {
                         justifyContent="space-between"
                         alignItems="center"
                     >
-                        <Menu
-                            sx={{
-                                fontSize: theme.spacing(7),
-                                display: {
-                                    md: 'none',
-                                },
-                            }}
+                        <IconButton
                             aria-label="sidebar-toggle"
-                            role="button"
-                        />
+                            sx={{ display: { md: 'none' } }}
+                        >
+                            <Menu sx={{ fontSize: theme.spacing(7) }} />
+                        </IconButton>
                         <Stack
                             direction="row"
                             alignItems="center"

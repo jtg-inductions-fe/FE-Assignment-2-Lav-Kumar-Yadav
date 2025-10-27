@@ -15,7 +15,7 @@ type UserApiResponse = {
 };
 
 /**
- * custom react hook for fething and managing User data
+ * custom react hook for fetching and managing User data
  * @function useUser
  * @returns {{data,isLoading}} Hook result
  *
@@ -23,14 +23,15 @@ type UserApiResponse = {
 export const useUser = () => {
     const [user, setUser] = useState<User>();
     const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | undefined>();
 
     useEffect(() => {
         async function fetchMyAPI() {
             try {
                 const data = await apiClient<UserApiResponse>(USER_URI);
                 setUser(data.results[0]);
-            } catch (error) {
-                throw new Error(JSON.stringify(error));
+            } catch (e) {
+                setError(JSON.stringify(e));
             } finally {
                 setIsLoading(false);
             }
@@ -42,5 +43,6 @@ export const useUser = () => {
     return {
         data: user,
         isLoading,
+        error,
     };
 };

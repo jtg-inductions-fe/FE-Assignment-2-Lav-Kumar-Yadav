@@ -1,4 +1,6 @@
+import type { ReactNode } from 'react';
+
 export type ProfileMenu = {
-    icon: React.ReactNode;
+    icon: ReactNode;
     option: string;
 }[];

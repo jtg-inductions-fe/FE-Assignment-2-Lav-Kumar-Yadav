@@ -5,7 +5,7 @@ import { apiClient } from '@lib';
 import type { Product } from '@types';
 
 /**
- * custom react hook for fething and managing a list of products
+ * custom react hook for fetching and managing a list of products
  * @function useProducts
  * @returns {{data,isLoading}} Hook result
  *
@@ -13,14 +13,15 @@ import type { Product } from '@types';
 export const useProducts = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | undefined>();
 
     useEffect(() => {
         async function fetchMyAPI() {
             try {
                 const data = await apiClient<Product[]>(PRODUCTS_URI);
                 setProducts(data);
-            } catch (error) {
-                throw new Error(JSON.stringify(error));
+            } catch (e) {
+                setError(JSON.stringify(e));
             } finally {
                 setIsLoading(false);
             }
@@ -32,5 +33,6 @@ export const useProducts = () => {
     return {
         data: products,
         isLoading,
+        error,
     };
 };
