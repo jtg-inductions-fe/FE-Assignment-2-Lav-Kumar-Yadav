@@ -1,0 +1,6 @@
+export type Product = {
+    name: string;
+    sales: number;
+    framework: string;
+    route: string;
+};

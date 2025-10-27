@@ -10,7 +10,8 @@
             "@lib": ["lib/index"],
             "@pages": ["pages/index"],
             "@router": ["router/index"],
-            "@theme": ["theme/index"]
+            "@theme": ["theme/index"],
+            "@types": ["types/index"]
         }
     }
 }

@@ -32,8 +32,8 @@ export const palette: PaletteOptions = {
     },
     info: {
         main: COLORS.BLUE[100],
-        contrastText: COLORS.BLUE[800],
-        dark: COLORS.GREY[800],
+        dark: COLORS.BLUE[800],
+        contrastText: COLORS.GREY.ALPHA_50,
     },
     action: {
         selected: COLORS.GREY[100],

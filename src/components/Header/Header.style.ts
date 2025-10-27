@@ -17,9 +17,9 @@ export const NotificationContainer = styled(Box)(({ theme }) => ({
     borderRadius: '50%',
     transition: 'box-shadow 0.3s',
     '&:hover': {
-        boxShadow: `0 ${theme.spacing(1)} ${theme.spacing(1)} ${theme.palette.info.dark}`,
+        boxShadow: `0 ${theme.spacing(1)} ${theme.spacing(1)} ${theme.palette.info.contrastText}`,
     },
     display: 'flex',
     justifyContent: 'center',
-    alignContent: 'center',
+    alignItems: 'center',
 }));

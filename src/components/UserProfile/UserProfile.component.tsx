@@ -68,8 +68,8 @@ export const UserProfile = ({ user, menus }: UserProfileProps) => {
                     </Stack>
                     <Divider />
 
-                    {menus.map((menu, index) => (
-                        <MenuItem key={index}>
+                    {menus.map((menu) => (
+                        <MenuItem key={menu.option}>
                             {menu.icon}
                             {menu.option}
                         </MenuItem>

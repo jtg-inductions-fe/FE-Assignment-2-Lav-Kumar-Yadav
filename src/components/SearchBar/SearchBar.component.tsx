@@ -1,5 +1,5 @@
 import SearchSharpIcon from '@mui/icons-material/SearchSharp';
-import { InputAdornment, TextField, Typography, useTheme } from '@mui/material';
+import { InputAdornment, TextField, useTheme } from '@mui/material';
 
 import { StyledAutoComplete } from './Searchbar.style';
 import type { SearchBarProps } from './SearchBar.types';
@@ -25,34 +25,31 @@ export const SearchBar = <T,>({
         <StyledAutoComplete
             value={value ? value : null}
             aria-label="searchbar"
-            role="searchbox"
             popupIcon={null}
             disablePortal
             options={options}
             getOptionLabel={getOptionLabel}
             renderInput={(params) => (
-                <Typography variant="body1" component="div">
-                    <TextField
-                        {...params}
-                        placeholder="Search"
-                        color="secondary"
-                        slotProps={{
-                            input: {
-                                ...params.InputProps,
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <SearchSharpIcon
-                                            sx={{
-                                                fontSize: theme.spacing(5),
-                                                marginLeft: theme.spacing(2),
-                                            }}
-                                        />
-                                    </InputAdornment>
-                                ),
-                            },
-                        }}
-                    />
-                </Typography>
+                <TextField
+                    {...params}
+                    placeholder="Search"
+                    color="secondary"
+                    slotProps={{
+                        input: {
+                            ...params.InputProps,
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <SearchSharpIcon
+                                        sx={{
+                                            fontSize: theme.spacing(5),
+                                            marginLeft: theme.spacing(2),
+                                        }}
+                                    />
+                                </InputAdornment>
+                            ),
+                        },
+                    }}
+                />
             )}
             onChange={onChange}
         />

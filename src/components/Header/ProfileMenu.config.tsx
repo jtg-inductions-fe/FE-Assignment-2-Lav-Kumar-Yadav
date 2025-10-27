@@ -1,12 +1,9 @@
-import { Delete, Person, Settings } from '@mui/icons-material';
+import { Logout, Person, Settings } from '@mui/icons-material';
 
 import { theme } from '@theme';
+import type { ProfileMenu } from '@types';
 
-type Menu = {
-    icon: React.ReactNode;
-    option: string;
-}[];
-export const useProfileConfig: Menu = [
+export const profileMenuConfig: ProfileMenu = [
     {
         option: 'Account',
         icon: (
@@ -30,7 +27,7 @@ export const useProfileConfig: Menu = [
     {
         option: 'LogOut',
         icon: (
-            <Delete
+            <Logout
                 sx={{
                     color: theme.palette.error.contrastText,
                     fontSize: theme.spacing(5),

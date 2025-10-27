@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import type { Product } from 'hooks/useProducts';
 import { Link, useLocation, useNavigate } from 'react-router';
 
 import { Menu, NotificationsSharp } from '@mui/icons-material';
@@ -9,9 +8,10 @@ import { Badge, Box, Container, Stack, useTheme } from '@mui/material';
 import Logo from '@assets/illustrations/logo.svg';
 import { SearchBar, UserProfile } from '@components';
 import { useProducts, useUser } from '@hooks';
+import type { Product } from '@types';
 
 import { NotificationContainer, StyledAppBar } from './Header.style';
-import { useProfileConfig } from './UserProfile.config';
+import { profileMenuConfig } from './ProfileMenu.config';
 
 export const Header = () => {
     const { data: products } = useProducts();
@@ -85,7 +85,7 @@ export const Header = () => {
                                         void navigate('/');
                                     } else {
                                         void navigate(
-                                            `/products/${product?.route}`,
+                                            `/products/${product.route}`,
                                         );
                                     }
                                 }}
@@ -93,7 +93,11 @@ export const Header = () => {
                         </Stack>
                         <Stack direction="row" alignItems="center" gap={3}>
                             <Link to="/notifications" aria-label="notification">
-                                <Badge badgeContent={5} color="primary" max={4}>
+                                <Badge
+                                    badgeContent={5}
+                                    color="primary"
+                                    max={99}
+                                >
                                     <NotificationContainer>
                                         <NotificationsSharp
                                             sx={{
@@ -104,7 +108,10 @@ export const Header = () => {
                                     </NotificationContainer>
                                 </Badge>
                             </Link>
-                            <UserProfile user={user} menus={useProfileConfig} />
+                            <UserProfile
+                                user={user}
+                                menus={profileMenuConfig}
+                            />
                         </Stack>
                     </Stack>
                 </Container>

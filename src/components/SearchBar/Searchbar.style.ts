@@ -5,11 +5,11 @@ export const StyledAutoComplete = styled(Autocomplete)(({ theme }) => ({
     borderWidth: 0,
     '& .MuiOutlinedInput-root': {
         borderRadius: theme.spacing(4),
-        backgroundColor: 'background.default',
+        backgroundColor: theme.palette.background.default,
         height: theme.spacing(11.25),
         '& .MuiOutlinedInput-notchedOutline': {
-            borderColor: 'secondary.contrastText',
-            boxShadow: `0 ${theme.spacing(1)} ${theme.spacing(1)} ${theme.palette.info.dark}`,
+            borderColor: theme.palette.secondary.contrastText,
+            boxShadow: `0 ${theme.spacing(1)} ${theme.spacing(1)} ${theme.palette.info.contrastText}`,
         },
     },
 })) as typeof Autocomplete;

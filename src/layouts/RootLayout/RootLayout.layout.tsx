@@ -1,19 +1,21 @@
 import { Outlet } from 'react-router';
 
-import { Box, Container } from '@mui/material';
+import { Container } from '@mui/material';
 
 import { Footer, Header } from '@components';
+import { theme } from '@theme';
 
 export const RootLayout = () => (
-    <Container maxWidth="xxl">
+    <>
         <Header />
-        <Box
+        <Container
+            maxWidth="xxl"
             sx={{
-                marginTop: 30,
+                marginTop: theme.spacing(20),
             }}
         >
             <Outlet />
             <Footer />
-        </Box>
-    </Container>
+        </Container>
+    </>
 );
