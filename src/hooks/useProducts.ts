@@ -21,7 +21,7 @@ export const useProducts = () => {
                 const data = await apiClient<Product[]>(PRODUCTS_URI);
                 setProducts(data);
             } catch (e) {
-                setError(JSON.stringify(e));
+                setError(e instanceof Error ? e.message : String(e));
             } finally {
                 setIsLoading(false);
             }

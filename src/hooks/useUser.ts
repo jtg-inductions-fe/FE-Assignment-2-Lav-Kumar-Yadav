@@ -31,7 +31,7 @@ export const useUser = () => {
                 const data = await apiClient<UserApiResponse>(USER_URI);
                 setUser(data.results[0]);
             } catch (e) {
-                setError(JSON.stringify(e));
+                setError(e instanceof Error ? e.message : String(e));
             } finally {
                 setIsLoading(false);
             }
