@@ -1,8 +1,7 @@
-import type { MenuConfigItem } from 'components/Menu/Menu.types';
-
 import { Logout, Person, Settings } from '@mui/icons-material';
 import { Avatar, Stack, Typography } from '@mui/material';
 
+import type { MenuConfigItem } from '@components';
 import type { User } from '@types';
 /**
  *

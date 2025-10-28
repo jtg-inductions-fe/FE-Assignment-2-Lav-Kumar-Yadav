@@ -15,6 +15,7 @@ export const Link = ({ to, href, children }: LinkProps) => (
         {...(href && {
             href,
             target: '_blank',
+            rel: 'noopener noreferrer',
         })}
         {...(to && {
             to,
