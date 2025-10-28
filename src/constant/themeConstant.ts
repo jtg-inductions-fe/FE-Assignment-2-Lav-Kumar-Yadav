@@ -19,8 +19,6 @@ export const COLORS = {
         500: '#0E9F6E',
         800: '#03543F',
     },
-    WHITE: '#FFFFFF',
-    BLACK: '#000000',
     RED: {
         200: '#FBD5D5',
         800: '#9B1C1C',
@@ -29,6 +27,8 @@ export const COLORS = {
         100: '#E1EFFE',
         800: '#1E429F',
     },
+    WHITE: '#FFFFFF',
+    BLACK: '#000000',
 };
 
 /**

@@ -20,7 +20,7 @@ const rootElement = document.getElementById('root') as HTMLElement;
  * - `CssBaseline` for consistent baseline styling across browsers.
  * - React Router's `RouterProvider` to handle client-side routing with the configured router.
  *
- * @param {HTMLElement} rootElement - The DOM element where the React app is mounted.
+ * @param  rootElement - The DOM element where the React app is mounted.
  */
 createRoot(rootElement).render(
     <StrictMode>

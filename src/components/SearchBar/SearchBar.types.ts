@@ -1,18 +1,6 @@
-import type {
-    AutocompleteChangeDetails,
-    AutocompleteChangeReason,
-} from '@mui/material';
+import type { AutocompleteProps } from '@mui/material';
 
-export type SearchBarProps<T> = {
-    options: T[];
-    getOptionLabel?: (option: T) => string;
-    value?: T;
-    onChange?:
-        | ((
-              event: React.SyntheticEvent,
-              value: T | null,
-              reason: AutocompleteChangeReason,
-              details?: AutocompleteChangeDetails<T>,
-          ) => void)
-        | undefined;
-};
+export type SearchBarProps<T> = Pick<
+    AutocompleteProps<T, false, false, false>,
+    'options' | 'getOptionLabel' | 'onChange' | 'value'
+>;

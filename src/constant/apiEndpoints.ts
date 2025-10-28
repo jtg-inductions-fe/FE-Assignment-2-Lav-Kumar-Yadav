@@ -1,2 +1,4 @@
-export const PRODUCTS_URI = '/data/products.json';
-export const USER_URI = 'https://randomuser.me/api';
+export const ENDPOINTS = {
+    PRODUCTS_URI: '/data/products.json',
+    USER_URI: 'https://randomuser.me/api',
+};

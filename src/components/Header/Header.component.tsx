@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 
-import { Link, useLocation, useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 
-import { Menu, NotificationsSharp } from '@mui/icons-material';
+import { Menu as MenuIcon, NotificationsSharp } from '@mui/icons-material';
 import {
+    Avatar,
     Badge,
     Box,
     Container,
@@ -13,34 +14,45 @@ import {
 } from '@mui/material';
 
 import Logo from '@assets/illustrations/logo.svg';
-import { SearchBar, UserProfile } from '@components';
+import { Link, Menu, SearchBar, type SearchBarProps } from '@components';
 import { useProducts, useUser } from '@hooks';
 import type { Product } from '@types';
 
-import { NotificationContainer, StyledAppBar } from './Header.style';
-import { buildProfileMenuConfig } from './ProfileMenu.config';
+import { StyledAppBar, StyledNotificationWrapper } from './Header.style';
+import { BuildProfileMenuConfig } from './UserProfile.config';
 
+/**
+ * Header component displaying the main navigation bar.
+ * Renders a header with a logo, search functionality, notification badge,
+ * and user profile icon.
+ */
 export const Header = () => {
-    const { data: products } = useProducts();
-    const [searchBarSelectedValue, setSearchBarSelectedValue] = useState<
-        Product | undefined
-    >();
-    const theme = useTheme();
-    const { data: user } = useUser();
     const navigate = useNavigate();
-    const { pathname } = useLocation();
-    const profileMenuConfig = buildProfileMenuConfig(theme);
+    const theme = useTheme();
+    const params = useParams() as { productId?: string };
+    const { data: products } = useProducts();
+    const { data: user } = useUser();
 
-    useEffect(() => {
-        if (pathname.startsWith('/products')) {
-            const selectedProduct = products.find((product) =>
-                pathname.endsWith(product.route),
-            );
-            setSearchBarSelectedValue(selectedProduct);
-        } else {
-            setSearchBarSelectedValue(undefined);
-        }
-    }, [products, pathname]);
+    const SearchBarOnChangeHandler: SearchBarProps<Product>['onChange'] = (
+        _,
+        product,
+    ) => {
+        void navigate(product ? `/products/${product.id}` : '/');
+    };
+
+    const productsIdMap = useMemo(
+        () =>
+            products.reduce(
+                (acc, currentProduct) => ({
+                    ...acc,
+                    [currentProduct.id]: currentProduct,
+                }),
+                {} as Record<string, Product | undefined>,
+            ),
+        [products],
+    );
+
+    const profileMenuConfig = BuildProfileMenuConfig(user);
 
     return (
         <>
@@ -55,7 +67,9 @@ export const Header = () => {
                             aria-label="sidebar-toggle"
                             sx={{ display: { md: 'none' } }}
                         >
-                            <Menu sx={{ fontSize: theme.spacing(7) }} />
+                            <MenuIcon
+                                sx={{ fontSize: theme.typography.pxToRem(28) }}
+                            />
                         </IconButton>
                         <Stack
                             direction="row"
@@ -73,27 +87,20 @@ export const Header = () => {
                                     component="img"
                                     alt="Logo"
                                     src={Logo}
-                                    sx={{
-                                        height: theme.spacing(9),
-                                        width: theme.spacing(9),
-                                    }}
+                                    height={36}
+                                    width={36}
                                 />
                             </Link>
-
-                            <SearchBar
-                                value={searchBarSelectedValue}
-                                options={products}
-                                getOptionLabel={(product) => product.name}
-                                onChange={(_, product) => {
-                                    if (!product) {
-                                        void navigate('/');
-                                    } else {
-                                        void navigate(
-                                            `/products/${product.route}`,
-                                        );
+                            <Box width={402}>
+                                <SearchBar
+                                    value={
+                                        productsIdMap[params.productId ?? '']
                                     }
-                                }}
-                            />
+                                    options={products}
+                                    getOptionLabel={(product) => product.name}
+                                    onChange={SearchBarOnChangeHandler}
+                                />
+                            </Box>
                         </Stack>
                         <Stack direction="row" alignItems="center" gap={3}>
                             <Link to="/notifications" aria-label="notification">
@@ -102,20 +109,29 @@ export const Header = () => {
                                     color="primary"
                                     max={99}
                                 >
-                                    <NotificationContainer>
+                                    <StyledNotificationWrapper>
                                         <NotificationsSharp
                                             sx={{
-                                                fontSize: theme.spacing(6),
+                                                fontSize:
+                                                    theme.typography.pxToRem(
+                                                        24,
+                                                    ),
                                                 color: 'secondary.dark',
                                             }}
                                         />
-                                    </NotificationContainer>
+                                    </StyledNotificationWrapper>
                                 </Badge>
                             </Link>
-                            <UserProfile
-                                user={user}
-                                menus={profileMenuConfig}
-                            />
+                            <Menu config={profileMenuConfig}>
+                                <Avatar
+                                    src={user?.picture.thumbnail}
+                                    alt={user?.name.first}
+                                    sx={{
+                                        height: 32,
+                                        width: 32,
+                                    }}
+                                />
+                            </Menu>
                         </Stack>
                     </Stack>
                 </Container>

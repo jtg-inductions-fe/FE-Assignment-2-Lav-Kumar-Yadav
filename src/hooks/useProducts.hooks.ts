@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { PRODUCTS_URI } from '@constant';
+import { ENDPOINTS } from '@constant';
 import { apiClient } from '@lib';
 import type { Product } from '@types';
 
@@ -13,7 +13,7 @@ type UseProductsResult = {
 /**
  * custom react hook for fetching and managing a list of products
  * @function useProducts
- * @returns {UseProductsResult} Hook result
+ * @returns  products, isLoading and error as Hook result
  *
  */
 export const useProducts = (): UseProductsResult => {
@@ -25,7 +25,12 @@ export const useProducts = (): UseProductsResult => {
         let isMounted = true;
         async function fetchProducts() {
             try {
-                const data = await apiClient<Product[]>(PRODUCTS_URI);
+                const data = await apiClient<Product[]>(ENDPOINTS.PRODUCTS_URI);
+                if (!data) {
+                    throw new Error(
+                        'No Products returned from api or there is some error',
+                    );
+                }
                 if (isMounted) {
                     setProducts(data);
                 }

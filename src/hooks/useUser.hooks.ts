@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { USER_URI } from '@constant';
+import { ENDPOINTS } from '@constant';
 import { apiClient } from '@lib';
 import type { User } from '@types';
 
@@ -17,7 +17,7 @@ type UseUserResult = {
 /**
  * custom react hook for fetching and managing User data
  * @function useUser
- * @returns {UseUserResult} Hook result
+ * @returns user, isLoading and error as  Hook result
  *
  */
 export const useUser = (): UseUserResult => {
@@ -29,7 +29,9 @@ export const useUser = (): UseUserResult => {
         let isMounted = true;
         async function fetchUser() {
             try {
-                const data = await apiClient<UserApiResponse>(USER_URI);
+                const data = await apiClient<UserApiResponse>(
+                    ENDPOINTS.USER_URI,
+                );
                 if (!data.results || data.results.length === 0) {
                     throw new Error('No user data returned from API');
                 }

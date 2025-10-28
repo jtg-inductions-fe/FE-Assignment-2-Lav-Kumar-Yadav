@@ -1,2 +1,2 @@
-export { useProducts } from './useProducts';
-export { useUser } from './useUser';
+export { useProducts } from './useProducts.hooks';
+export { useUser } from './useUser.hooks';

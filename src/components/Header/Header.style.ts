@@ -1,25 +1,32 @@
 import { AppBar, Box, styled } from '@mui/material';
 
-export const StyledAppBar = styled(AppBar)(({ theme }) => ({
-    backgroundColor: theme.palette.primary.contrastText,
-    color: theme.palette.secondary.dark,
-    padding: theme.spacing(4),
-    [theme.breakpoints.up('md')]: {
-        padding: `${theme.spacing(3)} ${theme.spacing(5)}`,
-    },
-    borderBottom: `${theme.spacing(0.5)} solid ${theme.palette.secondary.contrastText}`,
-    boxShadow: 'none',
-}));
+import { COLORS } from '@constant';
 
-export const NotificationContainer = styled(Box)(({ theme }) => ({
+export const StyledAppBar = styled(AppBar)(
+    ({ theme: { palette, spacing, breakpoints } }) => ({
+        backgroundColor: palette.background.paper,
+        color: palette.secondary.dark,
+        padding: spacing(4),
+        borderWidth: 2,
+        borderStyle: 'solid',
+        borderColor: palette.secondary.contrastText,
+        boxShadow: 'none',
+
+        [breakpoints.up('md')]: {
+            padding: `${spacing(3)} ${spacing(5)}`,
+        },
+    }),
+);
+
+export const StyledNotificationWrapper = styled(Box)(({ theme }) => ({
     padding: theme.spacing(2),
-    backgroundColor: theme.palette.primary.contrastText,
     borderRadius: '50%',
     transition: 'box-shadow 0.3s',
-    '&:hover': {
-        boxShadow: `0 ${theme.spacing(1)} ${theme.spacing(1)} ${theme.palette.info.contrastText}`,
-    },
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+
+    '&:hover': {
+        boxShadow: `0 4px 4px ${COLORS.GREY.ALPHA_50}`,
+    },
 }));

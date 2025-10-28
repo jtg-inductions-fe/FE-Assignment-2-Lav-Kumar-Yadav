@@ -1,15 +1,18 @@
 import { Autocomplete, styled } from '@mui/material';
 
+import { COLORS } from '@constant';
+
 export const StyledAutoComplete = styled(Autocomplete)(({ theme }) => ({
-    width: theme.spacing(100.5),
+    width: '100%',
+    maxWidth: 402,
     borderWidth: 0,
     '& .MuiOutlinedInput-root': {
-        borderRadius: theme.spacing(4),
+        borderRadius: 16,
         backgroundColor: theme.palette.background.default,
-        height: theme.spacing(11.25),
+        height: 45,
         '& .MuiOutlinedInput-notchedOutline': {
             borderColor: theme.palette.secondary.contrastText,
-            boxShadow: `0 ${theme.spacing(1)} ${theme.spacing(1)} ${theme.palette.info.contrastText}`,
+            boxShadow: `0 4px 4px ${COLORS.GREY.ALPHA_50}`,
         },
     },
 })) as typeof Autocomplete;

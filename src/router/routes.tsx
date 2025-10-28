@@ -11,8 +11,6 @@ import { Dashboard } from '@pages';
  * - The root path '/' uses the RootLayout component as the layout wrapper.
  * - The index route (default child of '/') renders the Dashboard component.
  * - Any unmatched route ('*') renders the NotFound component to handle 404s.
- *
-
  */
 export const router = createBrowserRouter([
     {
@@ -22,6 +20,10 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 element: <Dashboard />,
+            },
+            {
+                path: '/products/:productId',
+                element: <NotFound />,
             },
             {
                 path: '*',

@@ -1,7 +1,6 @@
 export { Footer } from './Footer';
 export { Header } from './Header';
+export { Link } from './Link';
 export { NotFound } from './NotFound';
-export { SearchBar } from './SearchBar';
-export { UserProfile } from './UserProfile';
-export type * from './SearchBar';
-export type * from './UserProfile';
+export { SearchBar, type SearchBarProps } from './SearchBar';
+export { Menu, type MenuProps, type MenuConfigItem } from './Menu';
