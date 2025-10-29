@@ -1,7 +1,8 @@
-import { NotFound } from 'components';
-import { RootLayout } from 'layouts';
-import { Dashboard } from 'pages';
 import { createBrowserRouter } from 'react-router';
+
+import { NotFound } from '@components';
+import { RootLayout } from '@layouts';
+import { Dashboard } from '@pages';
 
 /**
  * Application router configuration using react-router's createBrowserRouter.
@@ -10,8 +11,6 @@ import { createBrowserRouter } from 'react-router';
  * - The root path '/' uses the RootLayout component as the layout wrapper.
  * - The index route (default child of '/') renders the Dashboard component.
  * - Any unmatched route ('*') renders the NotFound component to handle 404s.
- *
-
  */
 export const router = createBrowserRouter([
     {
@@ -21,6 +20,10 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 element: <Dashboard />,
+            },
+            {
+                path: '/products/:productId',
+                element: <NotFound />,
             },
             {
                 path: '*',

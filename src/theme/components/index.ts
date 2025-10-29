@@ -3,7 +3,6 @@ import type { Components } from '@mui/material/styles';
 // Local Font files
 import InterVariableFont from '@assets/fonts/inter/Inter-VariableFontWght.ttf';
 
-// TODO: Add necessary font face declarations here
 const fontFaceDeclarations = `
     @font-face {
         font-display: swap; 

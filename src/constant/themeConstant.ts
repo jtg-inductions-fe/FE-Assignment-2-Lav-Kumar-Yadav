@@ -12,14 +12,13 @@ export const COLORS = {
         600: '#71717A',
         700: '#4B5563',
         900: '#111827',
+        ALPHA_50: '#00000050',
     },
     GREEN: {
         100: '#DEF7EC',
         500: '#0E9F6E',
         800: '#03543F',
     },
-    WHITE: '#FFFFFF',
-    BLACK: '#000000',
     RED: {
         200: '#FBD5D5',
         800: '#9B1C1C',
@@ -28,6 +27,8 @@ export const COLORS = {
         100: '#E1EFFE',
         800: '#1E429F',
     },
+    WHITE: '#FFFFFF',
+    BLACK: '#000000',
 };
 
 /**

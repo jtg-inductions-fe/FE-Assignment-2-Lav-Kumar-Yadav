@@ -13,6 +13,12 @@ export const palette: PaletteOptions = {
         main: COLORS.GREEN[500],
         contrastText: COLORS.WHITE,
     },
+    secondary: {
+        main: COLORS.GREY[700],
+        light: COLORS.GREY[400],
+        dark: COLORS.BLACK,
+        contrastText: COLORS.GREY[200],
+    },
     background: {
         default: COLORS.GREY[50],
         paper: COLORS.WHITE,
@@ -23,24 +29,25 @@ export const palette: PaletteOptions = {
         disabled: COLORS.GREY[500],
     },
     success: {
-        main: COLORS.GREEN[100],
-        contrastText: COLORS.GREEN[800],
+        main: COLORS.GREEN[500],
+        light: COLORS.GREEN[100],
+        dark: COLORS.GREEN[800],
+        contrastText: COLORS.WHITE,
     },
     error: {
-        main: COLORS.RED[200],
-        contrastText: COLORS.RED[800],
+        main: COLORS.RED[800],
+        light: COLORS.RED[200],
+        contrastText: COLORS.WHITE,
     },
     info: {
-        main: COLORS.BLUE[100],
-        contrastText: COLORS.BLUE[800],
+        main: COLORS.BLUE[800],
+        light: COLORS.BLUE[100],
+        contrastText: COLORS.WHITE,
     },
     action: {
         selected: COLORS.GREY[100],
     },
-    secondary: {
-        main: COLORS.GREY[700],
-        light: COLORS.GREY[400],
-        contrastText: COLORS.GREY[200],
-        dark: COLORS.BLACK,
+    shadows: {
+        main: COLORS.GREY.ALPHA_50,
     },
 };
