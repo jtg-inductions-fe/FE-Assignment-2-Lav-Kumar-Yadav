@@ -18,8 +18,8 @@ import { Link, Menu, SearchBar, type SearchBarProps } from '@components';
 import { useProducts, useUser } from '@hooks';
 import type { Product } from '@types';
 
+import { buildProfileMenuConfig } from './header.config';
 import { StyledAppBar, StyledNotificationWrapper } from './Header.style';
-import { BuildProfileMenuConfig } from './UserProfile.config';
 
 /**
  * Header component displaying the main navigation bar.
@@ -53,7 +53,7 @@ export const Header = () => {
         [products],
     );
 
-    const profileMenuConfig = BuildProfileMenuConfig(user);
+    const profileMenuConfig = buildProfileMenuConfig(user);
 
     return (
         <StyledAppBar aria-label="Header">

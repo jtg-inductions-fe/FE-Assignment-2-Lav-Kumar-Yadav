@@ -8,7 +8,7 @@ import type { User } from '@types';
  * @param user  - It takes user which will be used to show a user profile picture , his name and email
  * @returns  a configuration to build the user profile menu
  */
-export const BuildProfileMenuConfig = (
+export const buildProfileMenuConfig = (
     user: User | undefined,
 ): MenuConfigItem[] | null => {
     if (!user) return null;
