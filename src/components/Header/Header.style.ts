@@ -1,7 +1,5 @@
 import { AppBar, Box, styled } from '@mui/material';
 
-import { COLORS } from '@constant';
-
 export const StyledAppBar = styled(AppBar)(
     ({ theme: { palette, spacing, breakpoints } }) => ({
         backgroundColor: palette.background.paper,
@@ -27,6 +25,6 @@ export const StyledNotificationWrapper = styled(Box)(({ theme }) => ({
     alignItems: 'center',
 
     '&:hover': {
-        boxShadow: `0 4px 4px ${COLORS.GREY.ALPHA_50}`,
+        boxShadow: `0 4px 4px ${theme.palette.shadows.main}`,
     },
 }));

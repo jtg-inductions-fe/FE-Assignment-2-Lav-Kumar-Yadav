@@ -1,17 +1,27 @@
-import type { ReactNode } from 'react';
+import type { LinkOwnProps } from '@mui/material';
 
-type BaseProps = {
-    children: ReactNode;
-};
+export type LinkProps = (
+    | {
+          /**
+           * The URL to link to for external navigation.
+           */
+          href: string;
 
-type InternalLinkProps = {
-    to: string;
-    href?: never;
-} & BaseProps;
+          /**
+           * No route for navigation when href is defined
+           */
+          to?: never;
+      }
+    | {
+          /**
+           * The route to navigate using react-router
+           */
+          to: string;
 
-type ExternalLinkProps = {
-    href: string;
-    to?: never;
-} & BaseProps;
-
-export type LinkProps = InternalLinkProps | ExternalLinkProps;
+          /**
+           * No external URL for navigation when to is defined
+           */
+          href?: never;
+      }
+) &
+    LinkOwnProps;

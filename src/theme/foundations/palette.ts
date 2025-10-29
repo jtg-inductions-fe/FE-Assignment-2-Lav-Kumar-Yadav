@@ -47,4 +47,7 @@ export const palette: PaletteOptions = {
     action: {
         selected: COLORS.GREY[100],
     },
+    shadows: {
+        main: COLORS.GREY.ALPHA_50,
+    },
 };

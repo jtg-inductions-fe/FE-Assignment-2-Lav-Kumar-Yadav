@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import type { MenuItemProps } from '@mui/material';
 import { Divider, IconButton, Menu as MuiMenu, MenuItem } from '@mui/material';
 
 import type { MenuConfigItem, MenuProps } from './Menu.types';
@@ -8,10 +9,17 @@ import type { MenuConfigItem, MenuProps } from './Menu.types';
  * @param config - this is the object which carries `type` property on the basis of which it renders the component
  * @returns  A React Component rendering the config
  */
-const RenderMenuItem = ({ config }: { config: MenuConfigItem }) => {
+const RenderMenuItem = ({
+    config,
+    onClose,
+    ...props
+}: {
+    config: MenuConfigItem;
+    onClose?: () => void;
+} & MenuItemProps) => {
     switch (config.type) {
         case 'custom': {
-            return config.node;
+            return <MenuItem {...props}>{config.node}</MenuItem>;
         }
 
         case 'divider': {
@@ -22,8 +30,14 @@ const RenderMenuItem = ({ config }: { config: MenuConfigItem }) => {
             const IconComponent = config.Icon;
 
             return (
-                <MenuItem>
-                    <IconComponent sx={{ fontSize: 20 }} />
+                <MenuItem
+                    onClick={(event) => {
+                        config?.onClick?.(event);
+                        onClose?.();
+                    }}
+                    {...props}
+                >
+                    <IconComponent sx={{ fontSize: 20, marginRight: 4 }} />
                     {config.option}
                 </MenuItem>
             );
@@ -37,8 +51,16 @@ const RenderMenuItem = ({ config }: { config: MenuConfigItem }) => {
  * @param config - this is the configuration which builds profile menu
  * @returns  A clickable user menu that opens a profile menu
  */
-export const Menu = ({ children, config }: MenuProps) => {
+export const Menu = ({
+    children,
+    config,
+    iconAriaLabel,
+    menuAriaLabel,
+    ...props
+}: MenuProps) => {
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+
+    const onCLose = () => setAnchorEl(null);
 
     return (
         <>
@@ -46,23 +68,28 @@ export const Menu = ({ children, config }: MenuProps) => {
                 onClick={(e) => {
                     setAnchorEl(e.currentTarget);
                 }}
-                aria-label="profile"
+                aria-label={iconAriaLabel}
             >
                 {children}
             </IconButton>
             <MuiMenu
-                aria-label="profile-menu"
+                aria-label={menuAriaLabel}
                 open={Boolean(anchorEl)}
                 anchorEl={anchorEl}
-                onClose={() => setAnchorEl(null)}
+                onClose={onCLose}
                 sx={{
                     '& .MuiPaper-root': {
                         borderRadius: 4,
                     },
                 }}
+                {...props}
             >
                 {config?.map((item, index) => (
-                    <RenderMenuItem key={index} config={item} />
+                    <RenderMenuItem
+                        key={index}
+                        config={item}
+                        onClose={onCLose}
+                    />
                 ))}
             </MuiMenu>
         </>

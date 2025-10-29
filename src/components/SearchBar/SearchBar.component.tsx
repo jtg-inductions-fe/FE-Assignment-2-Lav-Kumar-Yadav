@@ -3,6 +3,7 @@ import { InputAdornment, TextField } from '@mui/material';
 
 import { StyledAutoComplete } from './Searchbar.style';
 import type { SearchBarProps } from './SearchBar.types';
+
 /***
  * A generic, reusable search bar component built using MUI's Autocomplete
  * @param  options - the array of selectable options
@@ -12,12 +13,13 @@ import type { SearchBarProps } from './SearchBar.types';
  *
  * @returns  the rendered searchbar component
  */
-export const SearchBar = <T,>({
+export const SearchBar = <OptionType,>({
     options,
     getOptionLabel,
     onChange,
     value,
-}: SearchBarProps<T>) => (
+    ...props
+}: SearchBarProps<OptionType>) => (
     <StyledAutoComplete
         value={value ?? null}
         aria-label="searchbar"
@@ -48,5 +50,13 @@ export const SearchBar = <T,>({
             />
         )}
         onChange={onChange}
+        slotProps={{
+            paper: {
+                sx: {
+                    marginTop: 3,
+                },
+            },
+        }}
+        {...props}
     />
 );

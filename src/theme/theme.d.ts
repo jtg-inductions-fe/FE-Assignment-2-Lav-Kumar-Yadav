@@ -8,4 +8,15 @@ export declare module '@mui/material/styles' {
     interface BreakpointOverrides {
         xxl: true;
     }
+    interface Palette {
+        shadows: {
+            main: string;
+        };
+    }
+
+    interface PaletteOptions {
+        shadows?: {
+            main?: string;
+        };
+    }
 }

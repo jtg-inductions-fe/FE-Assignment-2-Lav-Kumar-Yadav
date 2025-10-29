@@ -2,7 +2,8 @@ import { Outlet } from 'react-router';
 
 import { Container } from '@mui/material';
 
-import { Footer, Header } from '@components';
+import { Footer } from '@components';
+import { Header } from '@containers';
 
 export const RootLayout = () => (
     <>

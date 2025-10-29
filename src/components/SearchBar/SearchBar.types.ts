@@ -1,6 +1,6 @@
 import type { AutocompleteProps } from '@mui/material';
 
-export type SearchBarProps<T> = Pick<
+export type SearchBarProps<T> = Omit<
     AutocompleteProps<T, false, false, false>,
-    'options' | 'getOptionLabel' | 'onChange' | 'value'
+    'renderInput'
 >;

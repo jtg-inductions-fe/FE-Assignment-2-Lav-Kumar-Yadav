@@ -5,6 +5,7 @@
             "@assets/*": ["assets/*"],
             "@components": ["components/index"],
             "@constant": ["constant/index"],
+            "@containers": ["containers/index"],
             "@hooks": ["hooks/index"],
             "@layouts": ["layouts/index"],
             "@lib": ["lib/index"],

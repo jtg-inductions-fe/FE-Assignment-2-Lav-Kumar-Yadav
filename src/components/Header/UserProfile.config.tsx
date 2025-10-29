@@ -10,46 +10,46 @@ import type { User } from '@types';
  */
 export const BuildProfileMenuConfig = (
     user: User | undefined,
-): MenuConfigItem[] | undefined => {
-    if (user) {
-        return [
-            {
-                type: 'custom',
-                node: (
-                    <Stack alignItems="center" padding={4}>
-                        <Avatar
-                            alt={user.name.first}
-                            src={user.picture.medium}
-                            sx={{
-                                height: 80,
-                                width: 80,
-                            }}
-                        />
-                        <Typography variant="h2">
-                            Hello, {user.name.first}
-                        </Typography>
-                        <Typography>{user.email}</Typography>
-                    </Stack>
-                ),
-            },
-            {
-                type: 'divider',
-            },
-            {
-                type: 'menuItem',
-                option: 'Account',
-                Icon: Person,
-            },
-            {
-                type: 'menuItem',
-                option: 'Settings',
-                Icon: Settings,
-            },
-            {
-                type: 'menuItem',
-                option: 'Logout',
-                Icon: Logout,
-            },
-        ];
-    }
+): MenuConfigItem[] | null => {
+    if (!user) return null;
+
+    return [
+        {
+            type: 'custom',
+            node: (
+                <Stack alignItems="center" p={4}>
+                    <Avatar
+                        alt={user.name.first}
+                        src={user.picture.medium}
+                        sx={{
+                            height: 80,
+                            width: 80,
+                        }}
+                    />
+                    <Typography variant="h2">
+                        Hello, {user.name.first}
+                    </Typography>
+                    <Typography>{user.email}</Typography>
+                </Stack>
+            ),
+        },
+        {
+            type: 'divider',
+        },
+        {
+            type: 'menuItem',
+            option: 'Account',
+            Icon: Person,
+        },
+        {
+            type: 'menuItem',
+            option: 'Settings',
+            Icon: Settings,
+        },
+        {
+            type: 'menuItem',
+            option: 'Logout',
+            Icon: Logout,
+        },
+    ];
 };
