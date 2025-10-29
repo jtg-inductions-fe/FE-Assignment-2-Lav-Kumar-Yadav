@@ -15,10 +15,10 @@ import {
 
 import Logo from '@assets/illustrations/logo.svg';
 import { Link, Menu, SearchBar, type SearchBarProps } from '@components';
+import { useProducts, useUser } from '@hooks';
 import type { Product } from '@types';
 
 import { StyledAppBar, StyledNotificationWrapper } from './Header.style';
-import type { HeaderProps } from './Header.types';
 import { BuildProfileMenuConfig } from './UserProfile.config';
 
 /**
@@ -26,10 +26,13 @@ import { BuildProfileMenuConfig } from './UserProfile.config';
  * Renders a header with a logo, search functionality, notification badge,
  * and user profile icon.
  */
-export const Header = ({ user, products }: HeaderProps) => {
+export const Header = () => {
     const navigate = useNavigate();
     const theme = useTheme();
     const params = useParams() as { productId?: string };
+
+    const { data: products } = useProducts();
+    const { data: user } = useUser();
 
     const SearchBarOnChangeHandler: SearchBarProps<Product>['onChange'] = (
         _,
