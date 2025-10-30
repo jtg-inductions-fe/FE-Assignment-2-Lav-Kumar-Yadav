@@ -4,7 +4,6 @@ import { useLocation } from 'react-router';
 
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import {
-    Box,
     Chip,
     Collapse,
     Divider,
@@ -20,7 +19,7 @@ import {
 
 import { Link } from '@components';
 
-import { StyledDrawer } from './SideBar.style';
+import { StyledDrawer, StyledList } from './SideBar.style';
 import type { SidebarConfigType, SideBarProps } from './SideBar.types';
 
 /**
@@ -149,27 +148,25 @@ export const SideBar = ({
                     <RenderItem key={item.id} item={item} />
                 ))}
             </List>
-            <Box
-                marginTop="auto"
-                marginBottom={4}
-                display="flex"
-                justifyContent="center"
-                alignItems="flex-end"
-                gap={5.5}
-                paddingTop={25}
-            >
+            <StyledList disablePadding aria-label="Bottom Sidebar Options">
                 {sidebarBottomIcon.map((Item) => (
-                    <IconButton
+                    <ListItem
                         key={Item.path}
-                        sx={{ color: theme.palette.text.primary }}
-                        component={Link}
-                        to={Item.path}
+                        disableGutters
+                        disablePadding
+                        sx={{ width: 30 }}
                         aria-label={Item.label}
                     >
-                        <Item.icon />
-                    </IconButton>
+                        <Link to={Item.path}>
+                            <IconButton>
+                                <Item.icon
+                                    sx={{ color: theme.palette.text.primary }}
+                                />
+                            </IconButton>
+                        </Link>
+                    </ListItem>
                 ))}
-            </Box>
+            </StyledList>
         </StyledDrawer>
     );
 };

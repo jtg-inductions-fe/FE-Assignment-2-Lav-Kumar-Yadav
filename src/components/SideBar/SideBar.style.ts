@@ -1,6 +1,7 @@
-import { Drawer, styled } from '@mui/material';
+import { Drawer, List, styled } from '@mui/material';
 
 export const StyledDrawer = styled(Drawer)(({ theme }) => ({
+    zIndex: 0,
     '& .MuiDrawer-paper': {
         zIndex: 0,
         width: 300,
@@ -8,4 +9,14 @@ export const StyledDrawer = styled(Drawer)(({ theme }) => ({
         color: 'black',
         top: theme.spacing(19),
     },
+}));
+
+export const StyledList = styled(List)(() => ({
+    marginTop: 'auto',
+    marginBottom: 16,
+    display: 'flex',
+    justifyContent: 'center',
+    alignContent: 'center',
+    gap: 22,
+    paddingTop: 100,
 }));
