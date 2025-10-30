@@ -1,5 +1,9 @@
+import { Hero } from '@components';
+
+import { heroConfig } from './hero.config';
+
 export const Dashboard = () => (
     <>
-        <h1>Dashboard</h1>
+        <Hero config={heroConfig} aria-label="Hero image gallery" />
     </>
 );

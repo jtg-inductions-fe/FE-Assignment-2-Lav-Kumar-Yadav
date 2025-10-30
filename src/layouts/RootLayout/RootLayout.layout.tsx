@@ -18,7 +18,7 @@ export const RootLayout = () => {
 
     return (
         <Grid container>
-            <Grid size={12} height={60}>
+            <Grid size={12} height={75}>
                 <Header setIsSidebarOpen={setIsSideBarOpen} />
             </Grid>
             <Grid width={{ xs: 0, md: 300 }}>
