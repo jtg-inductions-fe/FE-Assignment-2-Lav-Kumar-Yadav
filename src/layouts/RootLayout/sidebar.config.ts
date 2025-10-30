@@ -169,7 +169,7 @@ export const sidebarBottomIcon: SidebarBottomIconType = [
     {
         icon: Tune,
         path: '/filter',
-        label: 'FIlter',
+        label: 'Filter',
     },
     {
         icon: Public,

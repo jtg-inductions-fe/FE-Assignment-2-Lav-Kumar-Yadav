@@ -36,14 +36,21 @@ import type { SidebarConfigType, SideBarProps } from './SideBar.types';
  * <RenderItem item = {item} />
  */
 const RenderItem = ({ item }: { item: SidebarConfigType[number] }) => {
-    const [open, setOpen] = useState<boolean>(false);
     const { pathname } = useLocation();
+    const isSubMenuItemActive =
+        item.type === 'listItem' &&
+        item.subMenu?.some(
+            (subItem) => subItem.path && pathname.startsWith(subItem.path),
+        );
+
+    const [open, setOpen] = useState<boolean>(Boolean(isSubMenuItemActive));
     const theme = useTheme();
 
     switch (item.type) {
-        case 'divider':
+        case 'divider': {
             return <Divider aria-hidden />;
-        case 'listItem':
+        }
+        case 'listItem': {
             const Icon = item.icon;
             const isSelected =
                 pathname.endsWith(item?.path || ' ') ||
@@ -89,7 +96,9 @@ const RenderItem = ({ item }: { item: SidebarConfigType[number] }) => {
                             {item.subMenu &&
                                 item.subMenu.length > 0 &&
                                 (open ? <ExpandLess /> : <ExpandMore />)}
-                            {item.badge && <Chip label="1" color="error" />}
+                            {item.badge && (
+                                <Chip label={item.badge} color="error" />
+                            )}
                         </ListItemButton>
                     </ListItem>
                     {item.subMenu && item.subMenu.length > 0 && (
@@ -101,6 +110,7 @@ const RenderItem = ({ item }: { item: SidebarConfigType[number] }) => {
                     )}
                 </>
             );
+        }
     }
 };
 

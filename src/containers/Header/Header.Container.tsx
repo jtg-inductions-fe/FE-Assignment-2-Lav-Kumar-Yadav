@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 
-import type { HeaderProps } from 'containers/Header.types';
 import { useNavigate, useParams } from 'react-router';
 
 import { Menu as MenuIcon, NotificationsSharp } from '@mui/icons-material';
@@ -13,6 +12,7 @@ import type { Product } from '@types';
 
 import { buildProfileMenuConfig } from './header.config';
 import { StyledAppBar, StyledNotificationWrapper } from './Header.style';
+import type { HeaderProps } from './Header.types';
 
 /**
  * Header component displaying the main navigation bar.

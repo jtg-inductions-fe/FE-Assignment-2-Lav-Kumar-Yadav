@@ -1,11 +1,11 @@
 import { Drawer, styled } from '@mui/material';
 
 export const StyledDrawer = styled(Drawer)(({ theme }) => ({
-    zIndex: 0,
     '& .MuiDrawer-paper': {
+        zIndex: 0,
         width: 300,
-        height: '91vh',
+        height: 'calc(100vh - 60px)',
         color: 'black',
-        top: theme.spacing(20.6),
+        top: theme.spacing(19),
     },
 }));

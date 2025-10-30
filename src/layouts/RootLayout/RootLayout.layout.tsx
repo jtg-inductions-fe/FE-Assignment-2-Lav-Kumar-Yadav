@@ -10,10 +10,11 @@ import { Header } from '@containers';
 import { sidebarBottomIcon, sideBarConfig } from './sidebar.config';
 
 /**
- * @returns A Layout included Header, Sidebar, and MainContent
+ * @returns A Grid-based responsive layout with Header, collapsible Sidebar, and main content area
  */
 export const RootLayout = () => {
     const [isSideBarOpen, setIsSideBarOpen] = useState<boolean>(false);
+    const handleSidebarClose = () => setIsSideBarOpen(false);
 
     return (
         <Grid container>
@@ -26,7 +27,7 @@ export const RootLayout = () => {
                     sideBarConfig={sideBarConfig}
                     sidebarBottomIcon={sidebarBottomIcon}
                     aria-label="Sidebar"
-                    onClose={() => setIsSideBarOpen(false)}
+                    onClose={handleSidebarClose}
                 />
             </Grid>
             <Grid>
