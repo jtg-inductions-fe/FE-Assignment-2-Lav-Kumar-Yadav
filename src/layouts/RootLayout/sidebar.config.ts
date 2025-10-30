@@ -19,7 +19,7 @@ export const sideBarConfig: SidebarConfigType = [
         id: 'aJ3v2',
         type: 'listItem',
         title: 'Overview',
-        path: '/overview',
+        path: '/',
         icon: PieChart,
     },
     {
