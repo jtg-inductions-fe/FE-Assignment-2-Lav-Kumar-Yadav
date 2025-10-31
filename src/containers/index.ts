@@ -1,1 +1,2 @@
-export { Header } from './Header/Header.Container';
+export { Header } from './Header';
+export { Sales } from './Sales';
