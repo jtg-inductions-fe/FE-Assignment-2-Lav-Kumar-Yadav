@@ -1,5 +1,7 @@
+import { Hero } from 'containers/Hero/Hero.container';
+
 export const Dashboard = () => (
     <>
-        <h1>Dashboard</h1>
+        <Hero />
     </>
 );
