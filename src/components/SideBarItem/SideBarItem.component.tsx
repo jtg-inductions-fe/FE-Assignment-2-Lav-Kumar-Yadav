@@ -108,6 +108,7 @@ export const SideBarItem = ({ item, isChild, ...props }: SideBarItemProps) => {
                                         key={subItem.id}
                                         item={subItem}
                                         isChild
+                                        dense
                                     />
                                 ))}
                             </List>

@@ -88,7 +88,7 @@ export const Header = ({ setIsSidebarOpen }: HeaderProps) => {
                             width={36}
                         />
                     </Link>
-                    <Box width={402}>
+                    <Box width={402} role="searchbox">
                         <SearchBar
                             value={productsIdMap[params.productId ?? '']}
                             options={products}

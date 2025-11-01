@@ -42,12 +42,12 @@ export const SideBar = ({
     return (
         <StyledDrawer
             variant={isDesktop ? 'permanent' : 'temporary'}
-            role="navigation"
+            component={'nav'}
             {...props}
         >
             <List dense aria-label="Sidebar Options">
                 {sideBarConfig.map((item) => (
-                    <SideBarItem key={item.id} item={item} />
+                    <SideBarItem key={item.id} item={item} dense />
                 ))}
             </List>
             <StyledList disablePadding aria-label="Bottom Sidebar Options">
@@ -59,13 +59,11 @@ export const SideBar = ({
                         sx={{ width: 30 }}
                         aria-label={Item.label}
                     >
-                        <Link to={Item.path}>
-                            <IconButton>
-                                <Item.icon
-                                    sx={{ color: theme.palette.text.primary }}
-                                />
-                            </IconButton>
-                        </Link>
+                        <IconButton component={Link} to={Item.path}>
+                            <Item.icon
+                                sx={{ color: theme.palette.text.primary }}
+                            />
+                        </IconButton>
                     </ListItem>
                 ))}
             </StyledList>
