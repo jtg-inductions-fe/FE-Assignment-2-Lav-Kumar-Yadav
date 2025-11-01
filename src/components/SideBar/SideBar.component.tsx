@@ -1,117 +1,15 @@
-import { useState } from 'react';
-
-import { useLocation } from 'react-router';
-
-import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import {
-    Chip,
-    Collapse,
-    Divider,
     IconButton,
     List,
     ListItem,
-    ListItemButton,
-    ListItemIcon,
-    ListItemText,
     useMediaQuery,
     useTheme,
 } from '@mui/material';
 
-import { Link } from '@components';
+import { Link, SideBarItem } from '@components';
 
 import { StyledDrawer, StyledList } from './SideBar.style';
-import type { SidebarConfigType, SideBarProps } from './SideBar.types';
-
-/**
- * Renders a single sidebar item, which may be:
- * - a divider,
- * - a simple list item (link),
- * - or a list item with a collapsible submenu.
- * Handles submenu expansion and active route highlighting based on the current URL path.
- * @component
- * @param  props - Component props.
- * @returns  The rendered sidebar item element.
- * @example
- * <RenderItem item = {item} />
- */
-const RenderItem = ({ item }: { item: SidebarConfigType[number] }) => {
-    const { pathname } = useLocation();
-    const isSubMenuItemActive =
-        item.type === 'listItem' &&
-        item.subMenu?.some(
-            (subItem) => subItem.path && pathname.startsWith(subItem.path),
-        );
-
-    const [open, setOpen] = useState<boolean>(Boolean(isSubMenuItemActive));
-    const theme = useTheme();
-
-    switch (item.type) {
-        case 'divider': {
-            return <Divider aria-hidden />;
-        }
-        case 'listItem': {
-            const Icon = item.icon;
-            const isSelected =
-                pathname.endsWith(item?.path || ' ') ||
-                pathname.startsWith(`/${item.title.toLowerCase()}`);
-
-            return (
-                <>
-                    <ListItem disableGutters aria-label={item.title}>
-                        <ListItemButton
-                            selected={isSelected}
-                            {...(item.path
-                                ? { component: Link, to: item.path }
-                                : { onClick: () => setOpen((prev) => !prev) })}
-                            sx={{
-                                color: isSelected
-                                    ? theme.palette.primary.main
-                                    : theme.palette.text.primary,
-                            }}
-                        >
-                            {Icon && (
-                                <ListItemIcon>
-                                    <Icon
-                                        sx={{
-                                            color: isSelected
-                                                ? theme.palette.primary.main
-                                                : theme.palette.text.primary,
-                                        }}
-                                    />
-                                </ListItemIcon>
-                            )}
-                            <ListItemText
-                                inset={!Icon}
-                                primary={item.title}
-                                slotProps={{
-                                    primary: {
-                                        variant: 'h4',
-                                    },
-                                }}
-                                sx={{
-                                    ...theme.mixins.lineClamp(1),
-                                }}
-                            />
-                            {item.subMenu &&
-                                item.subMenu.length > 0 &&
-                                (open ? <ExpandLess /> : <ExpandMore />)}
-                            {item.badge && (
-                                <Chip label={item.badge} color="error" />
-                            )}
-                        </ListItemButton>
-                    </ListItem>
-                    {item.subMenu && item.subMenu.length > 0 && (
-                        <Collapse in={open}>
-                            {item.subMenu.map((subItem) => (
-                                <RenderItem key={subItem.id} item={subItem} />
-                            ))}
-                        </Collapse>
-                    )}
-                </>
-            );
-        }
-    }
-};
+import type { SideBarProps } from './SideBar.types';
 
 /**
  * Sidebar component that renders a navigational drawer with configurable
@@ -139,13 +37,17 @@ export const SideBar = ({
     ...props
 }: SideBarProps) => {
     const theme = useTheme();
-    const isMdUp = useMediaQuery(theme.breakpoints.up('md'));
+    const isDesktop = useMediaQuery((th) => th.breakpoints.up('md'));
 
     return (
-        <StyledDrawer variant={isMdUp ? 'permanent' : 'temporary'} {...props}>
+        <StyledDrawer
+            variant={isDesktop ? 'permanent' : 'temporary'}
+            role="navigation"
+            {...props}
+        >
             <List dense aria-label="Sidebar Options">
                 {sideBarConfig.map((item) => (
-                    <RenderItem key={item.id} item={item} />
+                    <SideBarItem key={item.id} item={item} />
                 ))}
             </List>
             <StyledList disablePadding aria-label="Bottom Sidebar Options">

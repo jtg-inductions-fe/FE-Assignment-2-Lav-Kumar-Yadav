@@ -58,5 +58,6 @@ export const SearchBar = <OptionType,>({
             },
         }}
         {...props}
+        role="searchbox"
     />
 );
