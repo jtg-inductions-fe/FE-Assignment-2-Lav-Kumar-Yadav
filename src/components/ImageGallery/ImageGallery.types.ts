@@ -1,6 +1,6 @@
 import type { ImageListProps } from '@mui/material';
 
-export type HeroConfigType = {
+export type ImageGalleryConfigType = {
     /**
      * image path or link
      */
@@ -20,11 +20,15 @@ export type HeroConfigType = {
      * no of cols it takes in grid
      */
     cols: number;
+    /**
+     * shows if the image is visible in mobile
+     */
+    isVisibleInMobile?: boolean;
 }[];
 
-export type HeroProps = {
+export type ImageGalleryProps = {
     /**
      * config to render images grid
      */
-    config: HeroConfigType;
+    config: ImageGalleryConfigType;
 } & Omit<ImageListProps, 'children'>;

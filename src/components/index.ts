@@ -1,5 +1,5 @@
 export { Footer } from './Footer';
-export { Hero, type HeroConfigType } from './Hero';
+export { ImageGallery, type ImageGalleryConfigType } from './ImageGallery';
 export { Link } from './Link';
 export { NotFound } from './NotFound';
 export { SearchBar, type SearchBarProps } from './SearchBar';
