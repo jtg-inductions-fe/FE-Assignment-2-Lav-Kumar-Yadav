@@ -2,37 +2,43 @@ import { useEffect, useState } from 'react';
 
 import { ENDPOINTS } from '@constant';
 import { apiClient } from '@lib';
-import type { Product } from '@types';
 
-type UseProductsResult = {
-    data: Product[];
+type GalleryData = {
+    id: string;
+    src: string;
+    label: string;
+};
+type UseGalleryResult = {
+    data: GalleryData[];
     isLoading: boolean;
     error?: string;
 };
 
 /**
- * custom react hook for fetching and managing a list of products
- * @function useProducts
- * @returns  products, isLoading and error as Hook result
+ * custom react hook for fetching and managing a hero Image Data
+ * @function useGallery
+ * @returns  hero gallery data, isLoading and error as Hook result
  *
  */
-export const useProducts = (): UseProductsResult => {
-    const [products, setProducts] = useState<Product[]>([]);
+export const useGallery = (): UseGalleryResult => {
+    const [data, setData] = useState<GalleryData[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | undefined>();
 
     useEffect(() => {
         let isMounted = true;
-        async function fetchProducts() {
+        async function fetchHeroGallery() {
             try {
-                const data = await apiClient<Product[]>(ENDPOINTS.PRODUCTS_URI);
-                if (data === null) {
+                const responseData = await apiClient<GalleryData[]>(
+                    ENDPOINTS.HERO_GALLERY,
+                );
+                if (responseData === null) {
                     throw new Error(
-                        'No Products returned from api or there is some error',
+                        'No Data returned from api or there is some error',
                     );
                 }
                 if (isMounted) {
-                    setProducts(data);
+                    setData(responseData);
                 }
             } catch (e) {
                 if (isMounted) {
@@ -44,8 +50,7 @@ export const useProducts = (): UseProductsResult => {
                 }
             }
         }
-
-        void fetchProducts();
+        void fetchHeroGallery();
 
         return () => {
             isMounted = false;
@@ -53,7 +58,7 @@ export const useProducts = (): UseProductsResult => {
     }, []);
 
     return {
-        data: products,
+        data,
         isLoading,
         error,
     };
