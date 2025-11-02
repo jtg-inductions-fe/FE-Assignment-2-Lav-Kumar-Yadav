@@ -1,15 +1,10 @@
-import {
-    IconButton,
-    List,
-    ListItem,
-    useMediaQuery,
-    useTheme,
-} from '@mui/material';
+import { IconButton, List, ListItem, useMediaQuery } from '@mui/material';
 
-import { Link, SideBarItem } from '@components';
+import { Link } from '@components';
 
 import { StyledDrawer, StyledList } from './SideBar.style';
 import type { SideBarProps } from './SideBar.types';
+import { SideBarItem } from './SideBarItem.component';
 
 /**
  * Sidebar component that renders a navigational drawer with configurable
@@ -36,13 +31,12 @@ export const SideBar = ({
     sideBarConfig,
     ...props
 }: SideBarProps) => {
-    const theme = useTheme();
-    const isDesktop = useMediaQuery((th) => th.breakpoints.up('md'));
+    const isDesktop = useMediaQuery(({ breakpoints }) => breakpoints.up('md'));
 
     return (
         <StyledDrawer
             variant={isDesktop ? 'permanent' : 'temporary'}
-            component={'nav'}
+            component="nav"
             {...props}
         >
             <List dense aria-label="Sidebar Options">
@@ -60,9 +54,7 @@ export const SideBar = ({
                         aria-label={Item.label}
                     >
                         <IconButton component={Link} to={Item.path}>
-                            <Item.icon
-                                sx={{ color: theme.palette.text.primary }}
-                            />
+                            <Item.icon sx={{ color: 'text.primary' }} />
                         </IconButton>
                     </ListItem>
                 ))}

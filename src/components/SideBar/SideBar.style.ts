@@ -11,7 +11,7 @@ export const StyledDrawer = styled(Drawer)(({ theme }) => ({
     },
 }));
 
-export const StyledList = styled(List)(() => ({
+export const StyledList = styled(List)({
     marginTop: 'auto',
     marginBottom: 16,
     display: 'flex',
@@ -19,4 +19,4 @@ export const StyledList = styled(List)(() => ({
     alignContent: 'center',
     gap: 22,
     paddingTop: 100,
-}));
+});

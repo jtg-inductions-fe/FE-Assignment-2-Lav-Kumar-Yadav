@@ -12,12 +12,11 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
-    useTheme,
 } from '@mui/material';
 
 import { Link } from '@components';
 
-import type { SideBarItemProps } from './SideBarItem.types';
+import type { SideBarItemProps } from './SideBar.types';
 
 /**
  * Renders a single sidebar item, which may be:
@@ -39,10 +38,8 @@ export const SideBarItem = ({ item, isChild, ...props }: SideBarItemProps) => {
             (subItem) => subItem.path && pathname.startsWith(subItem.path),
         );
 
-    const [isItemOpen, setIsItemOpen] = useState<boolean>(
-        Boolean(isSubMenuItemActive),
-    );
-    const theme = useTheme();
+    const [isItemOpen, setIsItemOpen] =
+        useState<boolean>(!!isSubMenuItemActive);
 
     switch (item.type) {
         case 'divider': {
@@ -66,17 +63,11 @@ export const SideBarItem = ({ item, isChild, ...props }: SideBarItemProps) => {
                                           setIsItemOpen((prev) => !prev),
                                   })}
                             sx={{
-                                ...(isSelected && {
-                                    color: 'primary.main',
-                                }),
+                                color: isSelected ? 'primary.main' : 'inherit',
                             }}
                         >
                             {Icon && (
-                                <ListItemIcon
-                                    sx={{
-                                        color: 'inherit',
-                                    }}
-                                >
+                                <ListItemIcon>
                                     <Icon />
                                 </ListItemIcon>
                             )}
@@ -86,14 +77,11 @@ export const SideBarItem = ({ item, isChild, ...props }: SideBarItemProps) => {
                                 slotProps={{
                                     primary: {
                                         variant: 'h4',
+                                        noWrap: true,
                                     },
                                 }}
-                                sx={{
-                                    ...theme.mixins.lineClamp(1),
-                                }}
                             />
-                            {item.subMenu &&
-                                item.subMenu?.length > 0 &&
+                            {!!item.subMenu?.length &&
                                 (isItemOpen ? <ExpandLess /> : <ExpandMore />)}
                             {item.badge && (
                                 <Chip label={item.badge} color="error" />

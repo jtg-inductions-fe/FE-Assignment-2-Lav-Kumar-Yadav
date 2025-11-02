@@ -8,5 +8,4 @@ export {
     type SidebarBottomIconType,
     type SidebarConfigType,
 } from './SideBar';
-export { SideBarItem } from './SideBarItem';
 export { Menu, type MenuProps, type MenuConfigItem } from './Menu';

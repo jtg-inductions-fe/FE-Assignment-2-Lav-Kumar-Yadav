@@ -1,5 +1,6 @@
 import type { ElementType } from 'react';
 
+import type { ListItemProps } from '@mui/material';
 import type { DrawerProps } from '@mui/material';
 
 export type SideBarProps = {
@@ -72,3 +73,8 @@ export type SidebarBottomIconType = {
      */
     label: string;
 }[];
+
+export type SideBarItemProps = {
+    item: SidebarConfigType[number];
+    isChild?: boolean;
+} & ListItemProps;

@@ -31,7 +31,9 @@ export const RootLayout = () => {
                 />
             </Grid>
             <Grid>
-                <Outlet />
+                <main>
+                    <Outlet />
+                </main>
                 <Footer />
             </Grid>
         </Grid>
