@@ -3,6 +3,7 @@ import { Link as ReactRouterLink } from 'react-router';
 import { Link as MuiLink } from '@mui/material';
 
 import type { LinkProps } from './Link.types';
+
 /**
  * Link Component
  * Used to create Route link or anchor links with href
@@ -18,19 +19,8 @@ import type { LinkProps } from './Link.types';
  * </Link>
  * ```
  */
-export const Link = ({ to, href, children, ...props }: LinkProps) => (
-    <MuiLink
-        {...(href && {
-            href,
-            target: '_blank',
-            rel: 'noopener noreferrer',
-        })}
-        {...(to && {
-            to,
-            component: ReactRouterLink,
-        })}
-        {...props}
-    >
+export const Link = ({ to, children, ...props }: LinkProps) => (
+    <MuiLink {...(to && { component: ReactRouterLink, to })} {...props}>
         {children}
     </MuiLink>
 );

@@ -3,15 +3,7 @@ import { useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router';
 
 import { Menu as MenuIcon, NotificationsSharp } from '@mui/icons-material';
-import {
-    Avatar,
-    Badge,
-    Box,
-    Container,
-    IconButton,
-    Stack,
-    useTheme,
-} from '@mui/material';
+import { Avatar, Badge, Box, IconButton, Stack, useTheme } from '@mui/material';
 
 import Logo from '@assets/illustrations/logo.svg';
 import { Link, Menu, SearchBar, type SearchBarProps } from '@components';
@@ -20,13 +12,14 @@ import type { Product } from '@types';
 
 import { buildProfileMenuConfig } from './header.config';
 import { StyledAppBar, StyledNotificationWrapper } from './Header.style';
+import type { HeaderProps } from './Header.types';
 
 /**
  * Header component displaying the main navigation bar.
  * Renders a header with a logo, search functionality, notification badge,
  * and user profile icon.
  */
-export const Header = () => {
+export const Header = ({ setIsSidebarOpen }: HeaderProps) => {
     const navigate = useNavigate();
     const theme = useTheme();
     const params = useParams() as { productId?: string };
@@ -57,90 +50,88 @@ export const Header = () => {
 
     return (
         <StyledAppBar aria-label="Header">
-            <Container maxWidth="xxl">
+            <Stack
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center"
+            >
+                <IconButton
+                    aria-label="sidebar-toggle"
+                    sx={{ display: { md: 'none' } }}
+                    onClick={() => setIsSidebarOpen((prev) => !prev)}
+                >
+                    <MenuIcon
+                        sx={{
+                            fontSize: 28,
+                            color: theme.palette.text.primary,
+                        }}
+                    />
+                </IconButton>
                 <Stack
                     direction="row"
-                    justifyContent="space-between"
                     alignItems="center"
+                    justifyContent="center"
+                    gap={8}
+                    display={{ xs: 'none', md: 'flex' }}
                 >
-                    <IconButton
-                        aria-label="sidebar-toggle"
-                        sx={{ display: { md: 'none' } }}
+                    <Link
+                        to="/"
+                        aria-label="logo"
+                        display="flex"
+                        alignItems="center"
                     >
-                        <MenuIcon
+                        <Box
+                            component="img"
+                            alt="Logo"
+                            src={Logo}
+                            height={36}
+                            width={36}
+                        />
+                    </Link>
+                    <Box width={402}>
+                        <SearchBar
+                            value={productsIdMap[params.productId ?? '']}
+                            options={products}
+                            getOptionLabel={(product) => product.name}
+                            onChange={SearchBarOnChangeHandler}
+                        />
+                    </Box>
+                </Stack>
+                <Stack direction="row" alignItems="center" gap={3}>
+                    <Link to="/notifications" aria-label="notification">
+                        <Badge
+                            badgeContent={5}
+                            color="primary"
+                            max={99}
+                            aria-label="notification count"
+                        >
+                            <StyledNotificationWrapper>
+                                <NotificationsSharp
+                                    sx={{
+                                        fontSize: theme.typography.pxToRem(24),
+                                        color: 'secondary.dark',
+                                    }}
+                                    aria-hidden="true"
+                                />
+                            </StyledNotificationWrapper>
+                        </Badge>
+                    </Link>
+                    <Menu
+                        config={profileMenuConfig}
+                        iconAriaLabel="profile"
+                        menuAriaLabel="profile-menu"
+                    >
+                        <Avatar
+                            src={user?.picture.thumbnail}
+                            alt={user?.name.first}
                             sx={{
-                                fontSize: 28,
-                                color: theme.palette.text.primary,
+                                height: 32,
+                                width: 32,
                             }}
                         />
-                    </IconButton>
-                    <Stack
-                        direction="row"
-                        alignItems="center"
-                        justifyContent="center"
-                        gap={8}
-                        display={{ xs: 'none', md: 'flex' }}
-                    >
-                        <Link
-                            to="/"
-                            aria-label="logo"
-                            display="flex"
-                            alignItems="center"
-                        >
-                            <Box
-                                component="img"
-                                alt="Logo"
-                                src={Logo}
-                                height={36}
-                                width={36}
-                            />
-                        </Link>
-                        <Box width={402}>
-                            <SearchBar
-                                value={productsIdMap[params.productId ?? '']}
-                                options={products}
-                                getOptionLabel={(product) => product.name}
-                                onChange={SearchBarOnChangeHandler}
-                            />
-                        </Box>
-                    </Stack>
-                    <Stack direction="row" alignItems="center" gap={3}>
-                        <Link to="/notifications" aria-label="notification">
-                            <Badge
-                                badgeContent={5}
-                                color="primary"
-                                max={99}
-                                aria-label="notification count"
-                            >
-                                <StyledNotificationWrapper>
-                                    <NotificationsSharp
-                                        sx={{
-                                            fontSize:
-                                                theme.typography.pxToRem(24),
-                                            color: 'secondary.dark',
-                                        }}
-                                        aria-hidden="true"
-                                    />
-                                </StyledNotificationWrapper>
-                            </Badge>
-                        </Link>
-                        <Menu
-                            config={profileMenuConfig}
-                            iconAriaLabel="profile"
-                            menuAriaLabel="profile-menu"
-                        >
-                            <Avatar
-                                src={user?.picture.thumbnail}
-                                alt={user?.name.first}
-                                sx={{
-                                    height: 32,
-                                    width: 32,
-                                }}
-                            />
-                        </Menu>
-                    </Stack>
+                    </Menu>
                 </Stack>
-            </Container>
+            </Stack>
         </StyledAppBar>
     );
 };

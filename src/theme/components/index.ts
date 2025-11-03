@@ -20,4 +20,11 @@ export const components: Components = {
     MuiCssBaseline: {
         styleOverrides: fontFaceDeclarations,
     },
+    MuiListItemIcon: {
+        styleOverrides: {
+            root: {
+                color: 'inherit',
+            },
+        },
+    },
 };
