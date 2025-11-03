@@ -50,6 +50,7 @@ export const LineChart = <Xkey extends string, Ykey extends string>({
                 padding={{ left: 40, right: 15 }}
                 tickFormatter={xTickFormatter}
                 angle={isMobile ? -45 : 0}
+                color={theme.palette.text.disabled}
             />
             {!isMobile && (
                 <YAxis

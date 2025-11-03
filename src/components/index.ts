@@ -12,3 +12,5 @@ export {
     type SidebarBottomIconType,
     type SidebarConfigType,
 } from './SideBar';
+
+export { StatListItem } from './StatListItem';

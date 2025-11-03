@@ -1,3 +1,4 @@
+export type { Customer } from './customers.type';
 export type { User } from './user.type';
 export type { Product } from './product.type';
 export type { Gallery } from './gallery.type';

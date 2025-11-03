@@ -4,7 +4,10 @@ import { ImageGallery } from '@components';
 import { useGallery } from '@hooks';
 
 import { heroLayoutConfig } from './heroLayout.config';
-
+/**
+ * This Container is used to represent Hero Section with image Gallery
+ * @returns - Image Gallery
+ */
 export const Hero = () => {
     const { data: gallery } = useGallery();
     const isDesktop = useMediaQuery(({ breakpoints }) => breakpoints.up('md'));

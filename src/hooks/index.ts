@@ -1,3 +1,4 @@
+export { useCustomers } from './useCustomers.hooks';
 export { useGallery } from './useHeroGallery.hooks';
 export { useProducts } from './useProducts.hooks';
 export { useSales } from './useSales.hooks';

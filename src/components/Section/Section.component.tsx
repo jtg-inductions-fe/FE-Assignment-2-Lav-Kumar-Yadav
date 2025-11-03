@@ -40,6 +40,7 @@ export const Section = ({
                 md: 8,
             },
             borderRadius: 4,
+            width: '100%',
         }}
         component="section"
         aria-labelledby={heading}
