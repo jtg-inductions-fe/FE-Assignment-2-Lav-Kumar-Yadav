@@ -1,10 +1,10 @@
-import { Hero } from 'containers/Hero/Hero.container';
+import { Stack } from '@mui/material';
 
-import { Sales } from '@containers';
+import { Hero, Sales } from '@containers';
 
 export const Dashboard = () => (
-    <>
+    <Stack gap={4}>
         <Hero />
         <Sales />
-    </>
+    </Stack>
 );

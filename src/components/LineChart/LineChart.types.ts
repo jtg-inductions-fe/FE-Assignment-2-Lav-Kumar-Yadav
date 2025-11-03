@@ -1,3 +1,5 @@
+import type { TooltipContentProps } from 'recharts';
+
 /**
  * Defines the props for the reusable `LineChart` component.
  *
@@ -15,9 +17,6 @@ export type LineChartProps<
 
     /** The chart title displayed above the visualization. */
     heading: string;
-
-    /** A short description or explanation of the chart. */
-    chartInfo: string;
 
     /** The key from each data object to use for x-axis values. */
     xKey: XKey;
@@ -37,3 +36,19 @@ export type LineChartProps<
     /** Optional formatter for customizing tooltip values (usually the y-axis value). */
     toolTipValueFormatter?: (value: T[YKey]) => string;
 };
+
+export type CustomToolTipProps<T extends object> = {
+    /**
+     * Optional function to format the value displayed in the tooltip.
+     */
+    valueFormatter?: LineChartProps<T>['toolTipValueFormatter'];
+    /**
+     * Optional function to format the label displayed in the tooltip.
+     */
+    customLabelFormatter?: LineChartProps<T>['toolTipLabelFormatter'];
+
+    /**
+     * The heading text used to describe the value displayed in the tooltip.
+     */
+    heading: string;
+} & TooltipContentProps<string | number, string>;

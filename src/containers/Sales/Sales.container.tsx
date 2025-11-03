@@ -1,6 +1,8 @@
 import { format, parseISO } from 'date-fns';
 
-import { LineChart } from '@components';
+import { InfoOutlined } from '@mui/icons-material';
+
+import { LineChart, Section } from '@components';
 import { useSales } from '@hooks';
 
 /**
@@ -14,18 +16,21 @@ export const Sales = () => {
     const { data: sales } = useSales();
 
     return (
-        <LineChart
-            data={sales}
-            heading="Sales"
-            chartInfo=" This is the sales Section here. There is a statistical representation of the sales throughout this month"
-            xKey="date"
-            yKey="sales"
-            xTickFormatter={(val) => format(parseISO(String(val)), 'dd MMM')}
-            yTickFormatter={(val) => `${Number(val) / 1000}k`}
-            toolTipLabelFormatter={(val) =>
-                format(parseISO(String(val)), 'd MMM, yyyy')
-            }
-            toolTipValueFormatter={(value) => `$${Number(value) / 1000}k`}
-        />
+        <Section heading="Sales" icon={<InfoOutlined />}>
+            <LineChart
+                data={sales}
+                heading="Sales"
+                xKey="date"
+                yKey="sales"
+                xTickFormatter={(val) =>
+                    format(parseISO(String(val)), 'dd MMM')
+                }
+                yTickFormatter={(val) => `${Number(val) / 1000}k`}
+                toolTipLabelFormatter={(val) =>
+                    format(parseISO(String(val)), 'd MMM, yyyy')
+                }
+                toolTipValueFormatter={(value) => `$${Number(value) / 1000}k`}
+            />
+        </Section>
     );
 };

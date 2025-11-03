@@ -1,7 +1,7 @@
 export { Footer } from './Footer';
 export { ImageGallery, type ImageGalleryProps } from './ImageGallery';
-export { Link } from './Link';
 export { LineChart, type LineChartProps } from './LineChart';
+export { Link } from './Link';
 export { Menu, type MenuProps, type MenuConfigItem } from './Menu';
 export { NotFound } from './NotFound';
 export { SearchBar, type SearchBarProps } from './SearchBar';

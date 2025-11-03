@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import {
     CartesianGrid,
     Line,
@@ -9,15 +7,7 @@ import {
     YAxis,
 } from 'recharts';
 
-import { InfoOutlined } from '@mui/icons-material';
-import {
-    IconButton,
-    Paper,
-    Popover,
-    Stack,
-    Typography,
-    useTheme,
-} from '@mui/material';
+import { useMediaQuery, useTheme } from '@mui/material';
 
 import { CustomTooltip } from './CustomTooltip.component';
 import type { LineChartProps } from './LineChart.types';
@@ -43,7 +33,6 @@ import type { LineChartProps } from './LineChart.types';
 export const LineChart = <Value extends object>({
     data,
     heading,
-    chartInfo,
     xKey,
     yKey,
     xTickFormatter,
@@ -51,119 +40,67 @@ export const LineChart = <Value extends object>({
     toolTipLabelFormatter,
     toolTipValueFormatter,
 }: LineChartProps<Value>) => {
-    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-
-    const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
     const theme = useTheme();
-
-    const handlePopoverClose = () => {
-        setAnchorEl(null);
-    };
-
-    const isPopOverOPen = !!anchorEl;
+    const isMobile = useMediaQuery(({ breakpoints }) => breakpoints.down('md'));
 
     return (
-        <Paper
-            elevation={2}
-            aria-label={`${heading} chart showing ${yKey as string} over ${xKey as string}`}
-            sx={{
-                padding: theme.spacing(8),
-                borderRadius: 4,
+        <RechartsLineChart
+            style={{
+                width: '100%',
+                margin: 'auto',
+                cursor: 'pointer',
+                height: 420,
+                color: theme.palette.text.disabled,
+                fontSize: theme.typography.pxToRem(14),
             }}
+            responsive
+            data={data}
         >
-            <Stack
-                direction="row"
-                alignItems="center"
-                gap={theme.spacing(1)}
-                marginBottom={theme.spacing(7.5)}
-            >
-                <Typography variant="h2">{heading}</Typography>
-                <IconButton
-                    aria-label="Show chart information"
-                    onMouseEnter={handlePopoverOpen}
-                    onMouseLeave={handlePopoverClose}
-                >
-                    <InfoOutlined />
-                </IconButton>
-                <Popover
-                    sx={{ pointerEvents: 'none', maxWidth: 600 }}
-                    open={isPopOverOPen}
-                    anchorEl={anchorEl}
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'left',
-                    }}
-                    transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'left',
-                    }}
-                    onClose={handlePopoverClose}
-                    disableRestoreFocus
-                    aria-live="polite"
-                    role="tooltip"
-                >
-                    <Typography sx={{ p: 4 }}>{chartInfo}</Typography>
-                </Popover>
-            </Stack>
-            <RechartsLineChart
-                style={{
-                    width: '100%',
-                    margin: 'auto',
-                    cursor: 'pointer',
-                    height: 420,
-                    color: theme.palette.text.disabled,
-                    fontSize: theme.typography.pxToRem(14),
+            <CartesianGrid
+                stroke={theme.palette.action.selected}
+                fillOpacity={0.5}
+                vertical={false}
+            />
+            <XAxis
+                dataKey={xKey as string}
+                tickLine={false}
+                axisLine={false}
+                padding={{ left: 40 }}
+                tickFormatter={xTickFormatter}
+                angle={isMobile ? -45 : 0}
+            />
+            <YAxis
+                dataKey={yKey as string}
+                width="auto"
+                max={24}
+                tickLine={false}
+                axisLine={false}
+                tickFormatter={yTickFormatter}
+            />
+            <Tooltip<string | number, string>
+                cursor={{
+                    stroke: theme.palette.secondary.contrastText,
+                    strokeWidth: 2,
+                    strokeDasharray: '5 5',
                 }}
-                responsive
-                data={data}
-            >
-                <CartesianGrid
-                    stroke={theme.palette.action.selected}
-                    fillOpacity={0.5}
-                    vertical={false}
-                />
-                <XAxis
-                    dataKey={xKey as string}
-                    tickLine={false}
-                    axisLine={false}
-                    padding={{ left: 40 }}
-                    tickFormatter={xTickFormatter}
-                />
-                <YAxis
-                    dataKey={yKey as string}
-                    width="auto"
-                    max={24}
-                    tickLine={false}
-                    axisLine={false}
-                    tickFormatter={yTickFormatter}
-                />
-                <Tooltip<string | number, string>
-                    cursor={{
-                        stroke: theme.palette.secondary.contrastText,
-                        strokeWidth: 2,
-                        strokeDasharray: '5 5',
-                    }}
-                    aria-label="status"
-                    aria-live="polite"
-                    content={(props) => (
-                        <CustomTooltip
-                            valueFormatter={toolTipValueFormatter}
-                            customLabelFormatter={toolTipLabelFormatter}
-                            heading={heading}
-                            {...props}
-                        />
-                    )}
-                />
-                <Line
-                    type="bump"
-                    dataKey="sales"
-                    stroke={theme.palette.success.main}
-                    strokeWidth={2}
-                    dot={false}
-                />
-            </RechartsLineChart>
-        </Paper>
+                aria-label="status"
+                aria-live="polite"
+                content={(props) => (
+                    <CustomTooltip
+                        valueFormatter={toolTipValueFormatter}
+                        customLabelFormatter={toolTipLabelFormatter}
+                        heading={heading}
+                        {...props}
+                    />
+                )}
+            />
+            <Line
+                type="bump"
+                dataKey="sales"
+                stroke={theme.palette.success.main}
+                strokeWidth={2}
+                dot={false}
+            />
+        </RechartsLineChart>
     );
 };

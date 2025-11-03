@@ -1,14 +1,6 @@
-import type { TooltipContentProps } from 'recharts';
-
 import { Box, Paper, Typography, useTheme } from '@mui/material';
 
-import type { LineChartProps } from './LineChart.types';
-
-type ExtraProps<T extends object> = {
-    valueFormatter?: LineChartProps<T>['toolTipValueFormatter'];
-    customLabelFormatter?: LineChartProps<T>['toolTipLabelFormatter'];
-    heading: string;
-};
+import type { CustomToolTipProps } from './LineChart.types';
 
 /**
  *
@@ -31,7 +23,7 @@ export const CustomTooltip = <T extends object>({
     customLabelFormatter,
     valueFormatter,
     heading,
-}: TooltipContentProps<string | number, string> & ExtraProps<T>) => {
+}: CustomToolTipProps<T>) => {
     const isVisible = active && payload && payload.length;
     const theme = useTheme();
     const formattedLabel = (
