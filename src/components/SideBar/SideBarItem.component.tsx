@@ -78,6 +78,7 @@ export const SideBarItem = ({ item, isChild, ...props }: SideBarItemProps) => {
                                     primary: {
                                         variant: 'h4',
                                         noWrap: true,
+                                        component: 'p',
                                     },
                                 }}
                             />
