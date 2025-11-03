@@ -2,14 +2,10 @@ import { useEffect, useState } from 'react';
 
 import { ENDPOINTS } from '@constant';
 import { apiClient } from '@lib';
+import type { Gallery } from '@types';
 
-type GalleryData = {
-    id: string;
-    src: string;
-    label: string;
-};
 type UseGalleryResult = {
-    data: GalleryData[];
+    data: Gallery[];
     isLoading: boolean;
     error?: string;
 };
@@ -21,7 +17,7 @@ type UseGalleryResult = {
  *
  */
 export const useGallery = (): UseGalleryResult => {
-    const [data, setData] = useState<GalleryData[]>([]);
+    const [data, setData] = useState<Gallery[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | undefined>();
 
@@ -29,7 +25,7 @@ export const useGallery = (): UseGalleryResult => {
         let isMounted = true;
         async function fetchHeroGallery() {
             try {
-                const responseData = await apiClient<GalleryData[]>(
+                const responseData = await apiClient<Gallery[]>(
                     ENDPOINTS.HERO_GALLERY,
                 );
                 if (responseData === null) {

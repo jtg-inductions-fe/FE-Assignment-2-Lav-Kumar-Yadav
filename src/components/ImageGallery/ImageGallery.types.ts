@@ -11,7 +11,7 @@ export type ImageGalleryItem = {
     src: string;
 
     /**
-     * label for image
+     * label for image (used as alt text for accessibility)
      */
     label: string;
 
@@ -25,7 +25,7 @@ export type ImageGalleryItem = {
      */
     cols: number;
     /**
-     * shows if the image is visible in mobile
+     * shows if the image is visible in mobile (defaults to true if not specified)
      */
     isVisibleInMobile?: boolean;
 };

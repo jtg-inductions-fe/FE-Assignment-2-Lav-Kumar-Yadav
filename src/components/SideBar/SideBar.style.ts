@@ -5,7 +5,7 @@ export const StyledDrawer = styled(Drawer)(({ theme }) => ({
     width: 300,
     '& .MuiDrawer-paper': {
         zIndex: 0,
-        width: 300,
+        width: 'inherit',
         height: 'calc(100vh - 60px)',
         color: 'black',
         top: theme.spacing(19),
