@@ -52,14 +52,16 @@ export const LineChart = <Xkey extends string, Ykey extends string>({
                 tickFormatter={xTickFormatter}
                 angle={isMobile ? -45 : 0}
             />
-            <YAxis
-                dataKey={yKey}
-                width="auto"
-                max={24}
-                tickLine={false}
-                axisLine={false}
-                tickFormatter={yTickFormatter}
-            />
+            {!isMobile && (
+                <YAxis
+                    dataKey={yKey}
+                    width="auto"
+                    max={24}
+                    tickLine={false}
+                    axisLine={false}
+                    tickFormatter={yTickFormatter}
+                />
+            )}
             <Tooltip<string | number, string>
                 cursor={{
                     stroke: theme.palette.secondary.contrastText,

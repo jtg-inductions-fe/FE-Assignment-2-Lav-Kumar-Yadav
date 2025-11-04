@@ -16,29 +16,21 @@ export const Sales = () => {
     const { data: sales } = useSales();
 
     return (
-        <Section
-            heading="Sales"
-            icon={<InfoOutlined />}
-            aria-labelledby="Sales"
-        >
-            <div id="Sales" aria-label="Line Chart for Sales data">
-                <LineChart
-                    data={sales}
-                    heading="Sales"
-                    xKey="date"
-                    yKey="sales"
-                    xTickFormatter={(val) =>
-                        format(parseISO(String(val)), 'dd MMM')
-                    }
-                    yTickFormatter={(val) => `${Number(val) / 1000}k`}
-                    toolTipLabelFormatter={(val) =>
-                        format(parseISO(String(val)), 'd MMM, yyyy')
-                    }
-                    toolTipValueFormatter={(value) =>
-                        `$${Number(value) / 1000}k`
-                    }
-                />
-            </div>
+        <Section heading="Sales" icon={<InfoOutlined />}>
+            <LineChart
+                data={sales}
+                heading="Sales"
+                xKey="date"
+                yKey="sales"
+                xTickFormatter={(val) =>
+                    format(parseISO(String(val)), 'dd MMM')
+                }
+                yTickFormatter={(val) => `${Number(val) / 1000}k`}
+                toolTipLabelFormatter={(val) =>
+                    format(parseISO(String(val)), 'd MMM, yyyy')
+                }
+                toolTipValueFormatter={(value) => `$${Number(value) / 1000}k`}
+            />
         </Section>
     );
 };
