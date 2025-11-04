@@ -18,23 +18,25 @@ export const RootLayout = () => {
 
     return (
         <Grid container>
-            <Grid size={12} height={60}>
+            <Grid size={12} height={90}>
                 <Header setIsSidebarOpen={setIsSideBarOpen} />
             </Grid>
-            <Grid width={{ xs: 0, md: 300 }}>
-                <SideBar
-                    open={isSideBarOpen}
-                    sideBarConfig={sideBarConfig}
-                    sidebarBottomIcon={sidebarBottomIcon}
-                    aria-label="Sidebar"
-                    onClose={handleSidebarClose}
-                />
-            </Grid>
-            <Grid>
-                <main>
-                    <Outlet />
-                </main>
-                <Footer />
+            <Grid container>
+                <Grid size={{ xs: 0, md: 'auto' }}>
+                    <SideBar
+                        open={isSideBarOpen}
+                        sideBarConfig={sideBarConfig}
+                        sidebarBottomIcon={sidebarBottomIcon}
+                        aria-label="Sidebar"
+                        onClose={handleSidebarClose}
+                    />
+                </Grid>
+                <Grid size="grow" paddingX={5}>
+                    <main>
+                        <Outlet />
+                    </main>
+                    <Footer />
+                </Grid>
             </Grid>
         </Grid>
     );

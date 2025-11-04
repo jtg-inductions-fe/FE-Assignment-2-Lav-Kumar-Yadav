@@ -23,8 +23,11 @@ export const StyledNotificationWrapper = styled(Box)(({ theme }) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-
+    border: `1px solid ${theme.palette.shadows.main}`,
     '&:hover': {
         boxShadow: `0 4px 4px ${theme.palette.shadows.main}`,
     },
-}));
+    '&:focus': {
+        boxShadow: `0 4px 4px ${theme.palette.shadows.main}`,
+    },
+})) as typeof Box;

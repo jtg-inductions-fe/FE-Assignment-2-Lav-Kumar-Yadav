@@ -98,24 +98,32 @@ export const Header = ({ setIsSidebarOpen }: HeaderProps) => {
                     </Box>
                 </Stack>
                 <Stack direction="row" alignItems="center" gap={3}>
-                    <Link to="/notifications" aria-label="notification">
-                        <Badge
-                            badgeContent={5}
-                            color="primary"
-                            max={99}
-                            aria-label="notification count"
+                    <Badge
+                        badgeContent={5}
+                        color="primary"
+                        max={99}
+                        aria-label="notification count"
+                        sx={{
+                            '& .MuiBadge-badge': {
+                                top: 4,
+                                right: 4,
+                            },
+                        }}
+                    >
+                        <StyledNotificationWrapper
+                            aria-label="notification"
+                            component={Link}
+                            to="/notification"
                         >
-                            <StyledNotificationWrapper>
-                                <NotificationsSharp
-                                    sx={{
-                                        fontSize: theme.typography.pxToRem(24),
-                                        color: 'secondary.dark',
-                                    }}
-                                    aria-hidden="true"
-                                />
-                            </StyledNotificationWrapper>
-                        </Badge>
-                    </Link>
+                            <NotificationsSharp
+                                sx={{
+                                    fontSize: theme.typography.pxToRem(24),
+                                    color: 'secondary.dark',
+                                }}
+                                aria-hidden="true"
+                            />
+                        </StyledNotificationWrapper>
+                    </Badge>
                     <Menu
                         config={profileMenuConfig}
                         iconAriaLabel="profile"

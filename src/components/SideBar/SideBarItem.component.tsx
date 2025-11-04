@@ -4,7 +4,6 @@ import { useLocation } from 'react-router';
 
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import {
-    Chip,
     Collapse,
     Divider,
     List,
@@ -16,6 +15,7 @@ import {
 
 import { Link } from '@components';
 
+import { StyledChip } from './SideBar.style';
 import type { SideBarItemProps } from './SideBar.types';
 
 /**
@@ -85,7 +85,7 @@ export const SideBarItem = ({ item, isChild, ...props }: SideBarItemProps) => {
                             {!!item.subMenu?.length &&
                                 (isItemOpen ? <ExpandLess /> : <ExpandMore />)}
                             {item.badge && (
-                                <Chip label={item.badge} color="error" />
+                                <StyledChip label={item.badge} color="error" />
                             )}
                         </ListItemButton>
                     </ListItem>
