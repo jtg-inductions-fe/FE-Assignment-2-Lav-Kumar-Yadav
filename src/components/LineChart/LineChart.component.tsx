@@ -15,7 +15,7 @@ import type { LineChartProps } from './LineChart.types';
  * @param heading - Title displayed above the chart.
  * @param chartInfo - Optional text displayed in a popover when hovering over the info icon.
  * @param xKey - Key in `data` representing the x-axis values.
- * @param Key - Key in `data` representing the y-axis values.
+ * @param yKey - Key in `data` representing the y-axis values.
  * @param xTickFormatter - Custom formatter for x-axis tick labels.
  * @param props.yTickFormatter - Custom formatter for y-axis tick labels.
  * @param toolTipLabelFormatter - Custom formatter for tooltip labels.
@@ -38,7 +38,7 @@ export const LineChart = <Xkey extends string, Ykey extends string>({
     const isMobile = useMediaQuery(({ breakpoints }) => breakpoints.down('md'));
 
     return (
-        <StyledLineChart responsive data={data} id={heading}>
+        <StyledLineChart responsive data={data}>
             <CartesianGrid
                 stroke={theme.palette.action.selected}
                 fillOpacity={0.5}
@@ -55,8 +55,6 @@ export const LineChart = <Xkey extends string, Ykey extends string>({
             {!isMobile && (
                 <YAxis
                     dataKey={yKey}
-                    width="auto"
-                    max={24}
                     tickLine={false}
                     axisLine={false}
                     tickFormatter={yTickFormatter}
@@ -81,7 +79,7 @@ export const LineChart = <Xkey extends string, Ykey extends string>({
             />
             <Line
                 type="bump"
-                dataKey="sales"
+                dataKey={yKey}
                 stroke={theme.palette.success.main}
                 strokeWidth={2}
                 dot={false}

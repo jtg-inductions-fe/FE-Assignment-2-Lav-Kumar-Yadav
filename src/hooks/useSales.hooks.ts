@@ -28,7 +28,7 @@ export const useSales = (): UseSalesResult => {
                 const responseData = await apiClient<Sales[]>(ENDPOINTS.SALES);
                 if (!responseData) {
                     throw new Error(
-                        'No Sales data returned from api or there is some error',
+                        'No Sales data returned or failed to load sales data',
                     );
                 }
                 if (isMounted) {

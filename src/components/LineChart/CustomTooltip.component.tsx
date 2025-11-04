@@ -65,7 +65,7 @@ export const CustomTooltip = ({
                         color: 'text.secondary',
                     }}
                 >
-                    {heading}:
+                    {heading}:&nbsp;
                     <Typography
                         component="span"
                         variant="h4"

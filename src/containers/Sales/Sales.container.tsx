@@ -22,14 +22,26 @@ export const Sales = () => {
                 heading="Sales"
                 xKey="date"
                 yKey="sales"
-                xTickFormatter={(val) =>
-                    format(parseISO(String(val)), 'dd MMM')
-                }
-                yTickFormatter={(val) => `${Number(val) / 1000}k`}
+                xTickFormatter={(val) => {
+                    try {
+                        return format(parseISO(String(val)), 'dd MMM');
+                    } catch {
+                        return String(val);
+                    }
+                }}
+                yTickFormatter={(value) => {
+                    const num = Number(value);
+
+                    return !isNaN(num) ? `$${num / 1000}k` : '$0k';
+                }}
                 toolTipLabelFormatter={(val) =>
                     format(parseISO(String(val)), 'd MMM, yyyy')
                 }
-                toolTipValueFormatter={(value) => `$${Number(value) / 1000}k`}
+                toolTipValueFormatter={(value) => {
+                    const num = Number(value);
+
+                    return !isNaN(num) ? `$${num / 1000}k` : '$0k';
+                }}
             />
         </Section>
     );
