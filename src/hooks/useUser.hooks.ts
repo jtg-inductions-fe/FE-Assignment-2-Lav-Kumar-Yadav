@@ -8,19 +8,13 @@ type UserApiResponse = {
     results: User[];
 };
 
-type UseUserResult = {
-    data: User | undefined;
-    isLoading: boolean;
-    error?: string;
-};
-
 /**
  * custom react hook for fetching and managing User data
  * @function useUser
  * @returns user, isLoading and error as  Hook result
  *
  */
-export const useUser = (): UseUserResult => {
+export const useUser = () => {
     const [user, setUser] = useState<User>();
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | undefined>();

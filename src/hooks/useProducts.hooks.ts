@@ -4,19 +4,13 @@ import { ENDPOINTS } from '@constant';
 import { apiClient } from '@lib';
 import type { Product } from '@types';
 
-type UseProductsResult = {
-    data: Product[];
-    isLoading: boolean;
-    error?: string;
-};
-
 /**
  * custom react hook for fetching and managing a list of products
  * @function useProducts
  * @returns  products, isLoading and error as Hook result
  *
  */
-export const useProducts = (): UseProductsResult => {
+export const useProducts = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | undefined>();

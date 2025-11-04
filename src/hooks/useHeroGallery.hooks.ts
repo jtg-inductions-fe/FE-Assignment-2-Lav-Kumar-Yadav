@@ -4,19 +4,13 @@ import { ENDPOINTS } from '@constant';
 import { apiClient } from '@lib';
 import type { Gallery } from '@types';
 
-type UseGalleryResult = {
-    data: Gallery[];
-    isLoading: boolean;
-    error?: string;
-};
-
 /**
  * custom react hook for fetching and managing a hero Image Data
  * @function useGallery
  * @returns  hero gallery data, isLoading and error as Hook result
  *
  */
-export const useGallery = (): UseGalleryResult => {
+export const useGallery = () => {
     const [data, setData] = useState<Gallery[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | undefined>();

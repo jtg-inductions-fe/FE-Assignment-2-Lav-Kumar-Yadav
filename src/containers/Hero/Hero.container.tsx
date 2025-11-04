@@ -1,25 +1,22 @@
-import { CircularProgress } from '@mui/material';
+import { useMediaQuery } from '@mui/material';
 
-import { ImageGallery } from '@components';
+import { ImageGallery, Section } from '@components';
 import { useGallery } from '@hooks';
 
-import { HeroLayoutConfig } from './HeroLayout.config';
+import { heroLayoutConfig } from './heroLayout.config';
 
 export const Hero = () => {
-    const { data: gallery, isLoading, error } = useGallery();
+    const { data: gallery } = useGallery();
+    const isDesktop = useMediaQuery(({ breakpoints }) => breakpoints.up('md'));
 
-    const heroConfig = gallery.slice(0, 4).map((obj, index) => ({
-        ...obj,
-        ...HeroLayoutConfig[index],
-    }));
-
-    if (isLoading) {
-        return <CircularProgress size={80} />;
-    }
-
-    if (error) {
-        return <div>Failed to load gallery. Please try again.</div>;
-    }
-
-    return <ImageGallery config={heroConfig} aria-label="Hero Image Gallery" />;
+    return (
+        <Section>
+            <ImageGallery
+                data={gallery}
+                imageGalleryLayout={heroLayoutConfig}
+                noOfCols={isDesktop ? 3 : 1}
+                aria-label="Hero Image Gallery"
+            />
+        </Section>
+    );
 };

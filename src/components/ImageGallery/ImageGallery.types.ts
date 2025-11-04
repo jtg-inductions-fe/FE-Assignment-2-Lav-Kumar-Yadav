@@ -1,6 +1,6 @@
 import type { ImageListProps } from '@mui/material';
 
-export type ImageGalleryItem = {
+export type ImageGalleryDataItem = {
     /**
      * for uniquely identify the object
      */
@@ -11,30 +11,37 @@ export type ImageGalleryItem = {
     src: string;
 
     /**
-     * label for image (used as alt text for accessibility)
+     * label for image (used as alt text for accessibility and displayed as caption)
      */
     label: string;
+};
 
+type GridSize = {
     /**
-     * no of rows it takes in grid
+     *  no of rows it takes in grid (positive integer)
      */
     rows: number;
 
     /**
-     * no of cols it takes in grid
+     * no of cols it takes in grid (positive integer)
      */
     cols: number;
-    /**
-     * shows if the image is visible in mobile (defaults to true if not specified)
-     */
-    isVisibleInMobile?: boolean;
 };
-
-export type ImageGalleryConfigType = ImageGalleryItem[];
+type ImageGalleryLayout = Record<'xs' | 'md', GridSize[]>;
 
 export type ImageGalleryProps = {
     /**
-     * config to render images grid
+     * data to be shown in the gallery
      */
-    config: ImageGalleryConfigType;
+    data: ImageGalleryDataItem[];
+
+    /**
+     * layout on which data will shown
+     */
+    imageGalleryLayout: ImageGalleryLayout;
+
+    /**
+     * no of Cols shown in the image gallery
+     */
+    noOfCols: number;
 } & Omit<ImageListProps, 'children'>;
