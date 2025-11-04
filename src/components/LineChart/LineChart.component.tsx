@@ -13,7 +13,6 @@ import type { LineChartProps } from './LineChart.types';
  *
  * @param data - Array of data points to be visualized in the line chart.
  * @param heading - Title displayed above the chart.
- * @param chartInfo - Optional text displayed in a popover when hovering over the info icon.
  * @param xKey - Key in `data` representing the x-axis values.
  * @param yKey - Key in `data` representing the y-axis values.
  * @param xTickFormatter - Custom formatter for x-axis tick labels.

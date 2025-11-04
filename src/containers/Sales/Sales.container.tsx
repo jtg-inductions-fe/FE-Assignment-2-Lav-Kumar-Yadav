@@ -34,9 +34,13 @@ export const Sales = () => {
 
                     return !isNaN(num) ? `$${num / 1000}k` : '$0k';
                 }}
-                toolTipLabelFormatter={(val) =>
-                    format(parseISO(String(val)), 'd MMM, yyyy')
-                }
+                toolTipLabelFormatter={(val) => {
+                    try {
+                        return format(parseISO(String(val)), 'd MMM, yyyy');
+                    } catch {
+                        return String(val);
+                    }
+                }}
                 toolTipValueFormatter={(value) => {
                     const num = Number(value);
 
