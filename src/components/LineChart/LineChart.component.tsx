@@ -1,15 +1,9 @@
-import {
-    CartesianGrid,
-    Line,
-    LineChart as RechartsLineChart,
-    Tooltip,
-    XAxis,
-    YAxis,
-} from 'recharts';
+import { CartesianGrid, Line, Tooltip, XAxis, YAxis } from 'recharts';
 
 import { useMediaQuery, useTheme } from '@mui/material';
 
 import { CustomTooltip } from './CustomTooltip.component';
+import { StyledLineChart } from './LineChart.styles';
 import type { LineChartProps } from './LineChart.types';
 
 /**
@@ -30,7 +24,7 @@ import type { LineChartProps } from './LineChart.types';
  * @returns A styled Material UI Paper element containing a responsive Recharts line chart with optional info popover and custom tooltip.
  */
 
-export const LineChart = <Value extends object>({
+export const LineChart = <Xkey extends string, Ykey extends string>({
     data,
     heading,
     xKey,
@@ -39,30 +33,19 @@ export const LineChart = <Value extends object>({
     yTickFormatter,
     toolTipLabelFormatter,
     toolTipValueFormatter,
-}: LineChartProps<Value>) => {
+}: LineChartProps<Xkey, Ykey>) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(({ breakpoints }) => breakpoints.down('md'));
 
     return (
-        <RechartsLineChart
-            style={{
-                width: '100%',
-                margin: 'auto',
-                cursor: 'pointer',
-                height: 420,
-                color: theme.palette.text.disabled,
-                fontSize: theme.typography.pxToRem(14),
-            }}
-            responsive
-            data={data}
-        >
+        <StyledLineChart responsive data={data} id={heading}>
             <CartesianGrid
                 stroke={theme.palette.action.selected}
                 fillOpacity={0.5}
                 vertical={false}
             />
             <XAxis
-                dataKey={xKey as string}
+                dataKey={xKey}
                 tickLine={false}
                 axisLine={false}
                 padding={{ left: 40 }}
@@ -70,7 +53,7 @@ export const LineChart = <Value extends object>({
                 angle={isMobile ? -45 : 0}
             />
             <YAxis
-                dataKey={yKey as string}
+                dataKey={yKey}
                 width="auto"
                 max={24}
                 tickLine={false}
@@ -101,6 +84,6 @@ export const LineChart = <Value extends object>({
                 strokeWidth={2}
                 dot={false}
             />
-        </RechartsLineChart>
+        </StyledLineChart>
     );
 };

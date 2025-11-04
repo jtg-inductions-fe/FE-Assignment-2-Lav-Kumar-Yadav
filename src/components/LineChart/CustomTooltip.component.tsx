@@ -1,4 +1,4 @@
-import { Box, Paper, Typography, useTheme } from '@mui/material';
+import { Box, Paper, Typography } from '@mui/material';
 
 import type { CustomToolTipProps } from './LineChart.types';
 
@@ -16,47 +16,36 @@ import type { CustomToolTipProps } from './LineChart.types';
  *
  * @returns  A styled tooltip displaying formatted chart data, or `null` if inactive.
  */
-export const CustomTooltip = <T extends object>({
+export const CustomTooltip = ({
     active,
     payload,
     label,
     customLabelFormatter,
     valueFormatter,
     heading,
-}: CustomToolTipProps<T>) => {
-    const isVisible = active && payload && payload.length;
-    const theme = useTheme();
-    const formattedLabel = (
-        customLabelFormatter && label
-            ? customLabelFormatter(label as T[keyof T])
-            : label
-    ) as string;
-
-    const firstPayload = payload?.[0] as { value?: unknown } | undefined;
-
-    const rawValue = firstPayload?.value as T[keyof T] | undefined;
-
-    const formattedValue =
-        rawValue !== undefined
-            ? valueFormatter
-                ? valueFormatter(rawValue)
-                : String(rawValue)
-            : '';
-
+}: CustomToolTipProps) => {
+    const isVisible = active && payload?.length;
     if (!isVisible) return null;
+
+    const entity = payload[0] as { value: number; name: string };
+
+    const formattedLabel = customLabelFormatter?.(String(label)) || label;
+    const formattedValue = valueFormatter?.(entity.value) || entity.value;
 
     return (
         <Paper
             elevation={2}
-            sx={{
-                padding: theme.spacing(4),
+            sx={({ spacing }) => ({
+                padding: spacing(4),
                 borderRadius: 4,
-            }}
+            })}
         >
             <Typography
                 variant="overline"
                 component="p"
-                color={theme.palette.secondary.main}
+                sx={{
+                    color: 'secondary.main',
+                }}
             >
                 {formattedLabel}
             </Typography>
@@ -67,18 +56,22 @@ export const CustomTooltip = <T extends object>({
                         width: 8,
                         height: 8,
                         borderRadius: '50%',
-                        backgroundColor: theme.palette.primary.main,
+                        backgroundColor: 'primary.main',
                     }}
                 />
                 <Typography
                     variant="body1"
-                    color={theme.palette.text.secondary}
+                    sx={{
+                        color: 'text.secondary',
+                    }}
                 >
                     {heading}:
                     <Typography
                         component="span"
                         variant="h4"
-                        color={theme.palette.text.primary}
+                        sx={{
+                            color: 'text.primary',
+                        }}
                     >
                         {formattedValue}
                     </Typography>

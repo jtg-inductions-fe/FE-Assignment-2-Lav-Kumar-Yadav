@@ -34,13 +34,14 @@ export const Section = ({
 }: SectionProps) => (
     <Paper
         elevation={2}
-        sx={({ spacing }) => ({
+        sx={{
             padding: {
-                xs: spacing(2),
-                md: spacing(8),
+                xs: 2,
+                md: 8,
             },
             borderRadius: 4,
-        })}
+        }}
+        component="section"
     >
         {(heading || subHeading || icon) && (
             <Stack marginBottom={7.5}>

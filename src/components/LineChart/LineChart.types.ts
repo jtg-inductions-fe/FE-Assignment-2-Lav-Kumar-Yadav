@@ -3,17 +3,15 @@ import type { TooltipContentProps } from 'recharts';
 /**
  * Defines the props for the reusable `LineChart` component.
  *
- * @template T - The type of data objects provided to the chart.
- * @template XKey - The key in `T` representing x-axis values.
- * @template YKey - The key in `T` representing y-axis values.
+ * @template XKey - The key in data representing x-axis values.
+ * @template YKey - The key in data representing y-axis values.
  */
 export type LineChartProps<
-    T extends object,
-    XKey extends keyof T = keyof T,
-    YKey extends keyof T = keyof T,
+    XKey extends string = string,
+    YKey extends string = string,
 > = {
     /** The dataset to be visualized in the line chart. */
-    data: T[];
+    data: (Record<XKey, string> & Record<YKey, number>)[];
 
     /** The chart title displayed above the visualization. */
     heading: string;
@@ -25,30 +23,30 @@ export type LineChartProps<
     yKey: YKey;
 
     /** Optional formatter for customizing x-axis tick labels. */
-    xTickFormatter?: (value: T[XKey], index: number) => string;
+    xTickFormatter?: (value: string) => string;
 
     /** Optional formatter for customizing y-axis tick labels. */
-    yTickFormatter?: (value: T[YKey], index: number) => string;
+    yTickFormatter?: (value: number) => string;
 
     /** Optional formatter for customizing tooltip labels (usually the x-axis value). */
-    toolTipLabelFormatter?: (value: T[XKey]) => string;
+    toolTipLabelFormatter?: (value: string | undefined) => string;
 
     /** Optional formatter for customizing tooltip values (usually the y-axis value). */
-    toolTipValueFormatter?: (value: T[YKey]) => string;
+    toolTipValueFormatter?: (value: number) => string;
 };
 
-export type CustomToolTipProps<T extends object> = {
+export type CustomToolTipProps = {
     /**
      * Optional function to format the value displayed in the tooltip.
      */
-    valueFormatter?: LineChartProps<T>['toolTipValueFormatter'];
+    valueFormatter?: LineChartProps['toolTipValueFormatter'];
     /**
      * Optional function to format the label displayed in the tooltip.
      */
-    customLabelFormatter?: LineChartProps<T>['toolTipLabelFormatter'];
+    customLabelFormatter?: LineChartProps['toolTipLabelFormatter'];
 
     /**
      * The heading text used to describe the value displayed in the tooltip.
      */
     heading: string;
-} & TooltipContentProps<string | number, string>;
+} & TooltipContentProps<number | string, string>;
