@@ -53,11 +53,7 @@ export const ImageGallery = ({
                     cols={LAYOUT_CONFIG[index].cols || 1}
                     rows={LAYOUT_CONFIG[index].rows || 1}
                 >
-                    <img
-                        src={item.src}
-                        alt={item.label ?? 'hero image'}
-                        loading="lazy"
-                    />
+                    <img src={item.src} alt={item.label} loading="lazy" />
                 </ImageListItem>
             ))}
         </ImageList>
