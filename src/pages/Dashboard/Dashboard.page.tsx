@@ -1,8 +1,6 @@
-import { Products } from 'containers/Products/Products.container';
-
 import { Grid2 as Grid, Stack } from '@mui/material';
 
-import { Customers, Hero, Sales } from '@containers';
+import { Customers, Hero, Products, Sales } from '@containers';
 
 export const Dashboard = () => (
     <Stack gap={4}>
@@ -12,18 +10,20 @@ export const Dashboard = () => (
             <Grid
                 size={{
                     xs: 12,
+                    lg: 6,
                     xl: 4,
                 }}
             >
-                <Products />
+                <Customers />
             </Grid>
             <Grid
                 size={{
                     xs: 12,
+                    lg: 6,
                     xl: 8,
                 }}
             >
-                <Customers />
+                <Products />
             </Grid>
         </Grid>
     </Stack>

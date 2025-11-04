@@ -12,8 +12,13 @@ export const Products = () => {
 
     return (
         <Section heading="Top products">
-            <List>
-                {products.map((product) => (
+            <List
+                sx={{
+                    maxHeight: 450,
+                    overflowY: 'auto',
+                }}
+            >
+                {products?.map((product) => (
                     <StatListItem
                         key={product.id}
                         label={product.name}

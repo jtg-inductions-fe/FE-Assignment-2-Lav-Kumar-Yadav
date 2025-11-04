@@ -26,13 +26,15 @@ export const StatListItem = ({
             primary={label}
             secondary={subLabel}
             sx={{
-                marginLeft: 2,
+                marginX: 2,
             }}
             slotProps={{
                 primary: {
                     variant: 'h3',
+                    noWrap: true,
                 },
                 secondary: {
+                    noWrap: true,
                     variant: 'subtitle2',
                     color: 'textDisabled',
                 },

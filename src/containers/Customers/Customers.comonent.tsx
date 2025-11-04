@@ -12,7 +12,12 @@ export const Customers = () => {
 
     return (
         <Section heading="Latest Customers">
-            <List>
+            <List
+                sx={{
+                    maxHeight: 450,
+                    overflowY: 'auto',
+                }}
+            >
                 {customers?.map((customer, index) => (
                     <StatListItem
                         key={index}
