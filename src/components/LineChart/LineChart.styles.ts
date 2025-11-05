@@ -7,6 +7,6 @@ export const StyledLineChart = styled(LineChart)(({ theme }) => ({
     margin: 'auto',
     cursor: 'pointer',
     height: 420,
-    color: 'text.disabled',
+    color: theme.palette.text.disabled,
     fontSize: theme.typography.pxToRem(14),
 }));

@@ -47,7 +47,7 @@ export const LineChart = <Xkey extends string, Ykey extends string>({
                 dataKey={xKey}
                 tickLine={false}
                 axisLine={false}
-                padding={{ left: 40 }}
+                padding={{ left: 40, right: 15 }}
                 tickFormatter={xTickFormatter}
                 angle={isMobile ? -45 : 0}
             />
