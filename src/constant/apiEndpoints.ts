@@ -4,4 +4,5 @@ export const ENDPOINTS = {
     HERO_GALLERY: '/data/heroGallery.json',
     SALES: '/data/sales.json',
     CUSTOMERS: 'https://randomuser.me/api/?results=6',
+    TRANSACTIONS: '/data/transactions.json',
 };
