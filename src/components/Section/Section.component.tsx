@@ -31,13 +31,14 @@ export const Section = ({
     heading,
     subHeading,
     icon,
+    spaceBelowHeading,
 }: SectionProps) => (
     <Paper
         elevation={2}
         sx={{
             padding: {
-                xs: 2,
-                md: 8,
+                xs: 4,
+                md: 6,
             },
             borderRadius: 4,
             width: '100%',
@@ -46,7 +47,7 @@ export const Section = ({
         aria-labelledby={heading}
     >
         {(heading || subHeading || icon) && (
-            <Stack marginBottom={7.5}>
+            <Stack marginBottom={spaceBelowHeading || 7.5}>
                 <Stack direction="row" alignItems="center" gap={2.5}>
                     <Typography variant="h2" id={heading}>
                         {heading}

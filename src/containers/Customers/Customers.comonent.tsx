@@ -11,12 +11,13 @@ export const Customers = () => {
     const { data: customers } = useCustomers();
 
     return (
-        <Section heading="Latest Customers">
+        <Section heading="Latest Customers" spaceBelowHeading={4}>
             <List
                 sx={{
                     maxHeight: 460,
                     overflowY: 'auto',
                 }}
+                disablePadding
             >
                 {customers?.map((customer, index) => (
                     <StatListItem
@@ -25,6 +26,7 @@ export const Customers = () => {
                         subLabel={customer.email}
                         imageSrc={customer.picture.thumbnail}
                         divider={index !== customers.length - 1}
+                        disableGutters
                         rightContent={
                             <Typography variant="h3" component="p">
                                 ${customer.sale}
