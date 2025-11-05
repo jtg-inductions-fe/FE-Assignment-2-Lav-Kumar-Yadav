@@ -14,15 +14,16 @@ export const Products = () => {
         <Section heading="Top products">
             <List
                 sx={{
-                    maxHeight: 450,
+                    maxHeight: 460,
                     overflowY: 'auto',
                 }}
             >
-                {products?.map((product) => (
+                {products?.map((product, index) => (
                     <StatListItem
                         key={product.id}
                         label={product.name}
                         subLabel={product.framework}
+                        divider={index !== products.length - 1}
                         rightContent={
                             <Typography variant="h3" component="p">
                                 {product.sales}

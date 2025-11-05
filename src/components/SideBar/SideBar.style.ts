@@ -6,9 +6,12 @@ export const StyledDrawer = styled(Drawer)(({ theme }) => ({
     '& .MuiDrawer-paper': {
         zIndex: 0,
         width: 'inherit',
-        height: 'calc(100vh - 60px)',
+        height: 'min(calc(100vh - 60px),100%)',
         color: 'black',
         top: theme.spacing(19),
+        [theme.breakpoints.up('xxl')]: {
+            position: 'absolute',
+        },
     },
 }));
 

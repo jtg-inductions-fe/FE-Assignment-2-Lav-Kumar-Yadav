@@ -14,7 +14,7 @@ export const Customers = () => {
         <Section heading="Latest Customers">
             <List
                 sx={{
-                    maxHeight: 450,
+                    maxHeight: 460,
                     overflowY: 'auto',
                 }}
             >
@@ -24,6 +24,7 @@ export const Customers = () => {
                         label={`${customer.name.title} ${customer.name.first} ${customer.name.last}`}
                         subLabel={customer.email}
                         imageSrc={customer.picture.thumbnail}
+                        divider={index !== customers.length - 1}
                         rightContent={
                             <Typography variant="h3" component="p">
                                 ${customer.sale}

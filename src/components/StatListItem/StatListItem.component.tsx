@@ -15,8 +15,9 @@ export const StatListItem = ({
     subLabel,
     imageSrc,
     rightContent,
+    ...props
 }: StatListItemProps) => (
-    <ListItem divider>
+    <ListItem {...props}>
         {imageSrc && (
             <ListItemAvatar sx={{ minWidth: 40 }}>
                 <Avatar src={imageSrc} alt={label} />
