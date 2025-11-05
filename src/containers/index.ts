@@ -1,1 +1,3 @@
-export { Header } from './Header/Header.Container';
+export { Header } from './Header';
+export { Hero } from './Hero';
+export { Sales } from './Sales';

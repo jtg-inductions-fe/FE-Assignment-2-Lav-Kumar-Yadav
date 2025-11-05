@@ -49,7 +49,7 @@ const typographyStyle = (theme: Theme): TypographyOptions => ({
     },
     h2: {
         fontFamily: 'Inter',
-        fontWeight: 600,
+        fontWeight: 700,
         fontSize: typographyUtil.pxToRem(20),
         lineHeight: 1.5,
     },
