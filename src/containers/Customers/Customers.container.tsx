@@ -26,7 +26,10 @@ export const Customers = () => {
         <Section heading="Latest Customers">
             <List
                 sx={{
-                    height: 460,
+                    height: {
+                        xs: 425,
+                        xxl: 438,
+                    },
                     overflowY: 'auto',
                 }}
                 disablePadding
