@@ -1,3 +1,4 @@
+import type { ChipProps } from '@mui/material';
 import { Typography } from '@mui/material';
 
 import type { TableProps } from '@components';
@@ -12,18 +13,24 @@ export const transactionsTableConfig: TableProps<Transaction>['tableConfig'] = [
         key: 'user',
         title: 'TRANSACTIONS',
         renderConfig: (rowData) => {
-            const action =
-                rowData.paymentType === 'paid'
-                    ? 'payment from '
-                    : 'payment refund to ';
-            const str =
-                rowData.status === 'cancelled'
-                    ? action.replace('payment', 'payment failed')
-                    : action;
+            const { paymentType, status } = rowData;
+
+            let action;
+            if (status === 'cancelled') {
+                action =
+                    paymentType === 'paid'
+                        ? 'payment failed from '
+                        : 'payment refund failed to ';
+            } else {
+                action =
+                    paymentType === 'paid'
+                        ? 'payment from '
+                        : 'payment refund to ';
+            }
 
             return (
-                <Typography noWrap={true} variant="caption" component="p">
-                    {str}
+                <Typography noWrap variant="caption" component="p">
+                    {action}
                     <Typography variant="h5" component="span">
                         {rowData.user}
                     </Typography>
@@ -47,12 +54,13 @@ export const transactionsTableConfig: TableProps<Transaction>['tableConfig'] = [
         key: 'status',
         title: 'STATUS',
         renderConfig: (rowData) => {
-            const color =
-                rowData.status === 'completed'
-                    ? 'success'
-                    : rowData.status === 'cancelled'
-                      ? 'error'
-                      : 'info';
+            const colorMap: Record<Transaction['status'], ChipProps['color']> =
+                {
+                    completed: 'success',
+                    cancelled: 'error',
+                    'in progress': 'info',
+                };
+            const color = colorMap[rowData.status];
 
             return {
                 color,

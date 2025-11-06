@@ -8,7 +8,8 @@ import {
     Typography,
 } from '@mui/material';
 
-import { RenderCell } from './RenderCell.component';
+import { Cell } from './Cell.component';
+import { StyledTableRow } from './Table.styles';
 import type { TableProps } from './Table.types';
 
 /**
@@ -28,7 +29,12 @@ export const Table = <
     tableConfig,
     ...props
 }: TableProps<RowType>) => (
-    <TableContainer {...props}>
+    <TableContainer
+        {...props}
+        sx={{
+            borderRadius: 3,
+        }}
+    >
         <MuiTable>
             <TableHead>
                 <TableRow
@@ -41,7 +47,7 @@ export const Table = <
                             <Typography
                                 color="textDisabled"
                                 variant="h6"
-                                noWrap={true}
+                                noWrap
                             >
                                 {cellConfig.title}
                             </Typography>
@@ -51,25 +57,24 @@ export const Table = <
             </TableHead>
             <TableBody>
                 {data.map((rowData, index) => (
-                    <TableRow
+                    <StyledTableRow
                         key={index}
                         sx={{
-                            '& td, &th': { border: 0 },
                             bgcolor:
-                                index % 2 == 1
+                                index % 2 === 1
                                     ? 'background.default'
                                     : 'inherit',
                         }}
                     >
-                        {tableConfig.map((cellConfig, idx) => (
-                            <TableCell key={idx}>
-                                <RenderCell
+                        {tableConfig.map((cellConfig) => (
+                            <TableCell key={cellConfig.key}>
+                                <Cell
                                     cellConfig={cellConfig}
                                     rowData={rowData}
                                 />
                             </TableCell>
                         ))}
-                    </TableRow>
+                    </StyledTableRow>
                 ))}
             </TableBody>
         </MuiTable>

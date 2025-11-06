@@ -25,5 +25,6 @@ export const Dashboard = () => (
                 <Products />
             </Box>
         </Stack>
+        <Transactions />
     </Stack>
 );

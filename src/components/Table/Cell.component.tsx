@@ -11,7 +11,7 @@ import type { TableCellConfig, TableProps } from './Table.types';
  * @param rowData - data for the particular row
  * @returns A table cell to use in the table
  */
-export const RenderCell = <
+export const Cell = <
     RowType extends Record<string, string | boolean | number>,
 >({
     cellConfig,
@@ -82,6 +82,9 @@ export const RenderCell = <
             const children = cellConfig.renderConfig(rowData);
 
             return children;
+        }
+        default: {
+            return null;
         }
     }
 };

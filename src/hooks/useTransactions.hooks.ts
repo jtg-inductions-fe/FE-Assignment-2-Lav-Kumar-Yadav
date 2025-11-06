@@ -24,7 +24,7 @@ export const useTransactions = () => {
                 );
                 if (data === null) {
                     throw new Error(
-                        'No transactions data returned or failed to load sales data',
+                        'No transactions data returned or failed to load transactions data',
                     );
                 }
                 if (isMounted) {

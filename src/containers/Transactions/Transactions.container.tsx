@@ -14,16 +14,11 @@ export const Transactions = () => {
         <Section
             heading="Transactions"
             subHeading="This is a list of latest transactions."
-            spaceBelowHeading={4}
         >
             <Table
                 data={transactions}
                 aria-label="Transactions Table"
                 tableConfig={transactionsTableConfig}
-                sx={{
-                    height: 460,
-                    overflowY: 'auto',
-                }}
             />
         </Section>
     );

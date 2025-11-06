@@ -5,7 +5,7 @@ export type Transaction = {
     user: string;
 
     /**
-     * date on which transaction have been done
+     *  date on which transaction has been done (expected format: ISO 8601 string, e.g., "2024-11-05")
      */
     date: string;
 
