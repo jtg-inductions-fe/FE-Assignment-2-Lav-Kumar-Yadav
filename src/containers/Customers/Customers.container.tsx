@@ -1,6 +1,6 @@
 import { List, Typography } from '@mui/material';
 
-import { Section, StatListItem } from '@components';
+import { Section, StatListItem, StatListItemSkeleton } from '@components';
 import { useCustomers } from '@hooks';
 
 /**
@@ -20,18 +20,22 @@ const formatCurrency = (amount: number) =>
  * @returns List of Customers
  */
 export const Customers = () => {
-    const { data: customers } = useCustomers();
+    const { data: customers, isLoading } = useCustomers();
 
     return (
         <Section heading="Latest Customers">
             <List
                 sx={{
-                    maxHeight: 460,
+                    height: 460,
                     overflowY: 'auto',
                 }}
                 disablePadding
                 aria-label="List of Latest Customers"
             >
+                {isLoading &&
+                    Array.from({ length: 6 }).map((_, index) => (
+                        <StatListItemSkeleton key={index} />
+                    ))}
                 {customers?.map((customer, index) => (
                     <StatListItem
                         key={index}

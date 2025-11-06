@@ -13,4 +13,4 @@ export {
     type SidebarConfigType,
 } from './SideBar';
 
-export { StatListItem } from './StatListItem';
+export { StatListItem, StatListItemSkeleton } from './StatListItem';

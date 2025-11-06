@@ -1,6 +1,6 @@
 import { List, Typography } from '@mui/material';
 
-import { Section, StatListItem } from '@components';
+import { Section, StatListItem, StatListItemSkeleton } from '@components';
 import { useProducts } from '@hooks';
 
 /**
@@ -8,18 +8,22 @@ import { useProducts } from '@hooks';
  * @returns List of Products
  */
 export const Products = () => {
-    const { data: products } = useProducts();
+    const { data: products, isLoading } = useProducts();
 
     return (
         <Section heading="Top products">
             <List
                 sx={{
-                    maxHeight: 460,
+                    height: 460,
                     overflowY: 'auto',
                 }}
                 disablePadding
                 aria-label="List of Top Products"
             >
+                {isLoading &&
+                    Array.from({ length: 6 }).map((_, index) => (
+                        <StatListItemSkeleton key={index} />
+                    ))}
                 {products?.map((product, index) => (
                     <StatListItem
                         key={product.id}
