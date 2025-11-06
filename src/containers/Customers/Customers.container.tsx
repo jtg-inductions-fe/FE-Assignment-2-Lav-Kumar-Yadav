@@ -4,6 +4,18 @@ import { Section, StatListItem } from '@components';
 import { useCustomers } from '@hooks';
 
 /**
+ * A utility function to format currency
+ * @param amount to be format
+ * @returns a formatted currency in dollar
+ */
+const formatCurrency = (amount: number) =>
+    new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0,
+    }).format(amount);
+
+/**
  * This component is used to represent th list of customers
  * @returns List of Customers
  */
@@ -11,13 +23,14 @@ export const Customers = () => {
     const { data: customers } = useCustomers();
 
     return (
-        <Section heading="Latest Customers" spaceBelowHeading={4}>
+        <Section heading="Latest Customers">
             <List
                 sx={{
                     maxHeight: 460,
                     overflowY: 'auto',
                 }}
                 disablePadding
+                aria-label="List of Latest Customers"
             >
                 {customers?.map((customer, index) => (
                     <StatListItem
@@ -29,7 +42,7 @@ export const Customers = () => {
                         disableGutters
                         rightContent={
                             <Typography variant="h3" component="p">
-                                ${customer.sale}
+                                {formatCurrency(customer.sale)}
                             </Typography>
                         }
                     />

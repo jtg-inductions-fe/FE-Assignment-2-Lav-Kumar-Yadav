@@ -3,7 +3,7 @@ import { Avatar, ListItem, ListItemAvatar, ListItemText } from '@mui/material';
 import type { StatListItemProps } from './StatListItem.types';
 
 /**
- *This component is to show a listItem and should be wrapper by MUI List
+ * This component is to show a listItem and should be wrapper by MUI List
  * @param label - used to show main heading of list item
  * @param subLabel - used to show some short description about list item heading
  * @param imageSrc - used to show the avatar in list item
@@ -33,11 +33,13 @@ export const StatListItem = ({
                 primary: {
                     variant: 'h3',
                     noWrap: true,
+                    component: 'p',
                 },
                 secondary: {
                     noWrap: true,
                     variant: 'subtitle2',
                     color: 'textDisabled',
+                    component: 'p',
                 },
             }}
         />

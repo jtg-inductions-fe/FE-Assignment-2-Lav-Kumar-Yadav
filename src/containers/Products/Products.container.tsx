@@ -11,13 +11,14 @@ export const Products = () => {
     const { data: products } = useProducts();
 
     return (
-        <Section heading="Top products" spaceBelowHeading={4}>
+        <Section heading="Top products">
             <List
                 sx={{
                     maxHeight: 460,
                     overflowY: 'auto',
                 }}
                 disablePadding
+                aria-label="List of Top Products"
             >
                 {products?.map((product, index) => (
                     <StatListItem
@@ -28,7 +29,9 @@ export const Products = () => {
                         disableGutters
                         rightContent={
                             <Typography variant="h3" component="p">
-                                {product.sales}
+                                {new Intl.NumberFormat('en-US').format(
+                                    product.sales,
+                                )}
                                 <Typography
                                     variant="body1"
                                     component="span"

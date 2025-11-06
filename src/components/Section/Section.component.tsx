@@ -31,7 +31,6 @@ export const Section = ({
     heading,
     subHeading,
     icon,
-    spaceBelowHeading,
 }: SectionProps) => (
     <Paper
         elevation={2}
@@ -44,12 +43,15 @@ export const Section = ({
             width: '100%',
         }}
         component="section"
-        aria-labelledby={heading}
+        aria-labelledby={heading?.toLowerCase().replace(' ', '-')}
     >
         {(heading || subHeading || icon) && (
-            <Stack marginBottom={spaceBelowHeading || 7.5}>
+            <Stack marginBottom={4}>
                 <Stack direction="row" alignItems="center" gap={2.5}>
-                    <Typography variant="h2" id={heading}>
+                    <Typography
+                        variant="h2"
+                        id={heading?.toLowerCase().replace(' ', '-')}
+                    >
                         {heading}
                     </Typography>
                     {icon && <IconButton>{icon}</IconButton>}

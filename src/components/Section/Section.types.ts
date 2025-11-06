@@ -22,9 +22,4 @@ export type SectionProps = {
      * The content to render inside the section.
      */
     children: ReactNode;
-
-    /**
-     * used to give margin below heading
-     */
-    spaceBelowHeading?: number;
 } & PaperProps;
