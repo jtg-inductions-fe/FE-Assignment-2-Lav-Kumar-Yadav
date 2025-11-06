@@ -1,4 +1,3 @@
-export { Footer } from './Footer';
 export { ImageGallery, type ImageGalleryProps } from './ImageGallery';
 export { LineChart, type LineChartProps } from './LineChart';
 export { Link } from './Link';
