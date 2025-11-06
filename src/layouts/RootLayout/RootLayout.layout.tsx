@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { Outlet } from 'react-router';
 
-import { Grid2 as Grid } from '@mui/material';
+import { Container, Grid2 as Grid } from '@mui/material';
 
 import { Footer, SideBar } from '@components';
 import { Header } from '@containers';
@@ -17,27 +17,35 @@ export const RootLayout = () => {
     const handleSidebarClose = () => setIsSideBarOpen(false);
 
     return (
-        <Grid container>
-            <Grid size={12} height={90}>
-                <Header setIsSidebarOpen={setIsSideBarOpen} />
-            </Grid>
+        <Container
+            maxWidth="xxl"
+            sx={{
+                position: 'relative',
+                width: '100%',
+            }}
+        >
             <Grid container>
-                <Grid size={{ xs: 0, md: 'auto' }}>
-                    <SideBar
-                        open={isSideBarOpen}
-                        sideBarConfig={sideBarConfig}
-                        sidebarBottomIcon={sidebarBottomIcon}
-                        aria-label="Sidebar"
-                        onClose={handleSidebarClose}
-                    />
+                <Grid size={12} height={90}>
+                    <Header setIsSidebarOpen={setIsSideBarOpen} />
                 </Grid>
-                <Grid size="grow" paddingX={5}>
-                    <main>
-                        <Outlet />
-                    </main>
-                    <Footer />
+                <Grid container width="100%">
+                    <Grid size={{ xs: 0, md: 'auto' }}>
+                        <SideBar
+                            open={isSideBarOpen}
+                            sideBarConfig={sideBarConfig}
+                            sidebarBottomIcon={sidebarBottomIcon}
+                            aria-label="Sidebar"
+                            onClose={handleSidebarClose}
+                        />
+                    </Grid>
+                    <Grid size="grow" paddingX={5}>
+                        <main>
+                            <Outlet />
+                        </main>
+                        <Footer />
+                    </Grid>
                 </Grid>
             </Grid>
-        </Grid>
+        </Container>
     );
 };

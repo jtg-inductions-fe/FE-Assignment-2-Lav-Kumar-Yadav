@@ -36,18 +36,22 @@ export const Section = ({
         elevation={2}
         sx={{
             padding: {
-                xs: 2,
-                md: 8,
+                xs: 4,
+                md: 6,
             },
             borderRadius: 4,
+            width: '100%',
         }}
         component="section"
-        aria-labelledby={heading}
+        aria-labelledby={heading?.toLowerCase().replace(' ', '-')}
     >
         {(heading || subHeading || icon) && (
-            <Stack marginBottom={7.5}>
+            <Stack marginBottom={4}>
                 <Stack direction="row" alignItems="center" gap={2.5}>
-                    <Typography variant="h2" id={heading}>
+                    <Typography
+                        variant="h2"
+                        id={heading?.toLowerCase().replace(' ', '-')}
+                    >
                         {heading}
                     </Typography>
                     {icon && <IconButton>{icon}</IconButton>}

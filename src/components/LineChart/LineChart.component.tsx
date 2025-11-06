@@ -37,7 +37,13 @@ export const LineChart = <Xkey extends string, Ykey extends string>({
     const isMobile = useMediaQuery(({ breakpoints }) => breakpoints.down('md'));
 
     return (
-        <StyledLineChart responsive data={data}>
+        <StyledLineChart
+            responsive
+            data={data}
+            margin={{
+                bottom: 40,
+            }}
+        >
             <CartesianGrid
                 stroke={theme.palette.action.selected}
                 fillOpacity={0.5}
@@ -47,9 +53,11 @@ export const LineChart = <Xkey extends string, Ykey extends string>({
                 dataKey={xKey}
                 tickLine={false}
                 axisLine={false}
-                padding={{ left: 40, right: 15 }}
+                padding={{ left: 40, right: 20 }}
                 tickFormatter={xTickFormatter}
                 angle={isMobile ? -45 : 0}
+                color={theme.palette.text.disabled}
+                dy={40}
             />
             {!isMobile && (
                 <YAxis
