@@ -50,7 +50,7 @@ export const Cell = <
                     variant="caption"
                     color="textDisabled"
                     component="p"
-                    noWrap={true}
+                    noWrap
                     {...typographyConfig}
                 >
                     {typographyConfig?.children || formattedDate}
@@ -70,7 +70,7 @@ export const Cell = <
                 <Typography
                     variant="h4"
                     component="p"
-                    noWrap={true}
+                    noWrap
                     {...typographyConfig}
                 >
                     {typographyConfig?.children || value}

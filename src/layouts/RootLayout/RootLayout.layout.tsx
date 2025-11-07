@@ -4,7 +4,7 @@ import { Outlet } from 'react-router';
 
 import { Container, Grid2 as Grid } from '@mui/material';
 
-import { Footer, SideBar } from '@components';
+import { SideBar } from '@components';
 import { Header } from '@containers';
 
 import { sidebarBottomIcon, sideBarConfig } from './sidebar.config';
@@ -42,7 +42,6 @@ export const RootLayout = () => {
                         <main>
                             <Outlet />
                         </main>
-                        <Footer />
                     </Grid>
                 </Grid>
             </Grid>
