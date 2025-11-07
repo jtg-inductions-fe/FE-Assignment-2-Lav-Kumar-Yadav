@@ -1,25 +1,18 @@
 import type { ElementType } from 'react';
 
-export type FooterConfigType = {
+export type SocialMediaConfigType = {
     /**
-     * Description to show at start of the footer
+     * social media icon to show
      */
-    description: string;
+    Icon: ElementType;
 
-    socialMedia: {
-        /**
-         * social media icon to show
-         */
-        Icon: ElementType;
+    /**
+     * url for the social media
+     */
+    url: string;
 
-        /**
-         * url for the social media
-         */
-        url: string;
-
-        /**
-         * label which will be used as aria-label with social media icon
-         */
-        label: string;
-    }[];
-};
+    /**
+     * label which will be used as aria-label with social media icon
+     */
+    label: string;
+}[];
