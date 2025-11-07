@@ -1,6 +1,6 @@
 import { Box, Stack } from '@mui/material';
 
-import { Customers, Hero, Products, Sales } from '@containers';
+import { Customers, Hero, Products, Sales, Transactions } from '@containers';
 
 export const Dashboard = () => (
     <Stack gap={4}>
@@ -25,5 +25,6 @@ export const Dashboard = () => (
                 <Products />
             </Box>
         </Stack>
+        <Transactions />
     </Stack>
 );

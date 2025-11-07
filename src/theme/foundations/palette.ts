@@ -29,19 +29,18 @@ export const palette: PaletteOptions = {
         disabled: COLORS.GREY[500],
     },
     success: {
-        main: COLORS.GREEN[500],
+        main: COLORS.GREEN[100],
         light: COLORS.GREEN[100],
         dark: COLORS.GREEN[800],
-        contrastText: COLORS.WHITE,
+        contrastText: COLORS.GREEN[500],
     },
     error: {
         contrastText: COLORS.RED[800],
         main: COLORS.RED[200],
     },
     info: {
-        main: COLORS.BLUE[800],
-        light: COLORS.BLUE[100],
-        contrastText: COLORS.WHITE,
+        main: COLORS.BLUE[100],
+        contrastText: COLORS.BLUE[800],
     },
     action: {
         selected: COLORS.GREY[100],

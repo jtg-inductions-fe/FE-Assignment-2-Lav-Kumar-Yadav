@@ -87,7 +87,7 @@ export const LineChart = <Xkey extends string, Ykey extends string>({
             <Line
                 type="bump"
                 dataKey={yKey}
-                stroke={theme.palette.success.main}
+                stroke={theme.palette.primary.main}
                 strokeWidth={2}
                 dot={false}
             />

@@ -14,3 +14,4 @@ export {
 } from './SideBar';
 
 export { StatListItem, StatListItemSkeleton } from './StatListItem';
+export { Table, type TableProps } from './Table';
