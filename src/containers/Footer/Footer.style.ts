@@ -1,4 +1,3 @@
-import { ListItemButton } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 
@@ -18,14 +17,3 @@ export const StyledPaper = styled(Paper)(
         },
     }),
 ) as typeof Paper;
-
-export const StyledListItemButton = styled(ListItemButton)(
-    ({ theme: { spacing } }) => ({
-        color: 'inherit',
-        borderRadius: '50%',
-        padding: spacing(2),
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    }),
-) as typeof ListItemButton;

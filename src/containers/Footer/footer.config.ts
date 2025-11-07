@@ -5,9 +5,7 @@ import {
     Twitter,
 } from '@mui/icons-material';
 
-import type { SocialMediaConfigType } from './Footer.type';
-
-export const socialMediaConfig: SocialMediaConfigType = [
+export const socialMediaConfig = [
     {
         Icon: FacebookOutlined,
         url: 'https://www.facebook.com',

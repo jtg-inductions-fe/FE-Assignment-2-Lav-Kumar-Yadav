@@ -1,9 +1,9 @@
-import { List, ListItem, Typography } from '@mui/material';
+import { IconButton, List, ListItem, Typography } from '@mui/material';
 
 import { Link } from '@components';
 
 import { socialMediaConfig } from './footer.config';
-import { StyledListItemButton, StyledPaper } from './Footer.style';
+import { StyledPaper } from './Footer.style';
 
 /**
  * Footer container to display at the bottom of the dashboard
@@ -18,23 +18,34 @@ export const Footer = () => (
         <List
             sx={{
                 display: 'flex',
+                gap: 2,
+                flexWrap: 'wrap',
             }}
             aria-label="Social Media Links"
             disablePadding
             dense
         >
             {socialMediaConfig.map(({ Icon, label, url }) => (
-                <ListItem key={label}>
-                    <StyledListItemButton
-                        disableGutters
+                <ListItem
+                    key={label}
+                    sx={{
+                        width: 50,
+                    }}
+                    disableGutters
+                    disablePadding
+                >
+                    <IconButton
                         LinkComponent={Link}
                         href={url}
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={label}
+                        sx={{
+                            color: 'text.primary',
+                        }}
                     >
                         <Icon />
-                    </StyledListItemButton>
+                    </IconButton>
                 </ListItem>
             ))}
         </List>
