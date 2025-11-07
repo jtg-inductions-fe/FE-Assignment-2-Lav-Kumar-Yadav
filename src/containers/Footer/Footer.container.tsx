@@ -1,9 +1,9 @@
-import { List, ListItem, ListItemButton, Typography } from '@mui/material';
+import { List, ListItem, Typography } from '@mui/material';
 
 import { Link } from '@components';
 
 import { socialMediaConfig } from './footer.config';
-import { StyledPaper } from './Footer.style';
+import { StyledListItemButton, StyledPaper } from './Footer.style';
 
 /**
  * Footer container to display at the bottom of the dashboard
@@ -15,32 +15,28 @@ export const Footer = () => (
         <Typography color="textDisabled">
             © 2021 Themesberg, LLC. All rights reserved.
         </Typography>
-        <nav aria-label="Social Media Links">
-            <List
-                sx={{
-                    display: 'flex',
-                }}
-                disablePadding
-                dense
-            >
-                {socialMediaConfig.map(({ Icon, label, url }) => (
-                    <ListItem key={label}>
-                        <ListItemButton
-                            disableGutters
-                            LinkComponent={Link}
-                            href={url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            sx={{
-                                color: 'inherit',
-                            }}
-                            aria-label={label}
-                        >
-                            <Icon />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
-            </List>
-        </nav>
+        <List
+            sx={{
+                display: 'flex',
+            }}
+            aria-label="Social Media Links"
+            disablePadding
+            dense
+        >
+            {socialMediaConfig.map(({ Icon, label, url }) => (
+                <ListItem key={label}>
+                    <StyledListItemButton
+                        disableGutters
+                        LinkComponent={Link}
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={label}
+                    >
+                        <Icon />
+                    </StyledListItemButton>
+                </ListItem>
+            ))}
+        </List>
     </StyledPaper>
 );
