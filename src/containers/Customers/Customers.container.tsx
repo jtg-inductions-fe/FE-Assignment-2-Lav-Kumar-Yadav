@@ -20,7 +20,11 @@ const formatCurrency = (amount: number) =>
  * @returns List of Customers
  */
 export const Customers = () => {
-    const { data: customers, isLoading } = useCustomers();
+    const { data: customers, isLoading, error } = useCustomers();
+
+    if (error) {
+        throw new Error(error);
+    }
 
     return (
         <Section heading="Latest Customers">
@@ -39,21 +43,22 @@ export const Customers = () => {
                     Array.from({ length: 6 }).map((_, index) => (
                         <StatListItemSkeleton key={index} />
                     ))}
-                {customers?.map((customer, index) => (
-                    <StatListItem
-                        key={index}
-                        label={`${customer.name.title} ${customer.name.first} ${customer.name.last}`}
-                        subLabel={customer.email}
-                        imageSrc={customer.picture.thumbnail}
-                        divider={index !== customers.length - 1}
-                        disableGutters
-                        rightContent={
-                            <Typography variant="h3" component="p">
-                                {formatCurrency(customer.sale)}
-                            </Typography>
-                        }
-                    />
-                ))}
+                {!isLoading &&
+                    customers?.map((customer, index) => (
+                        <StatListItem
+                            key={index}
+                            label={`${customer.name.title} ${customer.name.first} ${customer.name.last}`}
+                            subLabel={customer.email}
+                            imageSrc={customer.picture.thumbnail}
+                            divider={index !== customers.length - 1}
+                            disableGutters
+                            rightContent={
+                                <Typography variant="h3" component="p">
+                                    {formatCurrency(customer.sale)}
+                                </Typography>
+                            }
+                        />
+                    ))}
             </List>
         </Section>
     );

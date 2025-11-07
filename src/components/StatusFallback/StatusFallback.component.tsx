@@ -1,0 +1,70 @@
+import { Box, Button, Stack, Typography } from '@mui/material';
+
+import type { StatusFallbackProps } from './StatusFallback.types';
+
+/**
+ *
+ * @param image - the fallback image
+ * @param title - the fallback title
+ * @param body - the fallback body text
+ * @param buttons - the array of props for multiple buttons
+ * @returns The fallback ui for the above information
+ */
+export const StatusFallback = ({
+    image,
+    title,
+    body,
+    buttons,
+}: StatusFallbackProps) => (
+    <Stack component="section" alignItems="center" gap={5}>
+        {image && (
+            <Box
+                width={{
+                    sm: 300,
+                    md: 400,
+                    lg: 500,
+                }}
+            >
+                <img src={image} alt={title} height="100%" width="100%" />
+            </Box>
+        )}
+        <Typography variant="h1" textAlign="center">
+            {title}
+        </Typography>
+
+        <Typography variant="body1" color="textSecondary" textAlign="center">
+            {body}
+        </Typography>
+
+        <Stack
+            direction="row"
+            gap={4}
+            flexWrap="wrap"
+            justifyContent="center"
+            alignItems="center"
+        >
+            {buttons.map((btnProps, index) => (
+                <Button
+                    key={index}
+                    sx={{
+                        paddingX: 5,
+                        paddingY: 3,
+                        borderRadius: 3,
+                        minWidth: 150,
+                    }}
+                    {...btnProps}
+                >
+                    {
+                        <Typography
+                            variant="body2"
+                            textTransform="none"
+                            textAlign="center"
+                        >
+                            {btnProps.children}
+                        </Typography>
+                    }
+                </Button>
+            ))}
+        </Stack>
+    </Stack>
+);

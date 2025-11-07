@@ -42,6 +42,7 @@ export const LineChart = <Xkey extends string, Ykey extends string>({
             data={data}
             margin={{
                 bottom: 40,
+                top: 10,
             }}
         >
             <CartesianGrid

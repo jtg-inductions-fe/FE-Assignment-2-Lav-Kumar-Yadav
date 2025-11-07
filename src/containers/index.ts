@@ -1,7 +1,10 @@
-export { Footer } from './Footer';
 export { Customers } from './Customers';
+export { Footer } from './Footer';
 export { Header } from './Header';
 export { Hero } from './Hero';
+export { NotFoundFallback } from './NotFoundFallback';
 export { Products } from './Products';
+export { RouteErrorFallback } from './RouteErrorFallback';
 export { Sales } from './Sales';
+export { SectionErrorFallback } from './SectionErrorFallback';
 export { Transactions } from './Transactions';

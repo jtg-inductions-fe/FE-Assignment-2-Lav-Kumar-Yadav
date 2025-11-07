@@ -4,8 +4,9 @@ import { Outlet } from 'react-router';
 
 import { Container, Grid2 as Grid } from '@mui/material';
 
-import { SideBar } from '@components';
+import { ErrorBoundary, SideBar } from '@components';
 import { Header } from '@containers';
+import { RouteErrorFallback } from '@containers';
 
 import { sidebarBottomIcon, sideBarConfig } from './sidebar.config';
 
@@ -14,6 +15,8 @@ import { sidebarBottomIcon, sideBarConfig } from './sidebar.config';
  */
 export const RootLayout = () => {
     const [isSideBarOpen, setIsSideBarOpen] = useState<boolean>(false);
+    const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(true);
+
     const handleSidebarClose = () => setIsSideBarOpen(false);
 
     return (
@@ -30,17 +33,24 @@ export const RootLayout = () => {
                 </Grid>
                 <Grid container width="100%">
                     <Grid size={{ xs: 0, md: 'auto' }}>
-                        <SideBar
-                            open={isSideBarOpen}
-                            sideBarConfig={sideBarConfig}
-                            sidebarBottomIcon={sidebarBottomIcon}
-                            aria-label="Sidebar"
-                            onClose={handleSidebarClose}
-                        />
+                        {isSidebarVisible && (
+                            <SideBar
+                                open={isSideBarOpen}
+                                sideBarConfig={sideBarConfig}
+                                sidebarBottomIcon={sidebarBottomIcon}
+                                aria-label="Sidebar"
+                                onClose={handleSidebarClose}
+                            />
+                        )}
                     </Grid>
                     <Grid size="grow" paddingX={5}>
                         <main>
-                            <Outlet />
+                            <ErrorBoundary
+                                fallback={RouteErrorFallback}
+                                fallbackProps={{ setIsSidebarVisible }}
+                            >
+                                <Outlet context={setIsSidebarVisible} />
+                            </ErrorBoundary>
                         </main>
                     </Grid>
                 </Grid>

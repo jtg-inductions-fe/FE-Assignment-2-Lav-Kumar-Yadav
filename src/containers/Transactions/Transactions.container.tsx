@@ -1,4 +1,4 @@
-import { Section, Table } from '@components';
+import { Section, Table, TableSkeleton } from '@components';
 import { useTransactions } from '@hooks';
 
 import { transactionsTableConfig } from './transactionsTable.config';
@@ -8,18 +8,30 @@ import { transactionsTableConfig } from './transactionsTable.config';
  * @returns Transactions Table
  */
 export const Transactions = () => {
-    const { data: transactions } = useTransactions();
+    const { data: transactions, isLoading, error } = useTransactions();
+
+    if (error) {
+        throw new Error(error);
+    }
 
     return (
         <Section
             heading="Transactions"
             subHeading="This is a list of latest transactions."
         >
-            <Table
-                data={transactions}
-                aria-label="Transactions Table"
-                tableConfig={transactionsTableConfig}
-            />
+            {isLoading && (
+                <TableSkeleton
+                    noOfRows={6}
+                    tableConfig={transactionsTableConfig}
+                />
+            )}
+            {!isLoading && (
+                <Table
+                    data={transactions}
+                    aria-label="Transactions Table"
+                    tableConfig={transactionsTableConfig}
+                />
+            )}
         </Section>
     );
 };

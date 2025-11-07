@@ -2,7 +2,7 @@ import { format, parseISO } from 'date-fns';
 
 import { InfoOutlined } from '@mui/icons-material';
 
-import { LineChart, Section } from '@components';
+import { LineChart, LineChartSkeleton, Section } from '@components';
 import { useSales } from '@hooks';
 
 /**
@@ -13,40 +13,47 @@ import { useSales } from '@hooks';
  * and tooltip content for improved readability.
  */
 export const Sales = () => {
-    const { data: sales } = useSales();
+    const { data: sales, isLoading, error } = useSales();
+
+    if (error) {
+        throw new Error(error);
+    }
 
     return (
         <Section heading="Sales" icon={<InfoOutlined />}>
-            <LineChart
-                data={sales}
-                heading="Sales"
-                xKey="date"
-                yKey="sales"
-                xTickFormatter={(val) => {
-                    try {
-                        return format(parseISO(String(val)), 'dd MMM');
-                    } catch {
-                        return String(val);
-                    }
-                }}
-                yTickFormatter={(value) => {
-                    const num = Number(value);
+            {isLoading && <LineChartSkeleton />}
+            {!isLoading && (
+                <LineChart
+                    data={sales}
+                    heading="Sales"
+                    xKey="date"
+                    yKey="sales"
+                    xTickFormatter={(val) => {
+                        try {
+                            return format(parseISO(String(val)), 'dd MMM');
+                        } catch {
+                            return String(val);
+                        }
+                    }}
+                    yTickFormatter={(value) => {
+                        const num = Number(value);
 
-                    return !isNaN(num) ? `$${num / 1000}k` : '$0k';
-                }}
-                toolTipLabelFormatter={(val) => {
-                    try {
-                        return format(parseISO(String(val)), 'd MMM, yyyy');
-                    } catch {
-                        return String(val);
-                    }
-                }}
-                toolTipValueFormatter={(value) => {
-                    const num = Number(value);
+                        return !isNaN(num) ? `$${num / 1000}k` : '$0k';
+                    }}
+                    toolTipLabelFormatter={(val) => {
+                        try {
+                            return format(parseISO(String(val)), 'd MMM, yyyy');
+                        } catch {
+                            return String(val);
+                        }
+                    }}
+                    toolTipValueFormatter={(value) => {
+                        const num = Number(value);
 
-                    return !isNaN(num) ? `$${num / 1000}k` : '$0k';
-                }}
-            />
+                        return !isNaN(num) ? `$${num / 1000}k` : '$0k';
+                    }}
+                />
+            )}
         </Section>
     );
 };

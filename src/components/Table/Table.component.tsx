@@ -67,7 +67,12 @@ export const Table = <
                         }}
                     >
                         {tableConfig.map((cellConfig) => (
-                            <TableCell key={cellConfig.key}>
+                            <TableCell
+                                key={cellConfig.key}
+                                sx={{
+                                    maxWidth: 300,
+                                }}
+                            >
                                 <Cell
                                     cellConfig={cellConfig}
                                     rowData={rowData}

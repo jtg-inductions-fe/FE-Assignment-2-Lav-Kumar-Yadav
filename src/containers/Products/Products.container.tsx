@@ -8,7 +8,11 @@ import { useProducts } from '@hooks';
  * @returns List of Products
  */
 export const Products = () => {
-    const { data: products, isLoading } = useProducts();
+    const { data: products, isLoading, error } = useProducts();
+
+    if (error) {
+        throw new Error(error);
+    }
 
     return (
         <Section heading="Top products">
@@ -27,30 +31,31 @@ export const Products = () => {
                     Array.from({ length: 6 }).map((_, index) => (
                         <StatListItemSkeleton key={index} />
                     ))}
-                {products?.map((product, index) => (
-                    <StatListItem
-                        key={product.id}
-                        label={product.name}
-                        subLabel={product.framework}
-                        divider={index !== products.length - 1}
-                        disableGutters
-                        rightContent={
-                            <Typography variant="h3" component="p">
-                                {new Intl.NumberFormat('en-US').format(
-                                    product.sales,
-                                )}
-                                <Typography
-                                    variant="body1"
-                                    component="span"
-                                    color="textDisabled"
-                                    marginLeft={1}
-                                >
-                                    sales
+                {!isLoading &&
+                    products?.map((product, index) => (
+                        <StatListItem
+                            key={product.id}
+                            label={product.name}
+                            subLabel={product.framework}
+                            divider={index !== products.length - 1}
+                            disableGutters
+                            rightContent={
+                                <Typography variant="h3" component="p">
+                                    {new Intl.NumberFormat('en-US').format(
+                                        product.sales,
+                                    )}
+                                    <Typography
+                                        variant="body1"
+                                        component="span"
+                                        color="textDisabled"
+                                        marginLeft={1}
+                                    >
+                                        sales
+                                    </Typography>
                                 </Typography>
-                            </Typography>
-                        }
-                    />
-                ))}
+                            }
+                        />
+                    ))}
             </List>
         </Section>
     );

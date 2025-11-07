@@ -1,5 +1,6 @@
 import { Box, Stack } from '@mui/material';
 
+import { ErrorBoundary } from '@components';
 import {
     Customers,
     Footer,
@@ -8,11 +9,20 @@ import {
     Sales,
     Transactions,
 } from '@containers';
+import { SectionErrorFallback } from '@containers';
 
+/**
+ *
+ * @returns An Admin Dashboard
+ */
 export const Dashboard = () => (
     <Stack gap={4} marginBottom={4}>
-        <Hero />
-        <Sales />
+        <ErrorBoundary fallback={SectionErrorFallback}>
+            <Hero />
+        </ErrorBoundary>
+        <ErrorBoundary fallback={SectionErrorFallback}>
+            <Sales />
+        </ErrorBoundary>
         <Stack
             direction={{
                 xs: 'column',
@@ -26,13 +36,19 @@ export const Dashboard = () => (
                     lg: '50%',
                 }}
             >
-                <Customers />
+                <ErrorBoundary fallback={SectionErrorFallback}>
+                    <Customers />
+                </ErrorBoundary>
             </Box>
             <Box width="100%">
-                <Products />
+                <ErrorBoundary fallback={SectionErrorFallback}>
+                    <Products />
+                </ErrorBoundary>
             </Box>
         </Stack>
-        <Transactions />
+        <ErrorBoundary fallback={SectionErrorFallback}>
+            <Transactions />
+        </ErrorBoundary>
         <Footer />
     </Stack>
 );
