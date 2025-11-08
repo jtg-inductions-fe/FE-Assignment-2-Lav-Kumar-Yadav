@@ -28,7 +28,11 @@ export const Products = () => {
                 aria-label="List of Top Products"
             >
                 {isLoading ? (
-                    <Box aria-live="polite" aria-busy="true">
+                    <Box
+                        aria-live="polite"
+                        aria-busy={true}
+                        aria-label="Loading products data"
+                    >
                         {Array.from({ length: 6 }).map((_, index) => (
                             <StatListItemSkeleton key={index} />
                         ))}

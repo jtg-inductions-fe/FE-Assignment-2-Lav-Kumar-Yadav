@@ -40,7 +40,11 @@ export const Customers = () => {
                 aria-label="List of Latest Customers"
             >
                 {isLoading ? (
-                    <Box aria-live="polite" aria-busy="true">
+                    <Box
+                        aria-live="polite"
+                        aria-busy={true}
+                        aria-label="Loading customers data"
+                    >
                         {Array.from({ length: 6 }).map((_, index) => (
                             <StatListItemSkeleton key={index} />
                         ))}

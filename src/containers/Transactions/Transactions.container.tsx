@@ -22,7 +22,11 @@ export const Transactions = () => {
             subHeading="This is a list of latest transactions."
         >
             {isLoading ? (
-                <Box aria-live="polite" aria-busy="true">
+                <Box
+                    aria-live="polite"
+                    aria-busy={true}
+                    aria-label="Loading transactions data"
+                >
                     <TableSkeleton
                         noOfRows={6}
                         tableConfig={transactionsTableConfig}

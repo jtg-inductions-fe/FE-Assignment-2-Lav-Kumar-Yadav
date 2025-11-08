@@ -23,7 +23,11 @@ export const Sales = () => {
     return (
         <Section heading="Sales" icon={<InfoOutlined />}>
             {isLoading ? (
-                <Box aria-live="polite" aria-busy="true">
+                <Box
+                    aria-live="polite"
+                    aria-busy={true}
+                    aria-label="Loading sales data"
+                >
                     <LineChartSkeleton />
                 </Box>
             ) : !!sales?.length ? (

@@ -19,7 +19,11 @@ export const Hero = () => {
     return (
         <section aria-labelledby="hero-image-gallery">
             {isLoading ? (
-                <Box aria-live="polite" aria-busy="true">
+                <Box
+                    aria-live="polite"
+                    aria-busy={true}
+                    aria-label="Loading Gallery data"
+                >
                     <ImageGallerySkeleton
                         imageGalleryLayout={heroLayoutConfig}
                         noOfCols={isDesktop ? 3 : 1}
