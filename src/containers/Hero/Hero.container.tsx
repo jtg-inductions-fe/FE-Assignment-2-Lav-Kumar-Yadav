@@ -13,20 +13,17 @@ export const Hero = () => {
     const isDesktop = useMediaQuery(({ breakpoints }) => breakpoints.up('md'));
 
     if (error) {
-        if (error) {
-            throw new Error(error);
-        }
+        throw new Error(error);
     }
 
     return (
         <section aria-labelledby="hero-image-gallery">
-            {isLoading && (
+            {isLoading ? (
                 <ImageGallerySkeleton
                     imageGalleryLayout={heroLayoutConfig}
                     noOfCols={isDesktop ? 3 : 1}
                 />
-            )}
-            {!isLoading && (
+            ) : (
                 <ImageGallery
                     data={gallery}
                     imageGalleryLayout={heroLayoutConfig}

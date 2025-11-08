@@ -18,7 +18,9 @@ export const NotFoundFallback = () => {
     const isDesktop = useMediaQuery(({ breakpoints }) => breakpoints.up('md'));
 
     useEffect(() => {
-        if (isDesktop) setIsSidebarVisible(false);
+        if (isDesktop) {
+            setIsSidebarVisible(false);
+        }
 
         return () => {
             setIsSidebarVisible(true);

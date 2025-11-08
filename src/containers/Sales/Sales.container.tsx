@@ -21,8 +21,9 @@ export const Sales = () => {
 
     return (
         <Section heading="Sales" icon={<InfoOutlined />}>
-            {isLoading && <LineChartSkeleton />}
-            {!isLoading && (
+            {isLoading ? (
+                <LineChartSkeleton />
+            ) : (
                 <LineChart
                     data={sales}
                     heading="Sales"

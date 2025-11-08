@@ -1,6 +1,6 @@
 import type { Dispatch } from 'react';
 
 export type HeaderProps = {
-    /** To control sidebar open close */
+    /** Callback to toggle sidebar visibility */
     setIsSidebarOpen: Dispatch<React.SetStateAction<boolean>>;
 };

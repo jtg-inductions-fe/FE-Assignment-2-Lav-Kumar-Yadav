@@ -19,13 +19,12 @@ export const Transactions = () => {
             heading="Transactions"
             subHeading="This is a list of latest transactions."
         >
-            {isLoading && (
+            {isLoading ? (
                 <TableSkeleton
                     noOfRows={6}
                     tableConfig={transactionsTableConfig}
                 />
-            )}
-            {!isLoading && (
+            ) : (
                 <Table
                     data={transactions}
                     aria-label="Transactions Table"

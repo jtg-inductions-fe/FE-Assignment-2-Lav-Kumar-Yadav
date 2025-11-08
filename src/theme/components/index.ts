@@ -27,4 +27,14 @@ export const components: Components = {
             },
         },
     },
+    MuiButton: {
+        styleOverrides: {
+            root: {
+                fontSize: 14,
+                fontWeight: 600,
+                lineHeight: 1.5,
+                fontFamily: 'Inter',
+            },
+        },
+    },
 };

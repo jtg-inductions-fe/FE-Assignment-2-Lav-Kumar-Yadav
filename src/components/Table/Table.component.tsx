@@ -57,15 +57,7 @@ export const Table = <
             </TableHead>
             <TableBody>
                 {data.map((rowData, index) => (
-                    <StyledTableRow
-                        key={index}
-                        sx={{
-                            bgcolor:
-                                index % 2 === 1
-                                    ? 'background.default'
-                                    : 'inherit',
-                        }}
-                    >
+                    <StyledTableRow key={index}>
                         {tableConfig.map((cellConfig) => (
                             <TableCell
                                 key={cellConfig.key}

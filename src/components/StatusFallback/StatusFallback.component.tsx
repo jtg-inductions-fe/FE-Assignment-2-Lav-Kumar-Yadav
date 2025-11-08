@@ -25,7 +25,15 @@ export const StatusFallback = ({
                     lg: 500,
                 }}
             >
-                <img src={image} alt={title} height="100%" width="100%" />
+                <img
+                    src={image}
+                    alt={title}
+                    height="100%"
+                    width="100%"
+                    onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                    }}
+                />
             </Box>
         )}
         <Typography variant="h1" textAlign="center">
@@ -53,17 +61,7 @@ export const StatusFallback = ({
                         minWidth: 150,
                     }}
                     {...btnProps}
-                >
-                    {
-                        <Typography
-                            variant="body2"
-                            textTransform="none"
-                            textAlign="center"
-                        >
-                            {btnProps.children}
-                        </Typography>
-                    }
-                </Button>
+                />
             ))}
         </Stack>
     </Stack>

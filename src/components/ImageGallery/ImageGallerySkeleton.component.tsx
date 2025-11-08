@@ -20,7 +20,7 @@ export const ImageGallerySkeleton = ({
     const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'));
     const LAYOUT_CONFIG = imageGalleryLayout[isDesktop ? 'md' : 'xs'];
 
-    const placeholderCount = LAYOUT_CONFIG?.length;
+    const placeholderCount = LAYOUT_CONFIG?.length ?? 0;
 
     return (
         <ImageList variant="quilted" cols={noOfCols} rowHeight={240} gap={11}>

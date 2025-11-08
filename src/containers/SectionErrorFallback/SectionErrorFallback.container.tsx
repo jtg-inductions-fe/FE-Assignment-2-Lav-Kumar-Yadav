@@ -5,7 +5,7 @@ type SectionErrorProps = {
 };
 
 /**
- * Fallback component for SectionWhen an Error happens
+ * Fallback component for Section When an Error happens
  * @param handleRerender - callback will be call when Retry button will be clicked
  * @returns The Fallback when an Error happens in section
  */

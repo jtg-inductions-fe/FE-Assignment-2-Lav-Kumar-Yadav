@@ -5,7 +5,7 @@ import type { MenuConfigItem } from '@components';
 import type { User } from '@types';
 /**
  *
- * @param user - It takes user which will be used to show a user profile picture , his name and email
+ * @param user - The user object used to display the user's profile picture, name, and email
  * @returns  a configuration to build the user profile menu
  */
 export const buildProfileMenuConfig = (
