@@ -1,4 +1,4 @@
-import { List, Typography } from '@mui/material';
+import { Box, List, Typography } from '@mui/material';
 
 import { Section, StatListItem, StatListItemSkeleton } from '@components';
 import { useCustomers } from '@hooks';
@@ -39,25 +39,33 @@ export const Customers = () => {
                 disablePadding
                 aria-label="List of Latest Customers"
             >
-                {isLoading
-                    ? Array.from({ length: 6 }).map((_, index) => (
-                          <StatListItemSkeleton key={index} />
-                      ))
-                    : customers?.map((customer, index) => (
-                          <StatListItem
-                              key={index}
-                              label={`${customer.name.title} ${customer.name.first} ${customer.name.last}`}
-                              subLabel={customer.email}
-                              imageSrc={customer.picture.thumbnail}
-                              divider={index !== customers.length - 1}
-                              disableGutters
-                              rightContent={
-                                  <Typography variant="h3" component="p">
-                                      {formatCurrency(customer.sale)}
-                                  </Typography>
-                              }
-                          />
-                      ))}
+                {isLoading ? (
+                    <Box aria-live="polite" aria-busy="true">
+                        {Array.from({ length: 6 }).map((_, index) => (
+                            <StatListItemSkeleton key={index} />
+                        ))}
+                    </Box>
+                ) : !!customers?.length ? (
+                    customers?.map((customer, index) => (
+                        <StatListItem
+                            key={index}
+                            label={`${customer.name.title} ${customer.name.first} ${customer.name.last}`}
+                            subLabel={customer.email}
+                            imageSrc={customer.picture.thumbnail}
+                            divider={index !== customers.length - 1}
+                            disableGutters
+                            rightContent={
+                                <Typography variant="h3" component="p">
+                                    {formatCurrency(customer.sale)}
+                                </Typography>
+                            }
+                        />
+                    ))
+                ) : (
+                    <Typography variant="body2" textAlign="center" padding={4}>
+                        No Customers available
+                    </Typography>
+                )}
             </List>
         </Section>
     );

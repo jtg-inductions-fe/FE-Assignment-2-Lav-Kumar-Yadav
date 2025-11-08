@@ -47,7 +47,9 @@ export const transactionsTableConfig: TableProps<Transaction>['tableConfig'] = [
         type: 'text',
         key: 'amount',
         title: 'AMOUNT',
-        renderConfig: (rowData) => ({ children: `$${rowData.amount}` }),
+        renderConfig: (rowData) => ({
+            children: `${rowData.paymentType === 'refund' ? '-' : ''}$${rowData.amount}`,
+        }),
     },
     {
         type: 'chip',

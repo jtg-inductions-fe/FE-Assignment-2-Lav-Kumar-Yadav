@@ -8,7 +8,7 @@ import NotFoundIllustration from '@assets/illustrations/not-found.svg';
 import { Link, StatusFallback } from '@components';
 
 /**
- *A Fallback when an  Page not Found by browser router of react router
+ * A fallback component for when a page is not found by the React Router
  * @returns A Fallback Component
  */
 export const NotFoundFallback = () => {

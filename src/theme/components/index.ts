@@ -30,7 +30,7 @@ export const components: Components = {
     MuiButton: {
         styleOverrides: {
             root: {
-                fontSize: 14,
+                fontSize: '1.4rem',
                 fontWeight: 600,
                 lineHeight: 1.5,
                 fontFamily: 'Inter',

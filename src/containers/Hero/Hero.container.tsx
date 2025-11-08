@@ -1,4 +1,4 @@
-import { useMediaQuery } from '@mui/material';
+import { Box, Typography, useMediaQuery } from '@mui/material';
 
 import { ImageGallery, ImageGallerySkeleton } from '@components';
 import { useGallery } from '@hooks';
@@ -19,11 +19,13 @@ export const Hero = () => {
     return (
         <section aria-labelledby="hero-image-gallery">
             {isLoading ? (
-                <ImageGallerySkeleton
-                    imageGalleryLayout={heroLayoutConfig}
-                    noOfCols={isDesktop ? 3 : 1}
-                />
-            ) : (
+                <Box aria-live="polite" aria-busy="true">
+                    <ImageGallerySkeleton
+                        imageGalleryLayout={heroLayoutConfig}
+                        noOfCols={isDesktop ? 3 : 1}
+                    />
+                </Box>
+            ) : !!gallery?.length ? (
                 <ImageGallery
                     data={gallery}
                     imageGalleryLayout={heroLayoutConfig}
@@ -31,6 +33,10 @@ export const Hero = () => {
                     id="hero-image-gallery"
                     aria-label="Hero Image Gallery"
                 />
+            ) : (
+                <Typography variant="body2" textAlign="center" padding={4}>
+                    No Gallery available
+                </Typography>
             )}
         </section>
     );

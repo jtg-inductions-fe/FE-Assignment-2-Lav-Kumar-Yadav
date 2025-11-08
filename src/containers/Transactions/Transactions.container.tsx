@@ -1,3 +1,5 @@
+import { Box, Typography } from '@mui/material';
+
 import { Section, Table, TableSkeleton } from '@components';
 import { useTransactions } from '@hooks';
 
@@ -20,16 +22,22 @@ export const Transactions = () => {
             subHeading="This is a list of latest transactions."
         >
             {isLoading ? (
-                <TableSkeleton
-                    noOfRows={6}
-                    tableConfig={transactionsTableConfig}
-                />
-            ) : (
+                <Box aria-live="polite" aria-busy="true">
+                    <TableSkeleton
+                        noOfRows={6}
+                        tableConfig={transactionsTableConfig}
+                    />
+                </Box>
+            ) : !!transactions?.length ? (
                 <Table
                     data={transactions}
                     aria-label="Transactions Table"
                     tableConfig={transactionsTableConfig}
                 />
+            ) : (
+                <Typography variant="body2" textAlign="center" padding={4}>
+                    No Transactions data available
+                </Typography>
             )}
         </Section>
     );

@@ -11,7 +11,7 @@ type SectionErrorProps = {
  */
 export const SectionErrorFallback = ({ handleRerender }: SectionErrorProps) => (
     <StatusFallback
-        body="It’s always time for a coffee break We should be back by the time you finish your coffee."
+        body="It’s always time for a coffee break. We should be back by the time you finish your coffee."
         title="Something has gone seriously wrong"
         buttons={[
             {
