@@ -1,5 +1,7 @@
 import { Component } from 'react';
 
+import { ErrorBoundaryContext } from '@contexts';
+
 import type {
     ErrorBoundaryProps,
     ErrorBoundaryState,
@@ -44,13 +46,14 @@ export class ErrorBoundary extends Component<
 
     render() {
         if (this.state.hasError) {
-            const Fallback = this.props.fallback;
-
             return (
-                <Fallback
-                    handleRerender={this.handleRerender}
-                    {...this.props.fallbackProps}
-                />
+                <ErrorBoundaryContext.Provider
+                    value={{
+                        resetErrorBoundary: this.handleRerender,
+                    }}
+                >
+                    {this.props.fallback}
+                </ErrorBoundaryContext.Provider>
             );
         }
 

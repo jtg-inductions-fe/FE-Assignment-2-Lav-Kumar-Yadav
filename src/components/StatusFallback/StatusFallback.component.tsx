@@ -11,24 +11,28 @@ import type { StatusFallbackProps } from './StatusFallback.types';
  * @returns The fallback ui for the above information
  */
 export const StatusFallback = ({
-    image,
     title,
-    body,
-    buttons,
+    illustration,
+    actionButtons,
+    content,
 }: StatusFallbackProps) => (
     <Stack component="section" alignItems="center" gap={5}>
-        {image && (
+        {illustration && (
             <Box
                 width={{
                     sm: 300,
                     md: 400,
                     lg: 500,
                 }}
+                height={{
+                    sm: 252,
+                    md: 336,
+                    lg: 420,
+                }}
             >
                 <img
-                    src={image}
+                    src={illustration}
                     alt={title}
-                    height="100%"
                     width="100%"
                     onError={(e) => {
                         e.currentTarget.style.display = 'none';
@@ -41,7 +45,7 @@ export const StatusFallback = ({
         </Typography>
 
         <Typography variant="body1" color="textSecondary" textAlign="center">
-            {body}
+            {content}
         </Typography>
 
         <Stack
@@ -51,7 +55,7 @@ export const StatusFallback = ({
             justifyContent="center"
             alignItems="center"
         >
-            {buttons.map((btnProps, index) => (
+            {actionButtons.map((btnProps, index) => (
                 <Button
                     key={index}
                     sx={{

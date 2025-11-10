@@ -2,14 +2,14 @@ import type { ButtonProps } from '@mui/material';
 
 export type StatusFallbackProps = {
     /**fallback image */
-    image?: string;
+    illustration?: string;
 
     /**fallback title */
     title: string;
 
     /**fallback body text */
-    body: string;
+    content: string;
 
     /** array of props for multiple buttons */
-    buttons: ({ to?: string } & ButtonProps)[];
+    actionButtons: ({ to?: string } & ButtonProps)[];
 };

@@ -18,7 +18,7 @@ export const Hero = () => {
 
     return (
         <section aria-labelledby="hero-image-gallery">
-            {isLoading ? (
+            {isLoading && (
                 <Box
                     aria-live="polite"
                     aria-busy={true}
@@ -29,7 +29,8 @@ export const Hero = () => {
                         noOfCols={isDesktop ? 3 : 1}
                     />
                 </Box>
-            ) : !!gallery?.length ? (
+            )}
+            {!isLoading && gallery && (
                 <ImageGallery
                     data={gallery}
                     imageGalleryLayout={heroLayoutConfig}
@@ -37,7 +38,8 @@ export const Hero = () => {
                     id="hero-image-gallery"
                     aria-label="Hero Image Gallery"
                 />
-            ) : (
+            )}
+            {!isLoading && gallery.length === 0 && (
                 <Typography variant="body2" textAlign="center" padding={4}>
                     No Gallery available
                 </Typography>

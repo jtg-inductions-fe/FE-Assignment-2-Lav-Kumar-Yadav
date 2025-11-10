@@ -1,14 +1,11 @@
-import type { ElementType, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 export type ErrorBoundaryProps = {
     /** component to show in the place of content  when error occurred*/
-    fallback: ElementType;
+    fallback: ReactNode;
 
     /** The Component which can cause Error */
     children: ReactNode;
-
-    /** Props which will further pass to Fallback */
-    fallbackProps?: object;
 };
 
 export type ErrorBoundaryState = {

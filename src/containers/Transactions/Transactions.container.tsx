@@ -21,7 +21,7 @@ export const Transactions = () => {
             heading="Transactions"
             subHeading="This is a list of latest transactions."
         >
-            {isLoading ? (
+            {isLoading && (
                 <Box
                     aria-live="polite"
                     aria-busy={true}
@@ -32,13 +32,14 @@ export const Transactions = () => {
                         tableConfig={transactionsTableConfig}
                     />
                 </Box>
-            ) : !!transactions?.length ? (
+            )}
+            {!isLoading && transactions && (
                 <Table
                     data={transactions}
-                    aria-label="Transactions Table"
                     tableConfig={transactionsTableConfig}
                 />
-            ) : (
+            )}
+            {!isLoading && transactions.length === 0 && (
                 <Typography variant="body2" textAlign="center" padding={4}>
                     No Transactions data available
                 </Typography>

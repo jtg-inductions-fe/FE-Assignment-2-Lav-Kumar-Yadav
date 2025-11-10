@@ -5,8 +5,8 @@ import { Outlet } from 'react-router';
 import { Container, Grid2 as Grid } from '@mui/material';
 
 import { ErrorBoundary, SideBar } from '@components';
+import { RouteErrorFallback } from '@components';
 import { Header } from '@containers';
-import { RouteErrorFallback } from '@containers';
 
 import { sidebarBottomIcon, sideBarConfig } from './sidebar.config';
 
@@ -14,10 +14,8 @@ import { sidebarBottomIcon, sideBarConfig } from './sidebar.config';
  * @returns A Grid-based responsive layout with Header, collapsible Sidebar, and main content area
  */
 export const RootLayout = () => {
-    const [isSideBarOpen, setIsSideBarOpen] = useState<boolean>(false);
-    const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(true);
-
     const handleSidebarClose = () => setIsSideBarOpen(false);
+    const [isSideBarOpen, setIsSideBarOpen] = useState<boolean>(false);
 
     return (
         <Container
@@ -33,24 +31,24 @@ export const RootLayout = () => {
                 </Grid>
                 <Grid container width="100%">
                     <Grid size={{ xs: 0, md: 'auto' }}>
-                        {isSidebarVisible && (
-                            <SideBar
-                                open={isSideBarOpen}
-                                sideBarConfig={sideBarConfig}
-                                sidebarBottomIcon={sidebarBottomIcon}
-                                aria-label="Sidebar"
-                                onClose={handleSidebarClose}
-                            />
-                        )}
+                        <ErrorBoundary fallback={<RouteErrorFallback />}>
+                            <nav aria-label="sidebar">
+                                <SideBar
+                                    open={isSideBarOpen}
+                                    sideBarConfig={sideBarConfig}
+                                    sidebarBottomIcon={sidebarBottomIcon}
+                                    onClose={handleSidebarClose}
+                                />
+                            </nav>
+                        </ErrorBoundary>
                     </Grid>
                     <Grid size="grow" paddingX={5}>
                         <main>
-                            <ErrorBoundary
-                                fallback={RouteErrorFallback}
-                                fallbackProps={{ setIsSidebarVisible }}
-                            >
-                                <Outlet context={setIsSidebarVisible} />
-                            </ErrorBoundary>
+                            {/* <ErrorBoundary
+                                    fallback={<RouteErrorFallback />}
+                                > */}
+                            <Outlet />
+                            {/* </ErrorBoundary> */}
                         </main>
                     </Grid>
                 </Grid>

@@ -22,7 +22,6 @@ export const SearchBar = <OptionType,>({
 }: SearchBarProps<OptionType>) => (
     <StyledAutoComplete
         value={value ?? null}
-        aria-label="searchbar"
         popupIcon={null}
         disablePortal
         options={options}

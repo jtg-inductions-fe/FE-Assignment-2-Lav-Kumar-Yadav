@@ -1,7 +1,7 @@
 import { format, parseISO } from 'date-fns';
 
 import { InfoOutlined } from '@mui/icons-material';
-import { Box, Typography } from '@mui/material';
+import { Box, IconButton, Tooltip, Typography } from '@mui/material';
 
 import { LineChart, LineChartSkeleton, Section } from '@components';
 import { useSales } from '@hooks';
@@ -21,8 +21,17 @@ export const Sales = () => {
     }
 
     return (
-        <Section heading="Sales" icon={<InfoOutlined />}>
-            {isLoading ? (
+        <Section
+            heading="Sales"
+            icon={
+                <Tooltip title="sales info of april month">
+                    <IconButton>
+                        <InfoOutlined />
+                    </IconButton>
+                </Tooltip>
+            }
+        >
+            {isLoading && (
                 <Box
                     aria-live="polite"
                     aria-busy={true}
@@ -30,7 +39,8 @@ export const Sales = () => {
                 >
                     <LineChartSkeleton />
                 </Box>
-            ) : !!sales?.length ? (
+            )}
+            {!isLoading && sales && (
                 <LineChart
                     data={sales}
                     heading="Sales"
@@ -61,7 +71,8 @@ export const Sales = () => {
                         return !isNaN(num) ? `$${num / 1000}k` : '$0k';
                     }}
                 />
-            ) : (
+            )}
+            {!isLoading && sales.length === 0 && (
                 <Typography variant="body2" textAlign="center" padding={4}>
                     No Sales data available
                 </Typography>

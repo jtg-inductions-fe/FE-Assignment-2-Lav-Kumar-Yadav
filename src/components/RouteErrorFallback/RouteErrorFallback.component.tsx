@@ -1,14 +1,8 @@
 import { useEffect } from 'react';
 
-import { useMediaQuery } from '@mui/material';
-
 import ErrorIllustration from '@assets/illustrations/error.svg';
 import { Link, StatusFallback } from '@components';
-
-type ErrorProps = {
-    handleRerender?: () => void;
-    setIsSidebarVisible?: (val: boolean) => void;
-};
+import { useError, useErrorBoundaryContext } from '@contexts';
 
 /**
  * The Fallback component for route Error
@@ -16,26 +10,24 @@ type ErrorProps = {
  * @param setIsSidebarVisible - callback which will be used for show and hide sidebar
  * @returns The fallback component when an Error comes in any route
  */
-export const RouteErrorFallback = ({
-    handleRerender,
-    setIsSidebarVisible,
-}: ErrorProps) => {
-    const isDesktop = useMediaQuery(({ breakpoints }) => breakpoints.up('md'));
+export const RouteErrorFallback = () => {
+    const { resetErrorBoundary } = useErrorBoundaryContext();
+    const { setIsError } = useError();
 
     useEffect(() => {
-        if (isDesktop) setIsSidebarVisible?.(false);
+        setIsError(true);
 
         return () => {
-            setIsSidebarVisible?.(true);
+            setIsError(false);
         };
-    }, [isDesktop, setIsSidebarVisible]);
+    }, [setIsError]);
 
     return (
         <StatusFallback
-            body="It’s always time for a coffee break We should be back by the time you finish your coffee."
-            image={ErrorIllustration}
+            content="It’s always time for a coffee break We should be back by the time you finish your coffee."
+            illustration={ErrorIllustration}
             title="Something has gone seriously wrong"
-            buttons={[
+            actionButtons={[
                 {
                     children: 'Go Back Home',
                     LinkComponent: Link,
@@ -45,7 +37,7 @@ export const RouteErrorFallback = ({
                 {
                     children: 'Retry',
                     variant: 'contained',
-                    onClick: () => handleRerender?.(),
+                    onClick: () => resetErrorBoundary(),
                 },
             ]}
         />

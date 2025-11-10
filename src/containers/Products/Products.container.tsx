@@ -27,7 +27,7 @@ export const Products = () => {
                 disablePadding
                 aria-label="List of Top Products"
             >
-                {isLoading ? (
+                {isLoading && (
                     <Box
                         aria-live="polite"
                         aria-busy={true}
@@ -37,7 +37,8 @@ export const Products = () => {
                             <StatListItemSkeleton key={index} />
                         ))}
                     </Box>
-                ) : !!products?.length ? (
+                )}
+                {!isLoading &&
                     products?.map((product, index) => (
                         <StatListItem
                             key={product.id}
@@ -61,8 +62,8 @@ export const Products = () => {
                                 </Typography>
                             }
                         />
-                    ))
-                ) : (
+                    ))}
+                {!isLoading && products?.length === 0 && (
                     <Typography variant="body2" textAlign="center" padding={4}>
                         No Products available
                     </Typography>

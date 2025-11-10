@@ -39,7 +39,7 @@ export const Customers = () => {
                 disablePadding
                 aria-label="List of Latest Customers"
             >
-                {isLoading ? (
+                {isLoading && (
                     <Box
                         aria-live="polite"
                         aria-busy={true}
@@ -49,7 +49,8 @@ export const Customers = () => {
                             <StatListItemSkeleton key={index} />
                         ))}
                     </Box>
-                ) : !!customers?.length ? (
+                )}
+                {!isLoading &&
                     customers?.map((customer, index) => (
                         <StatListItem
                             key={index}
@@ -64,8 +65,8 @@ export const Customers = () => {
                                 </Typography>
                             }
                         />
-                    ))
-                ) : (
+                    ))}
+                {!isLoading && customers?.length === 0 && (
                     <Typography variant="body2" textAlign="center" padding={4}>
                         No Customers available
                     </Typography>

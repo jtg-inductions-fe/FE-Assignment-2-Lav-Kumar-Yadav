@@ -1,4 +1,4 @@
-import { AppBar, Box, styled } from '@mui/material';
+import { AppBar, IconButton, styled } from '@mui/material';
 
 export const StyledAppBar = styled(AppBar)(
     ({ theme: { palette, spacing, breakpoints } }) => ({
@@ -16,7 +16,7 @@ export const StyledAppBar = styled(AppBar)(
     }),
 );
 
-export const StyledNotificationWrapper = styled(Box)(({ theme }) => ({
+export const StyledNotificationWrapper = styled(IconButton)(({ theme }) => ({
     padding: theme.spacing(2),
     borderRadius: '50%',
     transition: 'box-shadow 0.3s',
@@ -24,10 +24,5 @@ export const StyledNotificationWrapper = styled(Box)(({ theme }) => ({
     justifyContent: 'center',
     alignItems: 'center',
     border: `1px solid ${theme.palette.shadows.main}`,
-    '&:hover': {
-        boxShadow: `0 4px 4px ${theme.palette.shadows.main}`,
-    },
-    '&:focus': {
-        boxShadow: `0 4px 4px ${theme.palette.shadows.main}`,
-    },
-})) as typeof Box;
+    boxShadow: `0 4px 4px ${theme.palette.shadows.main}`,
+})) as typeof IconButton;

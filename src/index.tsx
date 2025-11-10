@@ -6,6 +6,7 @@ import { router } from 'router/routes';
 
 import { CssBaseline, ThemeProvider } from '@mui/material';
 
+import { ErrorProvider } from '@contexts';
 import { theme } from '@theme';
 
 const rootElement = document.getElementById('root') as HTMLElement;
@@ -26,7 +27,9 @@ createRoot(rootElement).render(
     <StrictMode>
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <RouterProvider router={router} />
+            <ErrorProvider>
+                <RouterProvider router={router} />
+            </ErrorProvider>
         </ThemeProvider>
     </StrictMode>,
 );
