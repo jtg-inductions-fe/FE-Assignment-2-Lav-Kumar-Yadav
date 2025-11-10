@@ -6,7 +6,7 @@ import { Container, Grid2 as Grid } from '@mui/material';
 
 import { ErrorBoundary, SideBar } from '@components';
 import { RouteErrorFallback } from '@components';
-import { Header } from '@containers';
+import { Footer, Header } from '@containers';
 
 import { sidebarBottomIcon, sideBarConfig } from './sidebar.config';
 
@@ -44,12 +44,11 @@ export const RootLayout = () => {
                     </Grid>
                     <Grid size="grow" paddingX={5}>
                         <main>
-                            {/* <ErrorBoundary
-                                    fallback={<RouteErrorFallback />}
-                                > */}
-                            <Outlet />
-                            {/* </ErrorBoundary> */}
+                            <ErrorBoundary fallback={<RouteErrorFallback />}>
+                                <Outlet />
+                            </ErrorBoundary>
                         </main>
+                        <Footer />
                     </Grid>
                 </Grid>
             </Grid>

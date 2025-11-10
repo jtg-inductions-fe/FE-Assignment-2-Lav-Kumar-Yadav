@@ -1,7 +1,5 @@
-import { useEffect } from 'react';
-
 import { StatusFallback } from '@components';
-import { useError, useErrorBoundaryContext } from '@contexts';
+import { useErrorBoundaryContext } from '@contexts';
 
 /**
  * Fallback component for Section When an Error happens
@@ -10,16 +8,6 @@ import { useError, useErrorBoundaryContext } from '@contexts';
  */
 export const SectionErrorFallback = () => {
     const { resetErrorBoundary } = useErrorBoundaryContext();
-
-    const { setIsError } = useError();
-
-    useEffect(() => {
-        setIsError(true);
-
-        return () => {
-            setIsError(false);
-        };
-    }, [setIsError]);
 
     return (
         <StatusFallback
