@@ -33,6 +33,14 @@ export const Table = <
         {...props}
         sx={{
             borderRadius: 3,
+            '&::-webkit-scrollbar': {
+                height: '0.2em',
+            },
+            '&::-webkit-scrollbar-thumb': {
+                backgroundColor: 'success.contrastText',
+                borderRadius: 4,
+                cursor: 'pointer',
+            },
         }}
     >
         <MuiTable>

@@ -15,6 +15,7 @@ export const StatusFallback = ({
     illustration,
     actionButtons,
     content,
+    subTitle,
 }: StatusFallbackProps) => (
     <Stack component="section" alignItems="center" gap={5}>
         {illustration && (
@@ -40,10 +41,16 @@ export const StatusFallback = ({
                 />
             </Box>
         )}
-        <Typography variant="h1" textAlign="center">
-            {title}
-        </Typography>
-
+        {title && (
+            <Typography variant="h1" textAlign="center">
+                {title}
+            </Typography>
+        )}
+        {subTitle && (
+            <Typography variant="h2" textAlign="center">
+                {subTitle}
+            </Typography>
+        )}
         <Typography variant="body1" color="textSecondary" textAlign="center">
             {content}
         </Typography>

@@ -5,7 +5,10 @@ export type StatusFallbackProps = {
     illustration?: string;
 
     /**fallback title */
-    title: string;
+    title?: string;
+
+    /** fallback subtitle  */
+    subTitle?: string;
 
     /**fallback body text */
     content: string;

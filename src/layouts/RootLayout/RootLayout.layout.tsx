@@ -31,18 +31,31 @@ export const RootLayout = () => {
                 </Grid>
                 <Grid container width="100%">
                     <Grid size={{ xs: 0, md: 'auto' }}>
-                        <ErrorBoundary fallback={<RouteErrorFallback />}>
-                            <nav aria-label="sidebar">
-                                <SideBar
-                                    open={isSideBarOpen}
-                                    sideBarConfig={sideBarConfig}
-                                    sidebarBottomIcon={sidebarBottomIcon}
-                                    onClose={handleSidebarClose}
-                                />
-                            </nav>
-                        </ErrorBoundary>
+                        <nav aria-label="sidebar">
+                            <SideBar
+                                open={isSideBarOpen}
+                                sideBarConfig={sideBarConfig}
+                                sidebarBottomIcon={sidebarBottomIcon}
+                                onClose={handleSidebarClose}
+                            />
+                        </nav>
                     </Grid>
-                    <Grid size="grow" paddingX={5}>
+                    <Grid
+                        size="grow"
+                        paddingX={5}
+                        height={'calc(100vh - 90px)'}
+                        overflow={'auto'}
+                        sx={{
+                            '&::-webkit-scrollbar': {
+                                width: '0.4em',
+                            },
+                            '&::-webkit-scrollbar-thumb': {
+                                backgroundColor: 'success.contrastText',
+                                borderRadius: 4,
+                                cursor: 'pointer',
+                            },
+                        }}
+                    >
                         <main>
                             <ErrorBoundary fallback={<RouteErrorFallback />}>
                                 <Outlet />
