@@ -34,7 +34,7 @@ export const TableSkeleton = <
                 {Array.from({ length: noOfRows }).map((_, index) => (
                     <TableRow key={index}>
                         {tableConfig.map((cellConfig) => (
-                            <TableCell key={cellConfig.key}>
+                            <TableCell key={cellConfig.key.toString()}>
                                 <Skeleton height={30} width="100%" />
                             </TableCell>
                         ))}

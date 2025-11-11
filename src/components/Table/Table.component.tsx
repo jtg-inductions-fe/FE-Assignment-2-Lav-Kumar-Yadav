@@ -51,7 +51,7 @@ export const Table = <
                     }}
                 >
                     {tableConfig.map((cellConfig) => (
-                        <TableCell key={cellConfig.title}>
+                        <TableCell key={cellConfig.key.toString()}>
                             <Typography
                                 color="textDisabled"
                                 variant="h6"
@@ -68,7 +68,7 @@ export const Table = <
                     <StyledTableRow key={index}>
                         {tableConfig.map((cellConfig) => (
                             <TableCell
-                                key={cellConfig.key}
+                                key={cellConfig.key.toString()}
                                 sx={{
                                     maxWidth: index === 0 ? 300 : 'auto',
                                 }}
