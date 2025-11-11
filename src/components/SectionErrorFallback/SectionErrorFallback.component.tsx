@@ -13,7 +13,10 @@ type SectionErrorFallbackProp = {
  * @param handleRerender - callback will be call when Retry button will be clicked
  * @returns The Fallback when an Error happens in section
  */
-export const SectionErrorFallback = ({ height }: SectionErrorFallbackProp) => {
+export const SectionErrorFallback = ({
+    height,
+    ...props
+}: SectionErrorFallbackProp) => {
     const { resetErrorBoundary } = useErrorBoundaryContext();
 
     return (
@@ -26,6 +29,7 @@ export const SectionErrorFallback = ({ height }: SectionErrorFallbackProp) => {
                 alignItems: 'center',
                 justifyContent: 'center',
             }}
+            {...props}
         >
             <StatusFallback
                 content="Please Retry to load this section"
