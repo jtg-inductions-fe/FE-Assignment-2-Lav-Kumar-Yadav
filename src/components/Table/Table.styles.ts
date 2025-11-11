@@ -1,6 +1,6 @@
 import { styled, TableRow } from '@mui/material';
 
-export const StyledTableRow = styled(TableRow)({
+export const StyledTableRow = styled(TableRow)(({ theme: { palette } }) => ({
     '& td:last-of-type': {
         borderTopRightRadius: 10,
         borderBottomRightRadius: 10,
@@ -12,4 +12,7 @@ export const StyledTableRow = styled(TableRow)({
     '& td': {
         border: 0,
     },
-});
+    '&:nth-of-type(even)': {
+        backgroundColor: palette.background.default,
+    },
+}));

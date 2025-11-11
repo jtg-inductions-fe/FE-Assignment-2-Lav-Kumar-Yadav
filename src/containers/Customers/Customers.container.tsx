@@ -1,4 +1,4 @@
-import { List, Typography } from '@mui/material';
+import { Box, List, Typography } from '@mui/material';
 
 import { Section, StatListItem, StatListItemSkeleton } from '@components';
 import { useCustomers } from '@hooks';
@@ -20,7 +20,11 @@ const formatCurrency = (amount: number) =>
  * @returns List of Customers
  */
 export const Customers = () => {
-    const { data: customers, isLoading } = useCustomers();
+    const { data: customers, isLoading, error } = useCustomers();
+
+    if (error) {
+        throw new Error(error);
+    }
 
     return (
         <Section heading="Latest Customers">
@@ -35,25 +39,38 @@ export const Customers = () => {
                 disablePadding
                 aria-label="List of Latest Customers"
             >
-                {isLoading &&
-                    Array.from({ length: 6 }).map((_, index) => (
-                        <StatListItemSkeleton key={index} />
+                {isLoading && (
+                    <Box
+                        aria-live="polite"
+                        aria-busy={true}
+                        aria-label="Loading customers data"
+                    >
+                        {Array.from({ length: 6 }).map((_, index) => (
+                            <StatListItemSkeleton key={index} />
+                        ))}
+                    </Box>
+                )}
+                {!isLoading &&
+                    customers?.map((customer, index) => (
+                        <StatListItem
+                            key={index}
+                            label={`${customer.name.title} ${customer.name.first} ${customer.name.last}`}
+                            subLabel={customer.email}
+                            imageSrc={customer.picture.thumbnail}
+                            divider={index !== customers.length - 1}
+                            disableGutters
+                            rightContent={
+                                <Typography variant="h3" component="p">
+                                    {formatCurrency(customer.sale)}
+                                </Typography>
+                            }
+                        />
                     ))}
-                {customers?.map((customer, index) => (
-                    <StatListItem
-                        key={index}
-                        label={`${customer.name.title} ${customer.name.first} ${customer.name.last}`}
-                        subLabel={customer.email}
-                        imageSrc={customer.picture.thumbnail}
-                        divider={index !== customers.length - 1}
-                        disableGutters
-                        rightContent={
-                            <Typography variant="h3" component="p">
-                                {formatCurrency(customer.sale)}
-                            </Typography>
-                        }
-                    />
-                ))}
+                {!isLoading && customers?.length === 0 && (
+                    <Typography variant="body2" textAlign="center" padding={4}>
+                        No Customers available
+                    </Typography>
+                )}
             </List>
         </Section>
     );

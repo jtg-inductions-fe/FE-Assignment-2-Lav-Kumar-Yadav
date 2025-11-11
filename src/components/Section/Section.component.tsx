@@ -1,4 +1,4 @@
-import { IconButton, Paper, Stack, Typography } from '@mui/material';
+import { Paper, Stack, Typography } from '@mui/material';
 
 import type { SectionProps } from './Section.types';
 
@@ -54,7 +54,7 @@ export const Section = ({
                     >
                         {heading}
                     </Typography>
-                    {icon && <IconButton>{icon}</IconButton>}
+                    {icon && icon}
                 </Stack>
                 <Typography variant="body2" color="textSecondary">
                     {subHeading}

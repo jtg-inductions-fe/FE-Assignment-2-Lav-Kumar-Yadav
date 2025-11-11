@@ -1,10 +1,20 @@
-export { ImageGallery, type ImageGalleryProps } from './ImageGallery';
-export { LineChart, type LineChartProps } from './LineChart';
-export { Link } from './Link';
+export { ErrorBoundary, type ErrorBoundaryProps } from './ErrorBoundary';
+
+export {
+    ImageGallery,
+    type ImageGalleryProps,
+    ImageGallerySkeleton,
+} from './ImageGallery';
+
+export { LineChart, type LineChartProps, LineChartSkeleton } from './LineChart';
+export { Link, type LinkProps } from './Link';
 export { Menu, type MenuProps, type MenuConfigItem } from './Menu';
-export { NotFound } from './NotFound';
+export { NotFoundFallback } from './NotFoundFallback';
+export { RouteErrorFallback } from './RouteErrorFallback';
 export { SearchBar, type SearchBarProps } from './SearchBar';
-export { Section } from './Section';
+export { Section, type SectionProps } from './Section';
+export { SectionErrorFallback } from './SectionErrorFallback';
+
 export {
     SideBar,
     type SideBarProps,
@@ -12,5 +22,10 @@ export {
     type SidebarConfigType,
 } from './SideBar';
 
-export { StatListItem, StatListItemSkeleton } from './StatListItem';
-export { Table, type TableProps } from './Table';
+export {
+    StatListItem,
+    StatListItemSkeleton,
+    type StatListItemProps,
+} from './StatListItem';
+export { StatusFallback, type StatusFallbackProps } from './StatusFallback';
+export { Table, type TableProps, TableSkeleton } from './Table';

@@ -1,6 +1,9 @@
+import { useMatches } from 'react-router';
+
 import { IconButton, List, ListItem, useMediaQuery } from '@mui/material';
 
 import { Link } from '@components';
+import { useError } from '@contexts';
 
 import { StyledDrawer, StyledList } from './SideBar.style';
 import type { SideBarProps } from './SideBar.types';
@@ -32,11 +35,18 @@ export const SideBar = ({
     ...props
 }: SideBarProps) => {
     const isDesktop = useMediaQuery(({ breakpoints }) => breakpoints.up('md'));
+    const matches = useMatches();
+    const { isError } = useError();
+
+    const isNotFound = matches.some((match) =>
+        match.id.startsWith('not-found'),
+    );
+
+    if ((isNotFound || isError) && isDesktop) return null;
 
     return (
         <StyledDrawer
             variant={isDesktop ? 'permanent' : 'temporary'}
-            component="nav"
             {...props}
         >
             <List dense aria-label="Sidebar Options">

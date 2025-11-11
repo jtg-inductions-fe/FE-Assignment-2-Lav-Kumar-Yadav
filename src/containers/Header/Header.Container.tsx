@@ -83,7 +83,8 @@ export const Header = ({ setIsSidebarOpen }: HeaderProps) => {
                         gap={8}
                         display={{ xs: 'none', md: 'flex' }}
                     >
-                        <Link
+                        <IconButton
+                            component={Link}
                             to="/"
                             aria-label="logo"
                             display="flex"
@@ -96,7 +97,7 @@ export const Header = ({ setIsSidebarOpen }: HeaderProps) => {
                                 height={36}
                                 width={36}
                             />
-                        </Link>
+                        </IconButton>
                         <Box width={402}>
                             <SearchBar
                                 value={productsIdMap[params.productId ?? '']}
@@ -107,22 +108,21 @@ export const Header = ({ setIsSidebarOpen }: HeaderProps) => {
                         </Box>
                     </Stack>
                     <Stack direction="row" alignItems="center" gap={3}>
-                        <Badge
-                            badgeContent={5}
-                            color="primary"
-                            max={99}
-                            aria-label="notification count"
-                            sx={{
-                                '& .MuiBadge-badge': {
-                                    top: 4,
-                                    right: 4,
-                                },
-                            }}
+                        <StyledNotificationWrapper
+                            aria-label="notification"
+                            component={Link}
+                            to="/notification"
                         >
-                            <StyledNotificationWrapper
-                                aria-label="notification"
-                                component={Link}
-                                to="/notification"
+                            <Badge
+                                badgeContent={5}
+                                color="primary"
+                                max={99}
+                                sx={{
+                                    '& .MuiBadge-badge': {
+                                        top: -2,
+                                        right: -5,
+                                    },
+                                }}
                             >
                                 <NotificationsSharp
                                     sx={{
@@ -131,8 +131,8 @@ export const Header = ({ setIsSidebarOpen }: HeaderProps) => {
                                     }}
                                     aria-hidden="true"
                                 />
-                            </StyledNotificationWrapper>
-                        </Badge>
+                            </Badge>
+                        </StyledNotificationWrapper>
                         <Menu
                             config={profileMenuConfig}
                             iconAriaLabel="profile"

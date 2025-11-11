@@ -6,6 +6,7 @@
             "@components": ["components/index"],
             "@constant": ["constant/index"],
             "@containers": ["containers/index"],
+            "@contexts": ["contexts/index"],
             "@hooks": ["hooks/index"],
             "@layouts": ["layouts/index"],
             "@lib": ["lib/index"],

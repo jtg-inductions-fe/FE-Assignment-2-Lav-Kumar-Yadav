@@ -1,6 +1,6 @@
-import { useMediaQuery } from '@mui/material';
+import { Box, Typography, useMediaQuery } from '@mui/material';
 
-import { ImageGallery } from '@components';
+import { ImageGallery, ImageGallerySkeleton } from '@components';
 import { useGallery } from '@hooks';
 
 import { heroLayoutConfig } from './heroLayout.config';
@@ -9,18 +9,41 @@ import { heroLayoutConfig } from './heroLayout.config';
  * @returns - Image Gallery
  */
 export const Hero = () => {
-    const { data: gallery } = useGallery();
+    const { data: gallery, isLoading, error } = useGallery();
     const isDesktop = useMediaQuery(({ breakpoints }) => breakpoints.up('md'));
+
+    if (error) {
+        throw new Error(error);
+    }
 
     return (
         <section aria-labelledby="hero-image-gallery">
-            <ImageGallery
-                data={gallery}
-                imageGalleryLayout={heroLayoutConfig}
-                noOfCols={isDesktop ? 3 : 1}
-                id="hero-image-gallery"
-                aria-label="Hero Image Gallery"
-            />
+            {isLoading && (
+                <Box
+                    aria-live="polite"
+                    aria-busy={true}
+                    aria-label="Loading Gallery data"
+                >
+                    <ImageGallerySkeleton
+                        imageGalleryLayout={heroLayoutConfig}
+                        noOfCols={isDesktop ? 3 : 1}
+                    />
+                </Box>
+            )}
+            {!isLoading && gallery && (
+                <ImageGallery
+                    data={gallery}
+                    imageGalleryLayout={heroLayoutConfig}
+                    noOfCols={isDesktop ? 3 : 1}
+                    id="hero-image-gallery"
+                    aria-label="Hero Image Gallery"
+                />
+            )}
+            {!isLoading && gallery.length === 0 && (
+                <Typography variant="body2" textAlign="center" padding={4}>
+                    No Gallery available
+                </Typography>
+            )}
         </section>
     );
 };

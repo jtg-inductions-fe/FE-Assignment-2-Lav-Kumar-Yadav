@@ -45,3 +45,15 @@ export type ImageGalleryProps = {
      */
     noOfCols: number;
 } & Omit<ImageListProps, 'children'>;
+
+export type ImageGallerySkeletonProps = {
+    /**
+     * Layout on which skeleton should be display
+     */
+    imageGalleryLayout: ImageGalleryLayout;
+
+    /**
+     * no of columns to show skeletons
+     */
+    noOfCols: number;
+};

@@ -33,6 +33,14 @@ export const Table = <
         {...props}
         sx={{
             borderRadius: 3,
+            '&::-webkit-scrollbar': {
+                height: '0.2em',
+            },
+            '&::-webkit-scrollbar-thumb': {
+                backgroundColor: 'success.contrastText',
+                borderRadius: 4,
+                cursor: 'pointer',
+            },
         }}
     >
         <MuiTable>
@@ -43,7 +51,7 @@ export const Table = <
                     }}
                 >
                     {tableConfig.map((cellConfig) => (
-                        <TableCell key={cellConfig.title}>
+                        <TableCell key={cellConfig.key.toString()}>
                             <Typography
                                 color="textDisabled"
                                 variant="h6"
@@ -57,17 +65,14 @@ export const Table = <
             </TableHead>
             <TableBody>
                 {data.map((rowData, index) => (
-                    <StyledTableRow
-                        key={index}
-                        sx={{
-                            bgcolor:
-                                index % 2 === 1
-                                    ? 'background.default'
-                                    : 'inherit',
-                        }}
-                    >
+                    <StyledTableRow key={index}>
                         {tableConfig.map((cellConfig) => (
-                            <TableCell key={cellConfig.key}>
+                            <TableCell
+                                key={cellConfig.key.toString()}
+                                sx={{
+                                    maxWidth: index === 0 ? 300 : 'auto',
+                                }}
+                            >
                                 <Cell
                                     cellConfig={cellConfig}
                                     rowData={rowData}

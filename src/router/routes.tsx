@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router';
 
-import { NotFound } from '@components';
+import { NotFoundFallback } from '@components';
 import { RootLayout } from '@layouts';
 import { Dashboard } from '@pages';
 
@@ -16,18 +16,22 @@ export const router = createBrowserRouter([
     {
         path: '/',
         element: <RootLayout />,
+        id: 'root',
         children: [
             {
                 index: true,
                 element: <Dashboard />,
+                id: 'dashboard',
             },
             {
                 path: '/products/:productId',
-                element: <NotFound />,
+                element: <NotFoundFallback />,
+                id: 'not-found-product',
             },
             {
                 path: '*',
-                element: <NotFound />,
+                element: <NotFoundFallback />,
+                id: 'not-found',
             },
         ],
     },
