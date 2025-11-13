@@ -12,8 +12,7 @@ vi.mock(import('@hooks'), () => ({
 }));
 describe('Customers', () => {
     it('should render skeleton and should display heading of customers', () => {
-        vi.spyOn(Comp, 'StatListItemSkeleton');
-        vi.mocked(Comp.StatListItemSkeleton).mockReturnValue(
+        vi.spyOn(Comp, 'StatListItemSkeleton').mockReturnValue(
             <div>Skeleton Rendering</div>,
         );
 
@@ -43,7 +42,7 @@ describe('Customers', () => {
         expect(screen.queryByRole('listitem')).not.toBeInTheDocument();
     });
 
-    it('should through error if there is error', () => {
+    it('should throw error if there is error', () => {
         vi.mocked(useCustomers).mockReturnValue({
             data: undefined,
             error: 'data not fetched',
@@ -93,7 +92,7 @@ describe('Customers', () => {
                     sale: 600,
                 },
             ],
-            error: '',
+            error: undefined,
             isLoading: false,
         });
         render({ children: <Customers /> });

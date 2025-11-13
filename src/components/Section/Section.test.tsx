@@ -35,9 +35,12 @@ describe('Section', () => {
         expect(screen.getByText(/children/i)).toBeInTheDocument();
     });
 
-    it('should not render heading, subHeading and icon when we not pass', () => {
+    it('should not render heading, subHeading and icon when no props passed', () => {
         setup({});
         expect(screen.queryByRole('heading')).not.toBeInTheDocument();
-        expect(screen.queryByRole('paragraph')).not.toBeInTheDocument();
+        expect(screen.queryByText(/subheading/i)).not.toBeInTheDocument();
+        expect(
+            screen.queryByTestId(/InfoOutlinedIcon/i),
+        ).not.toBeInTheDocument();
     });
 });

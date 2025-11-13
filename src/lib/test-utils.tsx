@@ -17,7 +17,7 @@ type RenderOptions =
           router?: never;
       };
 
-export const render = ({ router, children }: RenderOptions) => {
+export const render = ({ router, children }: RenderOptions) =>
     reactTestingRender(
         <ThemeProvider theme={theme}>
             <CssBaseline />
@@ -27,4 +27,3 @@ export const render = ({ router, children }: RenderOptions) => {
             </ErrorProvider>
         </ThemeProvider>,
     );
-};
