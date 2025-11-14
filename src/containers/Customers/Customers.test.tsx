@@ -52,7 +52,7 @@ describe('Customers', () => {
         render({
             children: (
                 <Comp.ErrorBoundary fallback={<h1>Error Page</h1>}>
-                    <Customers />{' '}
+                    <Customers />
                 </Comp.ErrorBoundary>
             ),
         });
