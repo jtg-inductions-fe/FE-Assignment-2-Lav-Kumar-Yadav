@@ -70,7 +70,7 @@ export const Table = <
                             <TableCell
                                 key={cellConfig.key.toString()}
                                 sx={{
-                                    maxWidth: index === 0 ? 300 : 'auto',
+                                    maxWidth: 300,
                                 }}
                             >
                                 <Cell

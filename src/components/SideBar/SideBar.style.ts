@@ -7,6 +7,7 @@ export const StyledDrawer = styled(Drawer)(({ theme }) => ({
         zIndex: 0,
         width: 'inherit',
         height: 'calc(100vh - 80px)',
+        maxHeight: 2500,
         color: 'black',
         top: theme.spacing(19),
         '&::-webkit-scrollbar': {
