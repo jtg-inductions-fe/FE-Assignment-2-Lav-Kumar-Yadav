@@ -49,9 +49,12 @@ export type MenuProps = {
     /**
      * aria-label to show on the trigger
      */
-    iconAriaLabel: string;
+    iconAriaLabel?: string;
     /**
      *  aria-label to show on the Menu
      */
-    menuAriaLabel: string;
+    menuAriaLabel?: string;
+
+    /**children should be trigger component */
+    children: ReactNode;
 } & Omit<MuiMenuProps, 'open'>;
