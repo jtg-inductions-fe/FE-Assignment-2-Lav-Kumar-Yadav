@@ -56,9 +56,11 @@ export const Section = ({
                     </Typography>
                     {icon && icon}
                 </Stack>
-                <Typography variant="body2" color="textSecondary">
-                    {subHeading}
-                </Typography>
+                {subHeading && (
+                    <Typography variant="body2" color="textSecondary">
+                        {subHeading}
+                    </Typography>
+                )}
             </Stack>
         )}
         {children}
