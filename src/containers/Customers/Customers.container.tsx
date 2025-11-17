@@ -66,12 +66,12 @@ export const Customers = () => {
                             }
                         />
                     ))}
-                {!isLoading && customers?.length === 0 && (
-                    <Typography variant="body2" textAlign="center" padding={4}>
-                        No Customers available
-                    </Typography>
-                )}
             </List>
+            {!isLoading && customers?.length === 0 && (
+                <Typography variant="body2" textAlign="center" padding={4}>
+                    No Customers available
+                </Typography>
+            )}
         </Section>
     );
 };
