@@ -33,7 +33,6 @@ export const Hero = () => {
             {!isLoading && gallery && (
                 <ImageGallery
                     data={gallery}
-                    imageGalleryLayout={heroLayoutConfig}
                     noOfCols={isDesktop ? 3 : 1}
                     id="hero-image-gallery"
                     aria-label="Hero Image Gallery"

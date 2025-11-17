@@ -14,6 +14,12 @@ export type ImageGalleryDataItem = {
      * label for image (used as alt text for accessibility and displayed as caption)
      */
     label: string;
+
+    /** Now of rows taken by image */
+    rows: number;
+
+    /** Now of cols taken by image */
+    cols: number;
 };
 
 type GridSize = {
@@ -27,18 +33,13 @@ type GridSize = {
      */
     cols: number;
 };
-type ImageGalleryLayout = Record<'xs' | 'md', GridSize[]>;
+type ImageGallerySkeletonLayout = Record<'xs' | 'md', GridSize[]>;
 
 export type ImageGalleryProps = {
     /**
      * data to be shown in the gallery
      */
     data: ImageGalleryDataItem[];
-
-    /**
-     * layout on which data will shown
-     */
-    imageGalleryLayout: ImageGalleryLayout;
 
     /**
      * no of Cols shown in the image gallery
@@ -50,7 +51,7 @@ export type ImageGallerySkeletonProps = {
     /**
      * Layout on which skeleton should be display
      */
-    imageGalleryLayout: ImageGalleryLayout;
+    imageGalleryLayout: ImageGallerySkeletonLayout;
 
     /**
      * no of columns to show skeletons
